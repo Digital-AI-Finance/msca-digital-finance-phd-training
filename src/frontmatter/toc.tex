@@ -1,0 +1,24 @@
+% toc.tex -- Table of Contents
+\chapter*{Contents}
+\addcontentsline{toc}{chapter}{Contents}
+
+% --- TOC formatting: two-level depth, dotted leaders ---
+\setcounter{tocdepth}{1}
+
+\titlecontents{chapter}
+  [0pt]                                      % left margin
+  {\addvspace{10pt}\sffamily\bfseries\color{mscaDarkBlue}}  % above
+  {\thecontentslabel\hspace{1em}}            % numbered entry
+  {}                                          % numberless entry
+  {\titlerule*[6pt]{.}\contentspage}         % filler and page
+
+\titlecontents{section}
+  [20pt]                                     % left margin
+  {\addvspace{2pt}\sffamily\color{mscaGrey}} % above
+  {\thecontentslabel\hspace{1em}}            % numbered entry
+  {}                                          % numberless entry
+  {\titlerule*[6pt]{.}\contentspage}         % filler and page
+
+\tableofcontents
+
+\newpage

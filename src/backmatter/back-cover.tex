@@ -1,0 +1,119 @@
+% back-cover.tex -- Back Cover
+\newpage
+\thispagestyle{empty}
+\pagestyle{empty}
+
+% --- Full-page dark blue background ---
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[mscaDarkBlue] (current page.south west) rectangle (current page.north east);
+\end{tikzpicture}
+
+\vspace*{3cm}
+
+% --- Title block ---
+\begin{center}
+  {\fontsize{36}{42}\selectfont\sffamily\bfseries\color{white}
+    Digital Finance}\\[12pt]
+  {\fontsize{16}{20}\selectfont\sffamily\color{mscaLightBlue}
+    MSCA Industrial Doctoral Network}\\[6pt]
+  {\fontsize{14}{18}\selectfont\sffamily\color{mscaLightBlue}
+    Reaching New Frontiers}
+\end{center}
+
+\vspace{1.5cm}
+
+% --- Website ---
+\begin{center}
+  {\Large\sffamily\bfseries\color{euYellow}
+    www.digital-finance-msca.com}
+\end{center}
+
+\vspace{0.8cm}
+
+% --- QR code ---
+\begin{center}
+  \colorbox{white}{\qrcode[height=2.5cm]{https://www.digital-finance-msca.com/}}
+\end{center}
+
+\vspace{1.5cm}
+
+% --- Partner logos: 4 rows (5 + 5 + 5 + 4 = 19) ---
+\begin{center}
+\sffamily\scriptsize\bfseries\color{white}
+\begin{tikzpicture}
+  % Row 1 (y=0) -- Beneficiaries
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (0, 0) {UTwente};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (3, 0) {WU Vienna};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (6, 0) {Naples};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (9, 0) {KUT};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (12, 0) {ASE Bucharest};
+  % Row 2 (y=-1.2) -- Beneficiaries + first Associated
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (0, -1.2) {BBU};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (3, -1.2) {Cardo AI};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (6, -1.2) {Pozna\'n};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (9, -1.2) {BFH Bern};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (12, -1.2) {RPTU};
+  % Row 3 (y=-2.4) -- Associated
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (0, -2.4) {Athena RC};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (3, -2.4) {Fraunhofer};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (6, -2.4) {EIT Digital};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (9, -2.4) {Deutsche Bank};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (12, -2.4) {Raiffeisen};
+  % Row 4 (y=-3.6) -- Associated (remaining 4)
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (1.5, -3.6) {Swedbank};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (4.5, -3.6) {Royalton};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (7.5, -3.6) {ECB};
+  \node[draw=mscaLightBlue!40, fill=mscaMediumBlue, minimum width=26mm, minimum height=9mm,
+        font=\sffamily\scriptsize\bfseries\color{white}, text width=24mm, align=center]
+    at (10.5, -3.6) {BIS};
+\end{tikzpicture}
+\end{center}
+
+\vfill
+
+% --- EU funding strip ---
+\begin{center}
+  \colorbox{white}{\euFlagPlaceholder}
+  \hspace{8pt}
+  {\small\sffamily\color{white}
+    Funded by the European Union \textbar{} Horizon Europe \textbar{}
+    Grant Agreement No.~101119635}
+\end{center}
+
+\vspace{10mm}

@@ -1,0 +1,284 @@
+{
+  "source": "https://www.digital-finance-msca.com/events",
+  "scraped": "2026-03-16",
+  "detail_pages_scraped": 11,
+  "upcoming_events": [
+    {
+      "title": "Machine Learning in Industry",
+      "date": "2026-03-16 to 2026-03-20",
+      "location": "Via Conservatorio 7, 20122 Milano MI, Italy",
+      "type": "Training week",
+      "ects": 4,
+      "provider": "CAR",
+      "description": "Intensive course on ML use cases in Financial Services Industry with emphasis on Credit Markets and Structured Finance. Full ML lifecycle from data acquisition to model deployment and monitoring.",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/machine-learning-in-industry",
+      "detail_page": "events/ml-industry/README.md",
+      "image": "images/event-ml-industry.webp"
+    },
+    {
+      "title": "Modern continuous-time portfolio optimization",
+      "date": "2026-03-27",
+      "location": "Online",
+      "type": "Lecture",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/modern-continuous-time-portfolio-optimization",
+      "image": "images/event-portfolio-optimization.jpg",
+      "detail_page": "events/portfolio-optimization/README.md"
+    },
+    {
+      "title": "Training Week on Blockchains in Digital Finance",
+      "date": "2026-03-30 to 2026-04-03",
+      "location": "Bucharest University of Economic Studies, Piata Romana 6, Bucharest 010374, Romania",
+      "type": "Training week",
+      "ects": 5,
+      "description": "Blockchains in Digital Finance (4 ECTS, Mar 30-Apr 2) + HE Framework and Research Project Management (1 ECTS, Apr 3).",
+      "provider": "ASE",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/training-week-on-blockchains-in-digital-finance",
+      "detail_page": "events/blockchains/README.md",
+      "image": "images/event-bucharest-workshop.jpg"
+    },
+    {
+      "title": "Deep Learning in Finance",
+      "date": "2026-05-11 to 2026-05-14",
+      "location": "BBU/University of Coimbra, Coimbra, Portugal",
+      "type": "Training week",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/deep-learning-in-finance-1",
+      "image": "images/event-deep-learning.jpg",
+      "detail_page": "events/deep-learning/README.md"
+    },
+    {
+      "title": "PhD Training School on Cybersecurity",
+      "date": "2026-06-08 to 2026-06-12",
+      "location": "Enschede",
+      "type": "Training week",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/phd-training-school-on-cybersecurity",
+      "image": "images/event-cybersecurity-utw.jpg",
+      "detail_page": "events/cybersecurity/README.md"
+    },
+    {
+      "title": "NLP at Athena RC",
+      "date": "2026-12-07 to 2026-12-11",
+      "location": "ARC, Athens, Greece",
+      "type": "Training week",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/nlp-at-athena-rc",
+      "image": "images/event-nlp-athena.jpg",
+      "detail_page": "events/nlp-athena/README.md"
+    }
+  ],
+  "past_events_2026": [
+    {
+      "title": "Practice of Digital Finance - Research Workshop",
+      "date": "2026-01-15 to 2026-01-16",
+      "location": "Bucharest University of Economic Studies, Piata Romana 6, Room Virgil Madgearu, 010374 Bucharest, Romania",
+      "type": "Main event",
+      "description": "Organized by the Bucharest University of Economic Studies (ASE)",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/practice-of-digital-finance-research-workshop",
+      "image": "images/event-bucharest-workshop.jpg",
+      "detail_page": "events/practice-workshop/README.md"
+    }
+  ],
+  "past_events_2025": [
+    {
+      "title": "MSCA TRAINING - History and Prospects of Digital Finance",
+      "date": "2025-12-09 to 2025-12-12",
+      "location": "University of Naples Federico II, Via Leopoldo Rodino, 22, 80138 Napoli NA, Italy",
+      "type": "Training week",
+      "description": "Two accredited courses totaling 4 ECTS: History and Prospects of Digital Finance (3 ECTS) and Environmental Aspects (1 ECTS).",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/msca-training-history-and-prospects-of-digital-finance",
+      "image": "images/event-history-naples.jpg"
+    },
+    {
+      "title": "AI in Financial Markets Research Forum #2",
+      "date": "2025-12-04",
+      "location": "Sky 1, RBI Head Office, Am Stadtpark 9, 1030 Wien, Austria",
+      "type": "Main Event",
+      "description": "Knowledge exchange platform between industry representatives from finance and academia in the field of AI, Digital and Sustainable Finance, with a focus on generative AI models.",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/ai-in-financial-markets-research-forum-2",
+      "image": "images/event-agentic-ai-vienna.jpg"
+    },
+    {
+      "title": "Agentic AI for Finance - Training Week",
+      "date": "2025-12-01 to 2025-12-03",
+      "location": "Seminar Room EG 1, RBI Head Office, Am Stadtpark 9, 1030 Wien, Austria",
+      "type": "Training week",
+      "description": "Intensive program (3EC) to equip participants with skills to develop AI agents using OpenAI APIs, with emphasis on RAG techniques and agentic architectures.",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/agentic-ai-for-finance-training-week",
+      "image": "images/event-agentic-ai-vienna.jpg",
+      "detail_page": "events/agentic-ai/README.md"
+    },
+    {
+      "title": "Introduction to Blockchain Applications in Finance - Training Week",
+      "date": "2025-11-03 to 2025-11-07",
+      "location": "Bucharest University of Economic Studies, Piata Romana 6, Room Robert Schuman, 010374 Bucharest, Romania",
+      "type": "Training week",
+      "description": "I. Introduction to Blockchain applications in finance (ASE). II. Scientific Writing (BFH)",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/introduction-to-blockchain-applications-in-finance-training-week",
+      "image": "images/event-bucharest-workshop.jpg"
+    },
+    {
+      "title": "Research Seminar: Audience Dependent Explanations for AI Systems (WP3)",
+      "date": "2025-10-29",
+      "location": "Microsoft Teams",
+      "type": "Online seminar",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/research-seminar-audience-dependent-explanations-for-ai-systems-wp3",
+      "image": "images/event-research-seminar.jpg"
+    },
+    {
+      "title": "Explainable AI - Training Week",
+      "date": "2025-10-06 to 2025-10-10",
+      "location": "BFH Business School, Bruckenstrasse 73, 3005 Bern, Switzerland",
+      "type": "Training week",
+      "description": "Comprehensive introduction to Explainable Artificial Intelligence (XAI), emphasizing methodologies and practical applications of LIME, SHAP, deep learning XAI, time series-based XAI methods.",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/explainable-ai-training-week",
+      "image": "images/event-xai-bfh.jpg",
+      "detail_page": "events/xai-bfh/README.md"
+    },
+    {
+      "title": "Orientation Training Digital Finance",
+      "date": "2025-09-15 to 2025-09-19",
+      "location": "Vienna University of Economics and Business, Welthandelspl. 1, 1020 Wien, Austria",
+      "type": "Main event",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/orientation-training-digital-finance",
+      "image": "images/event-orientation-wu.jpg"
+    },
+    {
+      "title": "Research Seminar: Fair Algorithmic Design (WP3)",
+      "date": "2025-09-03",
+      "location": "Microsoft Teams",
+      "type": "Online seminar",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/research-seminar-fair-algorithmic-design-wp3",
+      "image": "images/event-research-seminar.jpg"
+    },
+    {
+      "title": "Green Digital Finance - Training Week",
+      "date": "2025-06-30 to 2025-07-04",
+      "location": "Kaunas University of Technology, Studentu g. 50-107, 51369 Kaunas, Lithuania",
+      "type": "Training week",
+      "description": "Pillar II. Green Digital Finance (3/3EC, KTU). Pillar I. Ethics Applicable to Digital Aspects (2/4EC, UTW)",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/green-digital-finance-training-week",
+      "image": "images/event-green-finance-kut.jpg"
+    },
+    {
+      "title": "Research Seminar: Uncertainty-Aware Statistical Learning for Complex Decision Processes (WP5)",
+      "date": "2025-06-11",
+      "location": "University of Milan & online",
+      "type": "Online seminar",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/research-seminar-uncertainty-aware-statistical-learning-for-complex-decision-processes-wp5",
+      "image": "images/event-research-seminar.jpg"
+    },
+    {
+      "title": "Lecture: Spectral Risk Measures and Spectral Analysis",
+      "date": "2025-06-11",
+      "location": "Zoom",
+      "type": "Lecture",
+      "description": "Prof Dr Wolfgang Haerdle will focus on spectral risk measures and spectral analysis.",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/lecture-spectral-risk-measures-and-spectral-analysis",
+      "image": "images/event-spectral-risk.jpg"
+    },
+    {
+      "title": "Research Seminar: Explainable AI Methods for Financial Time Series (WP3)",
+      "date": "2025-06-04",
+      "location": "Microsoft Teams",
+      "type": "Online seminar",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/research-seminar-explainable-ai-methods-for-financial-time-series-wp3",
+      "image": "images/event-research-seminar.jpg"
+    },
+    {
+      "title": "Mid-Term Meeting & Technical Training Week",
+      "date": "2025-05-19 to 2025-05-23",
+      "location": "Erlenmeyer Room - The Gallery - UTwente, Hengelosestraat 500, 7521 AN Enschede, Netherlands",
+      "type": "Main event",
+      "description": "1 MSCA DIGITAL Research Day, 1 MSCA DIGITAL Mid-Term Meeting (MTM), 3 days of Technical Training. Attendance mandatory for DCs and at least one representative per member.",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/mid-term-meeting-technical-training-week",
+      "image": "images/event-cybersecurity-utw.jpg"
+    },
+    {
+      "title": "Research Seminar: Reinforcement Learning Applications in Finance (WP3)",
+      "date": "2025-04-16",
+      "location": "Microsoft Teams",
+      "type": "Online seminar",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/research-seminar-reinforcement-learning-applications-in-finance-wp3",
+      "image": "images/event-research-seminar.jpg"
+    },
+    {
+      "title": "Foundations of Data Science - Training Week",
+      "date": "2025-03-20 to 2025-04-04",
+      "location": "Babes-Bolyai University (BBU), Strada Teodor Mihali 58-60, Cluj-Napoca 400591, Romania",
+      "type": "Training week",
+      "description": "4ECTS doctoral training course 'Foundations of Data Science' tailored for doctoral students in finance, along with 'Project Management' (1ECTS).",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/foundations-of-data-science-training-week",
+      "image": "images/event-data-science-bbu.jpg"
+    },
+    {
+      "title": "MSCA TRAINING - Reinforcement Learning @UTW",
+      "date": "2025-02-03 to 2025-02-07",
+      "location": "Ravelijn building, University of Twente, Hallenweg 17, 7522 NH Enschede, Netherlands",
+      "type": "Training week",
+      "description": "Reinforcement Learning in Digital Finance",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/msca-training-reinforcement-learning-utw",
+      "image": "images/event-cybersecurity-utw.jpg"
+    },
+    {
+      "title": "MSCA Training School on Ethics in AI and Digital Finance @Oradea",
+      "date": "2025-01-20 to 2025-01-22",
+      "location": "Oradea Tech Hub, Cetatea Oradea I building, 1st floor, Oradea 410520, Romania",
+      "type": "Main event",
+      "description": "Training session held between January 20-22, 2025 in Oradea, Romania.",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/msca-training-school-on-ethics-in-ai-and-digital-finance-oradea",
+      "image": "images/event-ethics-oradea.jpg"
+    }
+  ],
+  "past_events_2024": [
+    {
+      "title": "PhD Training School on AI in Finance",
+      "date": "2024-06-11 to 2024-06-14",
+      "location": "University of Twente, Enschede, The Netherlands",
+      "type": "Related event",
+      "url": "https://www.digital-finance-msca.com/cost-finai-phd-school-2024"
+    },
+    {
+      "title": "Advanced Statistical Methods for Finance",
+      "date": "2024-09-03 to 2024-09-10",
+      "location": "University of Naples Federico II, Naples, Italy",
+      "type": "Related event",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/msca-network-event-advanced-statistical-modelling-for-fintech-financial-inclusion-and-inequality-una-naples-msca"
+    },
+    {
+      "title": "AI in Financial Markets Research Forum",
+      "date": "2024-11-12",
+      "location": "Raiffeisen Bank, Vienna, Austria",
+      "type": "Related event",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/msca-network-event-rb-event-2024-ai-in-financial-markets-research-forum"
+    },
+    {
+      "title": "AI@(Security, Ethics, Finance)",
+      "date": "2024-12-05 to 2024-12-06",
+      "location": "National Taipei University of Technology, Taipei, Taiwan",
+      "type": "Related event",
+      "url": "https://www.digital-finance-msca.com/event-details-registration/4th-yushan-conference"
+    }
+  ],
+  "meetup_page": "https://www.meetup.com/fintech_ai_in_finance/",
+  "pages_scraped": [
+    "events-2026-03-16.md",
+    "homepage.md",
+    "research-projects.md",
+    "irps.md",
+    "team.md",
+    "presentations.md",
+    "media.md",
+    "trainings.md",
+    "events/ml-industry/README.md",
+    "events/blockchains/README.md",
+    "events/deep-learning/README.md",
+    "events/cybersecurity/README.md",
+    "events/nlp-athena/README.md",
+    "events/portfolio-optimization/README.md",
+    "events/practice-workshop/README.md",
+    "events/agentic-ai/README.md",
+    "events/xai-bfh/README.md",
+    "events/brussels-2024/README.md",
+    "events/cost-finai-2024/README.md"
+  ],
+  "images_downloaded": 20,
+  "images_directory": ".firecrawl/images/"
+}

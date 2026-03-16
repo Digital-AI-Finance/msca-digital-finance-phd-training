@@ -1,0 +1,213 @@
+% === Document Class ===
+% (loaded in main.tex before \input{preamble})
+
+% === Group 1: Encoding & Fonts ===
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+% libertinus provides matching math fonts; do NOT load newtxmath
+
+% === Group 2: Page Layout ===
+\usepackage[a4paper, top=25mm, bottom=30mm, left=22mm, right=22mm,
+            headheight=15mm, footskip=15mm, bindingoffset=5mm]{geometry}
+
+% === Group 3: Core Utilities ===
+\usepackage{graphicx}
+\graphicspath{{../assets/}{../assets/logos/}{../assets/photos/}{../assets/diagrams/}}
+\usepackage{xcolor}
+\usepackage{etoolbox}
+
+% === Group 4: Typography & Layout ===
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage[skip=6pt plus 2pt]{parskip}
+\usepackage{enumitem}
+\usepackage{multicol}
+
+% === Group 5: Tables ===
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+
+% === Group 6: Boxes & Figures ===
+\usepackage[skins,breakable]{tcolorbox}
+\usepackage{pdfpages}
+
+% === Group 7: Drawing ===
+\usepackage{tikz}
+\usetikzlibrary{positioning, calc, arrows.meta, shapes.geometric}
+
+% === Group 8: QR Code ===
+\usepackage{qrcode}
+
+% === Group 9: Quoting ===
+\usepackage{csquotes}
+
+% ============================================================
+% COLOR DEFINITIONS
+% ============================================================
+\definecolor{euBlue}{HTML}{003399}
+\definecolor{euYellow}{HTML}{FFCC00}
+\definecolor{mscaDarkBlue}{HTML}{002060}
+\definecolor{mscaMediumBlue}{HTML}{0055A4}
+\definecolor{mscaLightBlue}{HTML}{D6E4F0}
+\definecolor{mscaGrey}{HTML}{4D4D4D}
+\definecolor{mscaLightGrey}{HTML}{F2F2F2}
+\definecolor{mscaAccentGold}{HTML}{D4A017}
+
+% ============================================================
+% NAVIGATION (MUST BE LAST IN PREAMBLE)
+% ============================================================
+\usepackage{fancyhdr}
+\usepackage[
+  colorlinks=true,
+  linkcolor=mscaMediumBlue,
+  urlcolor=mscaMediumBlue,
+  pdfauthor={Prof. Dr. Joerg R. Osterrieder},
+  pdftitle={MSCA Digital Finance -- PhD Training Program 2026},
+  pdfsubject={Doctoral Training in Digital Finance},
+  pdfkeywords={MSCA, Digital Finance, PhD, Training, Horizon Europe, 101119635}
+]{hyperref}
+\usepackage{bookmark}
+
+% ============================================================
+% CUSTOM COMMANDS
+% ============================================================
+
+% --- Partner Logo (TikZ placeholder) ---
+\newcommand{\partnerlogo}[1]{%
+  \begin{tikzpicture}
+    \node[draw=mscaMediumBlue, fill=mscaLightBlue, minimum width=25mm, minimum height=10mm,
+          font=\sffamily\scriptsize\bfseries\color{mscaDarkBlue}, text width=23mm, align=center] {#1};
+  \end{tikzpicture}%
+}
+
+% --- Placeholder Photo ---
+\newcommand{\placeholderphoto}[2]{%
+  % #1=width, #2=caption text
+  \begin{tikzpicture}
+    \node[draw=mscaGrey, fill=mscaLightGrey, minimum width=#1, minimum height=0.6*#1,
+          font=\sffamily\small\color{mscaGrey}] {[PHOTO: #2]};
+  \end{tikzpicture}%
+}
+
+% --- EU Flag Placeholder ---
+\newcommand{\euFlagPlaceholder}{%
+  \begin{tikzpicture}
+    \fill[euBlue] (0,0) rectangle (2,1.33);
+    \foreach \a in {0,30,...,330} {
+      \fill[euYellow] ({1+0.35*cos(\a)},{0.665+0.35*sin(\a)}) --
+        ({1+0.15*cos(\a+18)},{0.665+0.15*sin(\a+18)}) -- cycle;
+    }
+  \end{tikzpicture}%
+}
+
+% --- Course Card ---
+\newcommand{\coursecard}[5]{%
+  % #1=Code, #2=Title, #3=ECTS, #4=Provider, #5=Description
+  \begin{tcolorbox}[
+    colback=mscaLightBlue,
+    colframe=mscaMediumBlue,
+    title={\sffamily\bfseries #1: #2},
+    fonttitle=\color{white},
+    coltitle=white,
+    colbacktitle=mscaMediumBlue,
+    boxrule=0.5pt,
+    arc=2mm,
+    left=4mm, right=4mm, top=2mm, bottom=2mm
+  ]
+  \textbf{ECTS:} #3 \hfill \textbf{Provider:} #4 \\[4pt]
+  #5
+  \end{tcolorbox}
+}
+
+% --- Event Page ---
+\newcommand{\eventpage}[7]{%
+  % #1=Title, #2=Date, #3=Location, #4=Host, #5=Description, #6=Program, #7=Photo path
+  \begin{center}
+    {\Huge\sffamily\bfseries\color{mscaDarkBlue} #1}\\[8pt]
+    {\Large\sffamily\color{mscaMediumBlue} #2 \textbar{} #3}\\[4pt]
+    {\large\sffamily Hosted by #4}
+  \end{center}
+  \vspace{8pt}
+  \ifblank{#7}{}{%
+    \begin{figure}[h]\centering
+      \includegraphics[width=0.85\textwidth]{#7}
+    \end{figure}
+  }%
+  \subsection*{Overview}
+  #5
+  \subsection*{Program}
+  #6
+}
+
+% --- WP Header ---
+\newcommand{\wpheader}[3]{%
+  % #1=WP number, #2=WP title, #3=Lead institution
+  \begin{tcolorbox}[
+    colback=mscaDarkBlue,
+    colframe=mscaDarkBlue,
+    arc=0mm,
+    boxrule=0pt,
+    left=6mm, right=6mm, top=4mm, bottom=4mm
+  ]
+  {\Huge\sffamily\bfseries\color{euYellow} WP#1}\\[4pt]
+  {\Large\sffamily\bfseries\color{white} #2}\\[2pt]
+  {\normalsize\sffamily\color{mscaLightBlue} Lead: #3}
+  \end{tcolorbox}
+}
+
+% --- Number Callout ---
+\newcommand{\numbercallout}[2]{%
+  % #1=big number, #2=label
+  \begin{minipage}[t]{0.22\textwidth}\centering
+    {\fontsize{28}{32}\selectfont\sffamily\bfseries\color{mscaDarkBlue} #1}\\[2pt]
+    {\small\sffamily\color{mscaGrey} #2}
+  \end{minipage}
+}
+
+% --- Highlight Box ---
+\newtcolorbox{highlightbox}{
+  colback=euYellow!15,
+  colframe=mscaAccentGold,
+  boxrule=0pt,
+  leftrule=4pt,
+  arc=0mm,
+  left=8mm, right=4mm, top=4mm, bottom=4mm
+}
+
+% ============================================================
+% HEADERS AND FOOTERS
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily MSCA Digital Finance}
+\fancyhead[C]{\small\sffamily PhD Training Program 2026}
+\fancyhead[R]{\small\sffamily\thepage}
+\fancyfoot[L]{\scriptsize\sffamily Grant No.\ 101119635}
+\fancyfoot[R]{\scriptsize\sffamily Funded by the European Union}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.2pt}
+
+% Redefine plain style for chapter pages
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[L]{\scriptsize\sffamily Grant No.\ 101119635}
+  \fancyfoot[R]{\scriptsize\sffamily Funded by the European Union}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.2pt}
+}
+
+% ============================================================
+% SECTION TITLE FORMATTING
+% ============================================================
+\titleformat{\chapter}[display]
+  {\Huge\sffamily\bfseries\color{mscaDarkBlue}}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat{\section}
+  {\LARGE\sffamily\bfseries\color{mscaMediumBlue}}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\Large\sffamily\bfseries\color{mscaMediumBlue}}
+  {\thesubsection}{1em}{}

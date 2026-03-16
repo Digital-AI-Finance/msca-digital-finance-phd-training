@@ -1,0 +1,51 @@
+\documentclass[11pt,a4paper,openany]{report}
+
+\input{preamble}
+
+\begin{document}
+
+% --- Frontmatter (no page numbers on covers) ---
+\pagestyle{empty}
+\input{frontmatter/cover}
+\newpage
+\input{frontmatter/inside-cover}
+\newpage
+
+% --- Foreword ---
+\pagestyle{plain}
+\input{frontmatter/foreword}
+\newpage
+
+% --- Table of Contents ---
+\input{frontmatter/toc}
+\newpage
+
+% --- Abbreviations ---
+\input{frontmatter/abbreviations}
+\newpage
+
+% --- Main Content ---
+\pagestyle{fancy}
+\input{chapters/01-introduction}
+\input{chapters/02-consortium}
+\input{chapters/03-research-wps}
+\input{chapters/04-training-overview}
+\input{chapters/05-mandatory-courses}
+\input{chapters/06-elective-courses}
+\input{chapters/07-transferable-skills}
+\input{chapters/08-secondments}
+\input{chapters/09-events-2026}
+\input{chapters/10-event-placeholders}
+\input{chapters/11-how-to-participate}
+
+% --- Backmatter ---
+\appendix
+\input{backmatter/appendix-contacts}
+\input{backmatter/appendix-calendar}
+
+% --- Back Cover ---
+\pagestyle{empty}
+\newpage
+\input{backmatter/back-cover}
+
+\end{document}

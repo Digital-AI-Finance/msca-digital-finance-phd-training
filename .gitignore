@@ -1,0 +1,36 @@
+# Grant agreement PDFs (large, confidential)
+3Annex*.pdf
+4Annex*.pdf
+_partB_extracted.txt
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.out
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
+
+# Compiled PDFs in src/ (only docs/booklet.pdf is committed)
+src/*.pdf
+
+# Build output directory
+output/
+
+# Editor/IDE
+.vscode/
+*.swp
+*~
+
+# oh-my-claudecode state
+.omc/
+
+# OS files
+Thumbs.db
+.DS_Store

@@ -1,0 +1,144 @@
+% 08-secondments.tex -- Secondments
+\chapter{Secondments}
+\label{ch:secondments}
+
+% ====================================================================
+\section{Secondment Program Structure}
+\label{sec:secondment-structure}
+
+International secondments are a defining feature of the MSCA Industrial
+Doctoral Network.  Every doctoral candidate spends a substantial period working
+at institutions other than their home university, gaining exposure to different
+research cultures, industry practices, and regulatory environments.
+
+The program follows a dual secondment model.  Each DC undertakes a research
+center secondment of up to six months at one of the consortium's associated
+research partners, focusing on advanced methodological training and access to
+specialized infrastructure.  In addition, each DC completes an industry
+secondment of up to eighteen months at a corporate partner, SME, or
+international organization, where research is conducted in a production
+environment under joint academic-industry supervision.
+
+Secondments are integrated with the five research work packages.  Each
+placement is designed to advance the doctoral candidate's thesis while
+providing skills and perspectives that cannot be acquired at the home
+institution alone.  Supervisory arrangements, research objectives, and
+deliverables are agreed before each secondment begins.
+
+\vspace{8pt}
+
+% --- TikZ Secondment Timeline ---
+\begin{center}
+\begin{tikzpicture}[x=28mm, y=10mm]
+  % Axis
+  \draw[-{Stealth[length=3mm]}, thick, mscaGrey]
+    (0,0) -- (4.5,0)
+    node[right, font=\sffamily\small\color{mscaGrey}] {Time};
+
+  % Year labels
+  \foreach \y/\label in {0.5/Year 1, 1.5/Year 2, 2.5/Year 3, 3.5/Year 4} {
+    \node[below=2mm, font=\sffamily\footnotesize\color{mscaGrey}] at (\y,0) {\label};
+    \draw[mscaGrey!50] (\y-0.5, -0.1) -- (\y-0.5, 0.1);
+  }
+  \draw[mscaGrey!50] (4, -0.1) -- (4, 0.1);
+
+  % Home institution (blue)
+  \fill[mscaMediumBlue!60] (0, 0.4) rectangle (1.4, 1.0);
+  \fill[mscaMediumBlue!60] (2.6, 0.4) rectangle (4.0, 1.0);
+  \node[font=\sffamily\scriptsize\color{white}] at (0.7, 0.7)
+    {Home institution};
+  \node[font=\sffamily\scriptsize\color{white}] at (3.3, 0.7)
+    {Home institution};
+
+  % Research center secondment (green)
+  \fill[green!40!mscaMediumBlue] (1.4, 0.4) rectangle (2.0, 1.0);
+  \node[font=\sffamily\scriptsize\color{white}] at (1.7, 0.7)
+    {Research};
+
+  % Industry secondment (gold)
+  \fill[mscaAccentGold] (2.0, 0.4) rectangle (2.6, 1.0);
+  \node[font=\sffamily\scriptsize\color{white}] at (2.3, 0.7)
+    {Industry};
+
+  % Legend
+  \fill[mscaMediumBlue!60]       (0.2, -1.0) rectangle (0.5, -0.75);
+  \fill[green!40!mscaMediumBlue] (1.7, -1.0) rectangle (2.0, -0.75);
+  \fill[mscaAccentGold]          (3.0, -1.0) rectangle (3.3, -0.75);
+  \node[right, font=\sffamily\scriptsize] at (0.5, -0.875) {Home institution};
+  \node[right, font=\sffamily\scriptsize] at (2.0, -0.875) {Research center};
+  \node[right, font=\sffamily\scriptsize] at (3.3, -0.875) {Industry};
+\end{tikzpicture}
+\end{center}
+
+\vspace{4pt}
+
+\begin{highlightbox}
+\textbf{Note:} The timeline above is illustrative.  The exact timing and
+duration of each secondment varies by doctoral candidate and is agreed with the
+supervisory team.
+\end{highlightbox}
+
+% ====================================================================
+\section{What to Expect}
+\label{sec:secondment-expect}
+
+During a secondment, doctoral candidates receive co-supervision from a local
+mentor at the host institution in addition to their primary supervisor.  The
+consortium provides travel and relocation support as well as the standard MSCA
+living and mobility allowances, which cover housing, insurance, and daily
+expenses.
+
+Secondments are designed to build competencies that complement home-institution
+research: hands-on experience with production-scale systems at industry
+partners, access to specialized laboratories and datasets at research centers,
+and exposure to regulatory and policy perspectives at international
+organizations.  All activities and outputs contribute directly to the doctoral
+thesis.
+
+% ====================================================================
+\section{What Secondment Hosts Provide}
+\label{sec:secondment-hosts}
+
+\textbf{Research Centers (Athena Research Center, EIT Digital, Fraunhofer, ECB, BIS).}\quad
+Research center hosts offer access to specialized computing labs, curated
+research datasets, and multidisciplinary teams.  Doctoral candidates join
+active research groups, participate in internal seminars, and benefit from
+infrastructure---such as GPU clusters and secure data rooms---that may not be
+available at their home institution.
+
+\textbf{Corporations (Swedbank, Deutsche Bank, Raiffeisen Bank International).}\quad
+Corporate hosts embed doctoral candidates in technology, risk, or data science
+teams that operate production-scale financial systems.  Researchers gain
+first-hand experience with industry workflows, real-time data pipelines, and
+regulatory compliance processes while receiving mentorship from senior
+practitioners.
+
+\textbf{SMEs (Royalton Partners).}\quad
+SME hosts provide an entrepreneurial environment where doctoral candidates
+contribute directly to product development and innovation.  Researchers
+experience the full cycle from prototype to deployment in a fast-moving
+fintech setting, building skills in agile development and commercial
+awareness.
+
+\vspace{4pt}
+{\itshape\color{mscaGrey}[REAL QUOTES FROM SECONDMENT HOSTS TO BE COLLECTED]}
+
+\vspace{8pt}
+
+% --- Secondment Destinations Table ---
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{@{}l l X@{}}
+  \toprule
+  \textbf{Type} & \textbf{Duration} & \textbf{Destinations} \\
+  \midrule
+  Research Center      & Up to 6 months    & Athena Research Center, EIT Digital,
+                                             Fraunhofer, ECB, BIS \\
+  Industry (Corporate) & Up to 18 months   & Swedbank, Deutsche Bank, Raiffeisen
+                                             Bank International \\
+  Industry (SME)       & Up to 18 months   & Royalton Partners \\
+  \bottomrule
+\end{tabularx}
+\caption{Secondment destinations by type and duration.}
+\label{tab:secondment-destinations}
+\end{table}

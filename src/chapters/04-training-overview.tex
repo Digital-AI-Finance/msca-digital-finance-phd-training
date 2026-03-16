@@ -1,0 +1,120 @@
+% 04-training-overview.tex -- Training Structure
+\chapter{Training Structure}
+\label{ch:training-overview}
+
+% ====================================================================
+\section{The Four Pillars}
+\label{sec:four-pillars}
+
+The Digital Finance training program is organized around four complementary
+pillars, each designed to equip doctoral candidates with a distinct set of
+competencies.  Together, the pillars ensure that researchers graduate with
+deep technical expertise, broad transferable skills, and substantial hands-on
+experience in both academic and industry settings.
+
+\vspace{6pt}
+
+\begin{center}
+\begin{tikzpicture}[
+  pillar/.style={
+    draw=mscaMediumBlue, fill=mscaLightBlue,
+    minimum width=34mm, minimum height=55mm,
+    text width=30mm, align=center,
+    font=\sffamily\small, inner sep=3mm,
+    rounded corners=2pt
+  },
+  plabel/.style={
+    font=\sffamily\bfseries\color{white},
+    fill=mscaDarkBlue, minimum width=34mm, minimum height=8mm,
+    inner sep=2mm, rounded corners=2pt
+  }
+]
+  % Pillar 1
+  \node[pillar] (p1) at (0,0)
+    {6 courses\\[2pt]24 ECTS\\[6pt]{\scriptsize Foundational methods in data science, AI, XAI, blockchain, sustainable finance, and ethics}};
+  \node[plabel, above=0pt of p1.north, anchor=south] {Pillar 1};
+  \node[font=\sffamily\footnotesize\bfseries\color{mscaDarkBlue}, below=2mm of p1.south,
+        text width=30mm, align=center]
+    {Mandatory\\Scientific};
+
+  % Pillar 2
+  \node[pillar] (p2) at (40mm,0)
+    {18 courses\\[2pt]Elective\\[6pt]{\scriptsize Advanced topics in AI, data, finance, technology, policy, and sustainability}};
+  \node[plabel, above=0pt of p2.north, anchor=south] {Pillar 2};
+  \node[font=\sffamily\footnotesize\bfseries\color{mscaDarkBlue}, below=2mm of p2.south,
+        text width=30mm, align=center]
+    {Advanced\\Scientific};
+
+  % Pillar 3
+  \node[pillar] (p3) at (80mm,0)
+    {16 modules\\[2pt]Non-credit\\[6pt]{\scriptsize Research skills, professional development, communication, and ethics}};
+  \node[plabel, above=0pt of p3.north, anchor=south] {Pillar 3};
+  \node[font=\sffamily\footnotesize\bfseries\color{mscaDarkBlue}, below=2mm of p3.south,
+        text width=30mm, align=center]
+    {Transferable\\Skills};
+
+  % Pillar 4
+  \node[pillar] (p4) at (120mm,0)
+    {Research +\\Industry\\[6pt]{\scriptsize Up to 6\,mo.\ at a research center and up to 18\,mo.\ in industry}};
+  \node[plabel, above=0pt of p4.north, anchor=south] {Pillar 4};
+  \node[font=\sffamily\footnotesize\bfseries\color{mscaDarkBlue}, below=2mm of p4.south]
+    {Secondments};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{6pt}
+
+\textbf{Pillar~1 --- Mandatory Scientific Training.}\quad
+Six foundational courses (24~ECTS total) provide every doctoral candidate with
+a shared methodological baseline in data science, AI, explainability,
+blockchain, sustainable finance, and ethics.  These courses are detailed in
+Chapter~\ref{ch:mandatory-courses}.
+
+\textbf{Pillar~2 --- Advanced Scientific Training.}\quad
+Eighteen elective courses allow researchers to deepen their expertise in
+specialized topics aligned with their work package and thesis.  Offerings span
+AI methods, financial modeling, data engineering, policy, and sustainability.
+See Chapter~\ref{ch:elective-courses}.
+
+\textbf{Pillar~3 --- Transferable Skills.}\quad
+Sixteen non-credit modules develop competencies that extend beyond the research
+domain: scientific writing, project management, entrepreneurship, presentation
+skills, and research ethics.  See Chapter~\ref{ch:transferable-skills}.
+
+\textbf{Pillar~4 --- Secondments.}\quad
+Each doctoral candidate undertakes international secondments at research centers
+and industry partners, gaining practical experience and cross-sector exposure.
+See Chapter~\ref{ch:secondments}.
+
+% ====================================================================
+\section{Training Calendar at a Glance}
+\label{sec:training-calendar}
+
+The table below provides an indicative overview of the 2026 training schedule.
+Confirmed dates and locations are published on the program website; updates
+appear throughout the year as events are finalized.
+
+\vspace{4pt}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+  \toprule
+  \textbf{Month} & \textbf{Planned Activities} \\
+  \midrule
+  January             & Practice of Digital Finance Research Workshop (Bucharest) \\
+  February            & --- \\
+  March               & Machine Learning in Industry (Milan, 16--20 Mar); Portfolio Optimization Lecture (Online, 27 Mar); Blockchains in Digital Finance (Bucharest, 30 Mar--2 Apr) \\
+  April               & --- \\
+  May                 & Deep Learning in Finance (Coimbra, 11--14 May) \\
+  June                & PhD Training School on Cybersecurity (Enschede, 8--12 Jun) \\
+  July--November      & --- \\
+  December            & NLP at Athena RC (Athens, 7--11 Dec) \\
+  \bottomrule
+\end{tabularx}
+\caption{Indicative training calendar for 2026.  Check the program website for
+confirmed dates.}
+\label{tab:calendar-2026}
+\end{table}

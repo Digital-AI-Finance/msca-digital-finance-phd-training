@@ -1,0 +1,62 @@
+% cover.tex -- Front cover page
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  % --- Top strip: dark blue bar with EU flag and funding text ---
+  \fill[mscaDarkBlue]
+    ([yshift=0mm]current page.north west) rectangle
+    ([yshift=-15mm]current page.north east);
+  \node[anchor=west, inner sep=0pt]
+    at ([xshift=15mm, yshift=-7.5mm]current page.north west)
+    {\scalebox{0.45}{\euFlagPlaceholder}};
+  \node[anchor=east, font=\sffamily\footnotesize\color{white}]
+    at ([xshift=-15mm, yshift=-7.5mm]current page.north east)
+    {Funded by the European Union};
+
+  % --- Bottom strip: dark blue bar with grant info ---
+  \fill[mscaDarkBlue]
+    ([yshift=18mm]current page.south west) rectangle
+    (current page.south east);
+  \node[anchor=west, font=\sffamily\scriptsize\color{white}]
+    at ([xshift=15mm, yshift=12mm]current page.south west)
+    {Grant Agreement No.\ 101119635};
+  \node[font=\sffamily\scriptsize\color{white}]
+    at ([yshift=12mm]current page.south)
+    {Horizon Europe -- MSCA Doctoral Networks (Industrial)};
+  \node[anchor=east, font=\sffamily\scriptsize\color{euYellow}]
+    at ([xshift=-15mm, yshift=12mm]current page.south east)
+    {www.digital-finance-msca.com};
+  \node[font=\sffamily\tiny\color{mscaLightBlue}]
+    at ([yshift=5mm]current page.south)
+    {MSCA Industrial Doctoral Network on Digital Finance};
+\end{tikzpicture}
+
+\vspace*{30mm}
+
+% --- Title block ---
+\begin{center}
+  {\fontsize{18}{22}\selectfont\sffamily\color{mscaMediumBlue}
+    MSCA Industrial Doctoral Network}\\[10pt]
+  {\fontsize{36}{42}\selectfont\sffamily\bfseries\color{mscaDarkBlue}
+    Digital Finance}\\[8pt]
+  {\fontsize{14}{18}\selectfont\itshape\color{mscaGrey}
+    Reaching New Frontiers}\\[12pt]
+  {\color{euYellow}\rule{80mm}{1pt}}\\[12pt]
+  {\fontsize{20}{26}\selectfont\sffamily\color{mscaDarkBlue}
+    PhD Training Program in Digital Finance}\\[14pt]
+  {\fontsize{48}{56}\selectfont\sffamily\bfseries\color{euBlue}
+    2026}
+\end{center}
+
+\vspace{20mm}
+
+% --- Placeholder photo area ---
+\begin{center}
+  \begin{tikzpicture}
+    \node[draw=mscaGrey, fill=mscaLightGrey,
+          minimum width=120mm, minimum height=60mm,
+          font=\sffamily\color{mscaGrey}]
+      {[PHOTO: Consortium group or training event]};
+  \end{tikzpicture}
+\end{center}
+
+\newpage

@@ -169,6 +169,11 @@ def page_template(title, breadcrumbs, content):
     .source-link {{ margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; font-size: 0.8rem; color: #888; }}
     .source-link a {{ color: #666; text-decoration: none; }}
     .source-link a:hover {{ color: #003399; text-decoration: underline; }}
+    .person-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; margin: 1rem 0; }}
+    .person-card {{ text-align: center; }}
+    .person-card img {{ width: 120px; height: 120px; border-radius: 50%; object-fit: cover; }}
+    .person-card p {{ font-size: 0.85rem; margin-top: 0.5rem; }}
+    .person-card a {{ color: #003399; text-decoration: none; }}
     @media (max-width: 600px) {{
       .site-header .container {{ flex-direction: column; text-align: center; }}
       .site-header nav a {{ margin-left: 0.5rem; margin-right: 0.5rem; }}
@@ -266,10 +271,67 @@ def rewrite_image_urls(html_content: str) -> str:
     )
 
 
+def dedup_images(html_content: str) -> str:
+    """Remove duplicate blur versions of Wix images (blur+sharp pairs)."""
+    def replacer(m):
+        img1, img2 = m.group(1), m.group(2)
+        hash1 = re.search(r'([0-9a-f]+_[0-9a-f]+~mv2)', img1)
+        hash2 = re.search(r'([0-9a-f]+_[0-9a-f]+~mv2)', img2)
+        if hash1 and hash2 and hash1.group(1) == hash2.group(1):
+            # Same image — keep the sharp (non-blur) version
+            if 'blur' in img1:
+                return img2
+            return img1
+        return m.group(0)
+    return re.sub(
+        r'(<img\s[^>]+>)\s*(<img\s[^>]+>)',
+        replacer, html_content,
+    )
+
+
+def build_person_grid(html_content: str) -> str:
+    """Detect committee sections and wrap person entries in a CSS grid."""
+    # Match committee heading and content until next h2 or end
+    pattern = r'(<h2>(?:Organizing|Scientific)\s+Committee</h2>)(.*?)(?=<h2>|$)'
+    def section_replacer(m):
+        heading = m.group(1)
+        body = m.group(2)
+        # Find person patterns: <a href="url"><img ...>[<img ...>]Name</a>
+        persons = re.findall(
+            r'<a\s+href="([^"]+)">\s*(?:<img\s+src="([^"]+)"[^>]*>\s*)+([^<]+?)\s*</a>',
+            body,
+        )
+        if not persons:
+            return m.group(0)
+        cards = []
+        for url, img_src, name in persons:
+            name = name.strip()
+            if not name:
+                continue
+            cards.append(
+                f'<div class="person-card">'
+                f'<a href="{url}">'
+                f'<img src="{img_src}" alt="{html_mod.escape(name)}">'
+                f'<p>{html_mod.escape(name)}</p>'
+                f'</a></div>'
+            )
+        if not cards:
+            return m.group(0)
+        grid = '<div class="person-grid">\n' + '\n'.join(cards) + '\n</div>'
+        return heading + '\n' + grid
+    return re.sub(pattern, section_replacer, html_content, flags=re.DOTALL)
+
+
 # ---------------------------------------------------------------------------
 # Markdown -> HTML (regex-based, no deps)
 # ---------------------------------------------------------------------------
 def md_to_html(md: str) -> str:
+    # Strip Wix-style line breaks — join lines (don't leave blank lines)
+    md = md.replace('\\\\\n', '')  # \\ + newline → join
+    md = md.replace('\\\n', '')    # \ + newline → join
+    # Strip standalone backslash lines
+    md = re.sub(r'(?m)^\\\\$', '', md)
+    md = re.sub(r'(?m)^\\$', '', md)
     lines = md.split('\n')
     out_blocks = []
     i = 0
@@ -352,6 +414,12 @@ def md_to_html(md: str) -> str:
 
 
 def inline_format(text: str) -> str:
+    # Fix escaped pipes from Firecrawl
+    text = text.replace('\\|', '|')
+    # Strip double-backslash Wix line breaks
+    text = text.replace('\\\\', '')
+    # Strip any trailing single backslash
+    text = text.rstrip('\\')
     # Images BEFORE links (![alt](url))
     text = re.sub(
         r'!\[([^\]]*)\]\(([^)]+)\)',
@@ -375,22 +443,22 @@ def inline_format(text: str) -> str:
 # Title extraction
 # ---------------------------------------------------------------------------
 def extract_title(md: str, fallback: str) -> str:
-    # Try ### **Title**
-    m = re.search(r'^###\s+\*\*(.+?)\*\*', md, re.MULTILINE)
+    # Try # Title first (highest level = page title)
+    m = re.search(r'^#\s+(.+)', md, re.MULTILINE)
     if m:
-        return m.group(1).strip()
+        t = m.group(1).strip()
+        t = re.sub(r'\*\*(.+?)\*\*', r'\1', t)
+        return t
     # Try ## Title
     m = re.search(r'^##\s+(.+)', md, re.MULTILINE)
     if m:
         t = m.group(1).strip()
         t = re.sub(r'\*\*(.+?)\*\*', r'\1', t)
         return t
-    # Try # Title
-    m = re.search(r'^#\s+(.+)', md, re.MULTILINE)
+    # Try ### **Title**
+    m = re.search(r'^###\s+\*\*(.+?)\*\*', md, re.MULTILINE)
     if m:
-        t = m.group(1).strip()
-        t = re.sub(r'\*\*(.+?)\*\*', r'\1', t)
-        return t
+        return m.group(1).strip()
     return fallback.replace('-', ' ').title()
 
 
@@ -463,7 +531,9 @@ def build_page(md_path: Path, section: str, section_label: str, section_url: str
     cleaned = strip_wix(raw)
     title = extract_title(cleaned, slug)
     html_body = md_to_html(cleaned)
+    html_body = dedup_images(html_body)       # before rewrite so blur URLs detectable
     html_body = rewrite_image_urls(html_body)
+    html_body = build_person_grid(html_body)
 
     # Append source link for individual pages
     source_url = get_source_url(section, slug)

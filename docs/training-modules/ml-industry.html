@@ -7,11 +7,16 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; background: #f8f9fa; line-height: 1.7; }
+    .skip-link { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 1000; }
+    .skip-link:focus { position: fixed; left: 1rem; top: 1rem; width: auto; height: auto; overflow: visible; background: #003399; color: #fff; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.9rem; z-index: 1000; text-decoration: none; }
     .site-header { background: #003399; color: #fff; padding: 1rem 0; }
     .site-header .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
     .site-header a { color: #fff; text-decoration: none; font-weight: 600; }
     .site-header nav a { font-weight: 400; margin-left: 1.5rem; opacity: 0.9; }
     .site-header nav a:hover { opacity: 1; text-decoration: underline; }
+    .site-header nav a.active { opacity: 1; border-bottom: 2px solid #fff; padding-bottom: 2px; }
+    .desktop-nav { display: flex; }
+    .mobile-nav { display: none; }
     main { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
     .breadcrumbs { font-size: 0.85rem; color: #666; margin-bottom: 1.5rem; }
     .breadcrumbs a { color: #003399; text-decoration: none; }
@@ -40,12 +45,21 @@
     .site-footer img { max-width: 200px; margin-bottom: 0.75rem; }
     .site-footer a { color: #003399; text-decoration: none; }
     .site-footer a:hover { text-decoration: underline; }
+    .footer-nav { margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    .footer-nav a { color: #003399; text-decoration: none; font-size: 0.9rem; }
+    .footer-nav a:hover { text-decoration: underline; }
     .hub-hero { text-align: center; padding: 2rem 0 1rem; }
     .hub-hero h1 { font-size: 2rem; }
     .hub-hero .subtitle { color: #555; margin-top: 0.5rem; }
     .hub-description { max-width: 700px; margin: 1rem auto 2rem; text-align: left; }
     .download-btn { display: inline-block; background: #003399; color: #fff; padding: 0.75rem 1.75rem; border-radius: 6px; text-decoration: none; font-weight: 600; margin: 1rem 0; }
     .download-btn:hover { background: #002266; }
+    .page-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; font-size: 0.9rem; gap: 1rem; }
+    .page-nav a { color: #003399; text-decoration: none; }
+    .page-nav a:hover { text-decoration: underline; }
+    .page-nav-prev { text-align: left; }
+    .page-nav-index { text-align: center; flex-shrink: 0; }
+    .page-nav-next { text-align: right; }
     .source-link { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; font-size: 0.8rem; color: #888; }
     .source-link a { color: #666; text-decoration: none; }
     .source-link a:hover { color: #003399; text-decoration: underline; }
@@ -55,19 +69,36 @@
     .person-card p { font-size: 0.85rem; margin-top: 0.5rem; }
     .person-card a { color: #003399; text-decoration: none; }
     @media (max-width: 600px) {
-      .site-header .container { flex-direction: column; text-align: center; }
-      .site-header nav a { margin-left: 0.5rem; margin-right: 0.5rem; }
+      .desktop-nav { display: none; }
+      .mobile-nav { display: block; }
+      .mobile-nav summary { font-size: 1.5rem; cursor: pointer; list-style: none; background: none; border: none; color: #fff; }
+      .mobile-nav summary::-webkit-details-marker { display: none; }
+      .mobile-nav nav { display: flex; flex-direction: column; gap: 0.75rem; padding: 1rem 0; border-top: 1px solid rgba(255,255,255,0.2); margin-top: 0.5rem; }
+      .mobile-nav nav a { margin-left: 0; opacity: 1; font-size: 1rem; }
+      .site-header .container { text-align: center; }
       main { padding: 1rem; }
       .card-grid { grid-template-columns: 1fr; }
+      .page-nav { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
+  <a href="#content" class="skip-link">Skip to content</a>
   <header class="site-header">
     <div class="container">
       <a href="/msca-digital-finance-phd-training/">MSCA DIGITAL Finance</a>
-      <nav>
-        <a href="/msca-digital-finance-phd-training/training-modules/">Training Modules</a>
+      <details class="mobile-nav">
+        <summary aria-label="Menu">&#9776;</summary>
+        <nav>
+        <a href="/msca-digital-finance-phd-training/training-modules/" class="active">Training Modules</a>
+        <a href="/msca-digital-finance-phd-training/events/">Events</a>
+        <a href="/msca-digital-finance-phd-training/training-events/">Network Events</a>
+        <a href="/msca-digital-finance-phd-training/pages/">Pages</a>
+        <a href="/msca-digital-finance-phd-training/booklet.pdf">Booklet PDF</a>
+        </nav>
+      </details>
+      <nav class="desktop-nav">
+        <a href="/msca-digital-finance-phd-training/training-modules/" class="active">Training Modules</a>
         <a href="/msca-digital-finance-phd-training/events/">Events</a>
         <a href="/msca-digital-finance-phd-training/training-events/">Network Events</a>
         <a href="/msca-digital-finance-phd-training/pages/">Pages</a>
@@ -75,16 +106,28 @@
       </nav>
     </div>
   </header>
-  <main>
+  <main id="content">
     <div class="breadcrumbs"><a href="/msca-digital-finance-phd-training/">Home</a> &rsaquo; <a href="/msca-digital-finance-phd-training/training-modules/">Training Modules</a> &rsaquo; Machine Learning in Industry</div>
     <article><h3>Machine Learning in Industry</h3>
 <ul><li>Leading institution: Cardo AI S.R.L</li></ul>
 <ul><li>EC: 4</li></ul>
 <h3>General Description</h3>
 <p>In the course "Machine Learning in Industry" doctoral candidates will explore the foundational principles of applying machine learning in real-world industrial settings in the financial domain. Throughout this course, candidates will learn about the key concepts and methodologies of machine learning, with a focus on their practical implications for businesses, as well as how to assess the potential impact of automation decisions on various aspects of business operations, including productivity, efficiency, and cost-effectiveness. Additionally, it covers topics such as the availability and costs of acquiring high-quality data, data preprocessing techniques, and strategies for managing data privacy and security concerns. By the end of this course, candidates will be equipped with the knowledge and tools needed to utilize machine learning to drive innovation, optimize business processes, and achieve strategic objectives in diverse financial industrial contexts.</p>
+<nav class="page-nav">
+<a href="/msca-digital-finance-phd-training/training-modules/labor-market.html" class="page-nav-prev">← Labor Market Skills</a>
+<a href="/msca-digital-finance-phd-training/training-modules/" class="page-nav-index">All Training Modules</a>
+<a href="/msca-digital-finance-phd-training/training-modules/multi-criteria.html" class="page-nav-next">Multi-Criteria Decision Making in Sustainable Finance →</a>
+</nav>
 <div class="source-link"><a href="https://www.digital-finance-msca.com/trainings" target="_blank" rel="noopener">View original page on digital-finance-msca.com</a></div></article>
   </main>
   <footer class="site-footer">
+    <nav class="footer-nav">
+      <a href="/msca-digital-finance-phd-training/">Home</a>
+      <a href="/msca-digital-finance-phd-training/training-modules/">Training Modules</a>
+      <a href="/msca-digital-finance-phd-training/events/">Events</a>
+      <a href="/msca-digital-finance-phd-training/training-events/">Network Events</a>
+      <a href="/msca-digital-finance-phd-training/pages/">Pages</a>
+    </nav>
     <img src="/msca-digital-finance-phd-training/images/eu-funded.png" alt="Funded by the European Union">
     <p>Funded by the European Union — Grant No. 101119635</p>
     <p><a href="https://www.digital-finance-msca.com/">www.digital-finance-msca.com</a></p>

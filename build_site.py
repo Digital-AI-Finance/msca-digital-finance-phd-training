@@ -70,6 +70,11 @@ EVENTS_FALLBACK_URL = "https://www.digital-finance-msca.com/events"
 TRAINING_MODULES_URL = "https://www.digital-finance-msca.com/trainings"
 TRAINING_EVENTS_URL = "https://www.digital-finance-msca.com/wp6-doctoral-training"
 
+TITLE_OVERRIDES = {
+    "homepage": "MSCA Digital Finance \u2014 Homepage",
+    "team": "Our People",
+}
+
 
 def build_source_url_index():
     """Populate _source_urls from events-structured.json and hardcoded mappings."""
@@ -117,7 +122,24 @@ stats = {"html": 0, "images": 0, "warnings": []}
 # ---------------------------------------------------------------------------
 # HTML template
 # ---------------------------------------------------------------------------
-def page_template(title, breadcrumbs, content):
+def nav_links(current_section: str) -> str:
+    """Generate nav link HTML with active class on the current section."""
+    links = [
+        ("training-modules", "Training Modules"),
+        ("events", "Events"),
+        ("training-events", "Network Events"),
+        ("pages", "Pages"),
+    ]
+    parts = []
+    for sid, label in links:
+        active = ' class="active"' if current_section == sid else ''
+        parts.append(f'<a href="{BASE}/{sid}/"{active}>{label}</a>')
+    parts.append(f'<a href="{BASE}/booklet.pdf">Booklet PDF</a>')
+    return '\n        '.join(parts)
+
+
+def page_template(title, breadcrumbs, content, current_section=""):
+    nav_html = nav_links(current_section)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,11 +149,16 @@ def page_template(title, breadcrumbs, content):
   <style>
     * {{ margin: 0; padding: 0; box-sizing: border-box; }}
     body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; background: #f8f9fa; line-height: 1.7; }}
+    .skip-link {{ position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 1000; }}
+    .skip-link:focus {{ position: fixed; left: 1rem; top: 1rem; width: auto; height: auto; overflow: visible; background: #003399; color: #fff; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.9rem; z-index: 1000; text-decoration: none; }}
     .site-header {{ background: #003399; color: #fff; padding: 1rem 0; }}
     .site-header .container {{ max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }}
     .site-header a {{ color: #fff; text-decoration: none; font-weight: 600; }}
     .site-header nav a {{ font-weight: 400; margin-left: 1.5rem; opacity: 0.9; }}
     .site-header nav a:hover {{ opacity: 1; text-decoration: underline; }}
+    .site-header nav a.active {{ opacity: 1; border-bottom: 2px solid #fff; padding-bottom: 2px; }}
+    .desktop-nav {{ display: flex; }}
+    .mobile-nav {{ display: none; }}
     main {{ max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }}
     .breadcrumbs {{ font-size: 0.85rem; color: #666; margin-bottom: 1.5rem; }}
     .breadcrumbs a {{ color: #003399; text-decoration: none; }}
@@ -160,12 +187,21 @@ def page_template(title, breadcrumbs, content):
     .site-footer img {{ max-width: 200px; margin-bottom: 0.75rem; }}
     .site-footer a {{ color: #003399; text-decoration: none; }}
     .site-footer a:hover {{ text-decoration: underline; }}
+    .footer-nav {{ margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }}
+    .footer-nav a {{ color: #003399; text-decoration: none; font-size: 0.9rem; }}
+    .footer-nav a:hover {{ text-decoration: underline; }}
     .hub-hero {{ text-align: center; padding: 2rem 0 1rem; }}
     .hub-hero h1 {{ font-size: 2rem; }}
     .hub-hero .subtitle {{ color: #555; margin-top: 0.5rem; }}
     .hub-description {{ max-width: 700px; margin: 1rem auto 2rem; text-align: left; }}
     .download-btn {{ display: inline-block; background: #003399; color: #fff; padding: 0.75rem 1.75rem; border-radius: 6px; text-decoration: none; font-weight: 600; margin: 1rem 0; }}
     .download-btn:hover {{ background: #002266; }}
+    .page-nav {{ display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; font-size: 0.9rem; gap: 1rem; }}
+    .page-nav a {{ color: #003399; text-decoration: none; }}
+    .page-nav a:hover {{ text-decoration: underline; }}
+    .page-nav-prev {{ text-align: left; }}
+    .page-nav-index {{ text-align: center; flex-shrink: 0; }}
+    .page-nav-next {{ text-align: right; }}
     .source-link {{ margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; font-size: 0.8rem; color: #888; }}
     .source-link a {{ color: #666; text-decoration: none; }}
     .source-link a:hover {{ color: #003399; text-decoration: underline; }}
@@ -175,31 +211,47 @@ def page_template(title, breadcrumbs, content):
     .person-card p {{ font-size: 0.85rem; margin-top: 0.5rem; }}
     .person-card a {{ color: #003399; text-decoration: none; }}
     @media (max-width: 600px) {{
-      .site-header .container {{ flex-direction: column; text-align: center; }}
-      .site-header nav a {{ margin-left: 0.5rem; margin-right: 0.5rem; }}
+      .desktop-nav {{ display: none; }}
+      .mobile-nav {{ display: block; }}
+      .mobile-nav summary {{ font-size: 1.5rem; cursor: pointer; list-style: none; background: none; border: none; color: #fff; }}
+      .mobile-nav summary::-webkit-details-marker {{ display: none; }}
+      .mobile-nav nav {{ display: flex; flex-direction: column; gap: 0.75rem; padding: 1rem 0; border-top: 1px solid rgba(255,255,255,0.2); margin-top: 0.5rem; }}
+      .mobile-nav nav a {{ margin-left: 0; opacity: 1; font-size: 1rem; }}
+      .site-header .container {{ text-align: center; }}
       main {{ padding: 1rem; }}
       .card-grid {{ grid-template-columns: 1fr; }}
+      .page-nav {{ flex-direction: column; text-align: center; }}
     }}
   </style>
 </head>
 <body>
+  <a href="#content" class="skip-link">Skip to content</a>
   <header class="site-header">
     <div class="container">
       <a href="{BASE}/">MSCA DIGITAL Finance</a>
-      <nav>
-        <a href="{BASE}/training-modules/">Training Modules</a>
-        <a href="{BASE}/events/">Events</a>
-        <a href="{BASE}/training-events/">Network Events</a>
-        <a href="{BASE}/pages/">Pages</a>
-        <a href="{BASE}/booklet.pdf">Booklet PDF</a>
+      <details class="mobile-nav">
+        <summary aria-label="Menu">&#9776;</summary>
+        <nav>
+        {nav_html}
+        </nav>
+      </details>
+      <nav class="desktop-nav">
+        {nav_html}
       </nav>
     </div>
   </header>
-  <main>
+  <main id="content">
     <div class="breadcrumbs">{breadcrumbs}</div>
     <article>{content}</article>
   </main>
   <footer class="site-footer">
+    <nav class="footer-nav">
+      <a href="{BASE}/">Home</a>
+      <a href="{BASE}/training-modules/">Training Modules</a>
+      <a href="{BASE}/events/">Events</a>
+      <a href="{BASE}/training-events/">Network Events</a>
+      <a href="{BASE}/pages/">Pages</a>
+    </nav>
     <img src="{BASE}/images/eu-funded.png" alt="Funded by the European Union">
     <p>Funded by the European Union — Grant No. 101119635</p>
     <p><a href="https://www.digital-finance-msca.com/">www.digital-finance-msca.com</a></p>
@@ -443,23 +495,28 @@ def inline_format(text: str) -> str:
 # Title extraction
 # ---------------------------------------------------------------------------
 def extract_title(md: str, fallback: str) -> str:
+    t = None
     # Try # Title first (highest level = page title)
     m = re.search(r'^#\s+(.+)', md, re.MULTILINE)
     if m:
         t = m.group(1).strip()
-        t = re.sub(r'\*\*(.+?)\*\*', r'\1', t)
-        return t
     # Try ## Title
-    m = re.search(r'^##\s+(.+)', md, re.MULTILINE)
-    if m:
-        t = m.group(1).strip()
-        t = re.sub(r'\*\*(.+?)\*\*', r'\1', t)
-        return t
+    if not t:
+        m = re.search(r'^##\s+(.+)', md, re.MULTILINE)
+        if m:
+            t = m.group(1).strip()
     # Try ### **Title**
-    m = re.search(r'^###\s+\*\*(.+?)\*\*', md, re.MULTILINE)
-    if m:
-        return m.group(1).strip()
-    return fallback.replace('-', ' ').title()
+    if not t:
+        m = re.search(r'^###\s+\*\*(.+?)\*\*', md, re.MULTILINE)
+        if m:
+            t = m.group(1).strip()
+    if not t:
+        return fallback.replace('-', ' ').title()
+    # Strip bold markers
+    t = re.sub(r'\*\*(.+?)\*\*', r'\1', t)
+    # Strip markdown links: [text](url) -> text
+    t = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', t)
+    return t
 
 
 # ---------------------------------------------------------------------------
@@ -526,14 +583,35 @@ def create_dirs():
 # ---------------------------------------------------------------------------
 # 7. Generate individual pages
 # ---------------------------------------------------------------------------
-def build_page(md_path: Path, section: str, section_label: str, section_url: str, slug: str):
+def build_page(md_path: Path, section: str, section_label: str, section_url: str, slug: str,
+               prev_link=None, next_link=None, pre_title=None):
     raw = read_md(md_path)
     cleaned = strip_wix(raw)
-    title = extract_title(cleaned, slug)
+    title = TITLE_OVERRIDES.get(slug) or pre_title or extract_title(cleaned, slug)
     html_body = md_to_html(cleaned)
     html_body = dedup_images(html_body)       # before rewrite so blur URLs detectable
     html_body = rewrite_image_urls(html_body)
     html_body = build_person_grid(html_body)
+
+    # Prev/next navigation (before source link)
+    if prev_link or next_link:
+        nav_parts = ['<nav class="page-nav">']
+        if prev_link:
+            nav_parts.append(
+                f'<a href="{BASE}/{section}/{prev_link[0]}.html" class="page-nav-prev">'
+                f'\u2190 {html_mod.escape(prev_link[1])}</a>')
+        else:
+            nav_parts.append('<span></span>')
+        nav_parts.append(
+            f'<a href="{BASE}/{section_url}/" class="page-nav-index">All {section_label}</a>')
+        if next_link:
+            nav_parts.append(
+                f'<a href="{BASE}/{section}/{next_link[0]}.html" class="page-nav-next">'
+                f'{html_mod.escape(next_link[1])} \u2192</a>')
+        else:
+            nav_parts.append('<span></span>')
+        nav_parts.append('</nav>')
+        html_body += '\n' + '\n'.join(nav_parts)
 
     # Append source link for individual pages
     source_url = get_source_url(section, slug)
@@ -550,7 +628,7 @@ def build_page(md_path: Path, section: str, section_label: str, section_url: str
         f'{html_mod.escape(title)}'
     )
 
-    full_html = page_template(title, bc, html_body)
+    full_html = page_template(title, bc, html_body, current_section=section)
     out_path = DOCS_DIR / section / f"{slug}.html"
     write_html(out_path, full_html)
     return title
@@ -558,44 +636,67 @@ def build_page(md_path: Path, section: str, section_label: str, section_url: str
 
 def build_training_modules():
     src_dir = FIRECRAWL_DIR / "training-modules"
+    pages = [(md.stem, md) for md in sorted(src_dir.glob("*.md"))]
+    # Pre-extract titles to avoid double reads for prev/next labels
+    pre_titles = {}
+    for slug, md_file in pages:
+        raw = read_md(md_file)
+        cleaned = strip_wix(raw)
+        pre_titles[slug] = TITLE_OVERRIDES.get(slug) or extract_title(cleaned, slug)
     titles = {}
-    for md_file in sorted(src_dir.glob("*.md")):
-        slug = md_file.stem
-        t = build_page(md_file, "training-modules", "Training Modules", "training-modules", slug)
+    for idx, (slug, md_file) in enumerate(pages):
+        prev_link = (pages[idx-1][0], pre_titles[pages[idx-1][0]]) if idx > 0 else None
+        next_link = (pages[idx+1][0], pre_titles[pages[idx+1][0]]) if idx < len(pages)-1 else None
+        t = build_page(md_file, "training-modules", "Training Modules", "training-modules", slug,
+                       prev_link=prev_link, next_link=next_link, pre_title=pre_titles[slug])
         titles[slug] = t
     return titles
 
 
 def build_events():
     ev_dir = FIRECRAWL_DIR / "events"
-    titles = {}
-
-    # Subdirectory events (dir/README.md)
+    # Collect all event pages: (slug, md_path)
+    pages = []
     for d in sorted(ev_dir.iterdir()):
         if d.is_dir():
             readme = d / "README.md"
             if readme.exists():
-                slug = d.name
-                t = build_page(readme, "events", "Events", "events", slug)
-                titles[slug] = t
-
-    # Standalone .md files
+                pages.append((d.name, readme))
     for md_file in sorted(ev_dir.glob("*.md")):
         if md_file.name == "README.md":
             continue
-        slug = md_file.stem
-        t = build_page(md_file, "events", "Events", "events", slug)
+        pages.append((md_file.stem, md_file))
+    # Pre-extract titles
+    pre_titles = {}
+    for slug, md_file in pages:
+        raw = read_md(md_file)
+        cleaned = strip_wix(raw)
+        pre_titles[slug] = TITLE_OVERRIDES.get(slug) or extract_title(cleaned, slug)
+    titles = {}
+    for idx, (slug, md_file) in enumerate(pages):
+        prev_link = (pages[idx-1][0], pre_titles[pages[idx-1][0]]) if idx > 0 else None
+        next_link = (pages[idx+1][0], pre_titles[pages[idx+1][0]]) if idx < len(pages)-1 else None
+        t = build_page(md_file, "events", "Events", "events", slug,
+                       prev_link=prev_link, next_link=next_link, pre_title=pre_titles[slug])
         titles[slug] = t
-
     return titles
 
 
 def build_training_events():
     src_dir = FIRECRAWL_DIR / "training-events"
+    pages = [(md.stem, md) for md in sorted(src_dir.glob("*.md"))]
+    # Pre-extract titles
+    pre_titles = {}
+    for slug, md_file in pages:
+        raw = read_md(md_file)
+        cleaned = strip_wix(raw)
+        pre_titles[slug] = TITLE_OVERRIDES.get(slug) or extract_title(cleaned, slug)
     titles = {}
-    for md_file in sorted(src_dir.glob("*.md")):
-        slug = md_file.stem
-        t = build_page(md_file, "training-events", "Network Events", "training-events", slug)
+    for idx, (slug, md_file) in enumerate(pages):
+        prev_link = (pages[idx-1][0], pre_titles[pages[idx-1][0]]) if idx > 0 else None
+        next_link = (pages[idx+1][0], pre_titles[pages[idx+1][0]]) if idx < len(pages)-1 else None
+        t = build_page(md_file, "training-events", "Network Events", "training-events", slug,
+                       prev_link=prev_link, next_link=next_link, pre_title=pre_titles[slug])
         titles[slug] = t
     return titles
 
@@ -646,8 +747,8 @@ def build_hub_index():
   </div>
 </div>
 """
-    bc = '<a href="' + BASE + '/">Home</a>'
-    html = page_template("MSCA DIGITAL Finance PhD Training", bc, content)
+    bc = 'Home'
+    html = page_template("MSCA DIGITAL Finance PhD Training", bc, content, current_section="home")
     write_html(DOCS_DIR / "index.html", html)
 
 
@@ -686,7 +787,7 @@ def build_training_modules_index():
     bc = (
         f'<a href="{BASE}/">Home</a> &rsaquo; Training Modules'
     )
-    html = page_template("Training Modules", bc, '\n'.join(content_parts))
+    html = page_template("Training Modules", bc, '\n'.join(content_parts), current_section="training-modules")
     write_html(DOCS_DIR / "training-modules" / "index.html", html)
 
 
@@ -746,7 +847,7 @@ def build_events_index():
         content_parts.append('</div></div>')
 
     bc = f'<a href="{BASE}/">Home</a> &rsaquo; Events'
-    html = page_template("Events", bc, '\n'.join(content_parts))
+    html = page_template("Events", bc, '\n'.join(content_parts), current_section="events")
     write_html(DOCS_DIR / "events" / "index.html", html)
 
 
@@ -803,7 +904,7 @@ def build_training_events_index():
     content_parts.append('</div>')
 
     bc = f'<a href="{BASE}/">Home</a> &rsaquo; Network Events'
-    html = page_template("Network Training Events", bc, '\n'.join(content_parts))
+    html = page_template("Network Training Events", bc, '\n'.join(content_parts), current_section="training-events")
     write_html(DOCS_DIR / "training-events" / "index.html", html)
 
 
@@ -822,7 +923,7 @@ def build_pages_index(page_titles: dict):
     content_parts.append('</div>')
 
     bc = f'<a href="{BASE}/">Home</a> &rsaquo; Pages'
-    html = page_template("Programme Pages", bc, '\n'.join(content_parts))
+    html = page_template("Programme Pages", bc, '\n'.join(content_parts), current_section="pages")
     write_html(DOCS_DIR / "pages" / "index.html", html)
 
 

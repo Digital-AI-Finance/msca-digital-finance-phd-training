@@ -52,6 +52,63 @@ CATEGORIES = {
 }
 
 # ---------------------------------------------------------------------------
+# Source URL lookup (built at startup by build_source_url_index)
+# ---------------------------------------------------------------------------
+_source_urls = {}  # (section, slug) -> URL
+
+ROOT_PAGE_URLS = {
+    "homepage": "https://www.digital-finance-msca.com/",
+    "research-projects": "https://www.digital-finance-msca.com/research-projects",
+    "irps": "https://www.digital-finance-msca.com/individual-research-projects",
+    "media": "https://www.digital-finance-msca.com/media",
+    "presentations": "https://www.digital-finance-msca.com/presentations",
+    "wp6-doctoral-training": "https://www.digital-finance-msca.com/wp6-doctoral-training",
+    "team": "https://www.digital-finance-msca.com/our-people",
+}
+
+EVENTS_FALLBACK_URL = "https://www.digital-finance-msca.com/events"
+TRAINING_MODULES_URL = "https://www.digital-finance-msca.com/trainings"
+TRAINING_EVENTS_URL = "https://www.digital-finance-msca.com/wp6-doctoral-training"
+
+
+def build_source_url_index():
+    """Populate _source_urls from events-structured.json and hardcoded mappings."""
+    # Events from JSON: slug -> event URL
+    json_path = FIRECRAWL_DIR / "events-structured.json"
+    if json_path.exists():
+        with open(json_path, encoding="utf-8") as f:
+            data = json.load(f)
+        for key in ("upcoming_events", "past_events_2026", "past_events_2025", "past_events_2024"):
+            for ev in data.get(key, []):
+                dp = ev.get("detail_page", "")
+                url = ev.get("url", "")
+                if dp and url:
+                    if dp.endswith("README.md"):
+                        slug = Path(dp).parent.name
+                    else:
+                        slug = Path(dp).stem
+                    _source_urls[("events", slug)] = url
+
+    # Root pages
+    for slug, url in ROOT_PAGE_URLS.items():
+        _source_urls[("pages", slug)] = url
+
+
+def get_source_url(section: str, slug: str) -> str:
+    """Resolve the source URL for a given section and slug."""
+    cached = _source_urls.get((section, slug))
+    if cached:
+        return cached
+    if section == "events":
+        return EVENTS_FALLBACK_URL
+    if section == "training-modules":
+        return TRAINING_MODULES_URL
+    if section == "training-events":
+        return TRAINING_EVENTS_URL
+    return ""
+
+
+# ---------------------------------------------------------------------------
 # Stats
 # ---------------------------------------------------------------------------
 stats = {"html": 0, "images": 0, "warnings": []}
@@ -109,6 +166,9 @@ def page_template(title, breadcrumbs, content):
     .hub-description {{ max-width: 700px; margin: 1rem auto 2rem; text-align: left; }}
     .download-btn {{ display: inline-block; background: #003399; color: #fff; padding: 0.75rem 1.75rem; border-radius: 6px; text-decoration: none; font-weight: 600; margin: 1rem 0; }}
     .download-btn:hover {{ background: #002266; }}
+    .source-link {{ margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; font-size: 0.8rem; color: #888; }}
+    .source-link a {{ color: #666; text-decoration: none; }}
+    .source-link a:hover {{ color: #003399; text-decoration: underline; }}
     @media (max-width: 600px) {{
       .site-header .container {{ flex-direction: column; text-align: center; }}
       .site-header nav a {{ margin-left: 0.5rem; margin-right: 0.5rem; }}
@@ -404,6 +464,15 @@ def build_page(md_path: Path, section: str, section_label: str, section_url: str
     title = extract_title(cleaned, slug)
     html_body = md_to_html(cleaned)
     html_body = rewrite_image_urls(html_body)
+
+    # Append source link for individual pages
+    source_url = get_source_url(section, slug)
+    if source_url:
+        html_body += (
+            f'\n<div class="source-link">'
+            f'<a href="{html_mod.escape(source_url)}" target="_blank" rel="noopener">'
+            f'View original page on digital-finance-msca.com</a></div>'
+        )
 
     bc = (
         f'<a href="{BASE}/">Home</a> &rsaquo; '
@@ -709,6 +778,9 @@ def main():
 
     # Build image index for URL rewriting
     build_image_index()
+
+    # Build source URL index for "View original page" links
+    build_source_url_index()
 
     # 7. Build individual pages
     print("[4/9] Building training module pages ...")

@@ -6,7 +6,7 @@
       "slug": "ai-design",
       "institution": "Bucharest University of Economic Studies",
       "ects": 4,
-      "description": "The doctoral course \"AI Design in Digital Finance\" provides a comprehensive overview of contemporary artificial intelligence techniques used in the digital finance sector. It covers a range of AI methodologies, including machine learning, neural networks, and algorithmic trading, and their applicati...",
+      "description": "The doctoral course \"AI Design in Digital Finance\" provides a comprehensive overview of contemporary artificial intelligence techniques used in the digital finance sector. It covers a range of AI methodologies, including machine learning, neural networks, and algorithmic trading, and their applic...",
       "file": "training-modules/ai-design.md"
     },
     {
@@ -14,7 +14,7 @@
       "slug": "anomaly-detection",
       "institution": "The Babes-Bolyai University",
       "ects": 4,
-      "description": "Anomaly Detection in Big Data' is a course designed to equip doctoral candidates with the principles and techniques necessary to identify anomalies within large datasets. Throughout this course, candidates will explore various methodologies for anomaly detection, including statistical approaches, ma...",
+      "description": "Anomaly Detection in Big Data' is a course designed to equip doctoral candidates with the principles and techniques necessary to identify anomalies within large datasets. Throughout this course, candidates will explore various methodologies for anomaly detection, including statistical approaches,...",
       "file": "training-modules/anomaly-detection.md"
     },
     {
@@ -22,7 +22,7 @@
       "slug": "barriers-adoption",
       "institution": "WU Vienna University of Economics and Business",
       "ects": 3,
-      "description": "![unnamed.png](https://static.wixstatic.com/media/1cd49e_17065ba4e0cc4fb4a7aa36bfa3ae687e~mv2.png/v1/fill/w_264,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/unnamed.png)",
+      "description": "Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Horizon Europe: Marie Skłodowska-Curie Actions. Neither the European Union nor the granting authority can be held responsible for them. ...",
       "file": "training-modules/barriers-adoption.md"
     },
     {
@@ -30,7 +30,7 @@
       "slug": "blockchains",
       "institution": "Bucharest University of Economic Studies",
       "ects": 4,
-      "description": "![unnamed.png](https://static.wixstatic.com/media/1cd49e_17065ba4e0cc4fb4a7aa36bfa3ae687e~mv2.png/v1/fill/w_264,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/unnamed.png)",
+      "description": "Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Horizon Europe: Marie Skłodowska-Curie Actions. Neither the European Union nor the granting authority can be held responsible for them. ...",
       "file": "training-modules/blockchains.md"
     },
     {
@@ -38,7 +38,7 @@
       "slug": "citizen-science",
       "institution": "WU Vienna University of Economics and Business",
       "ects": 1,
-      "description": "![unnamed.png](https://static.wixstatic.com/media/1cd49e_17065ba4e0cc4fb4a7aa36bfa3ae687e~mv2.png/v1/fill/w_264,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/unnamed.png)",
+      "description": "Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Horizon Europe: Marie Skłodowska-Curie Actions. Neither the European Union nor the granting authority can be held responsible for them. ...",
       "file": "training-modules/citizen-science.md"
     },
     {
@@ -46,7 +46,7 @@
       "slug": "communication-skills",
       "institution": "University of Twente, Deloitte",
       "ects": 1,
-      "description": "Communication Skills' teaches candidates'Striving for effective communication is a must in today’s society, being it in the workplace to advertise services and products, being it in the academic environment. However, practitioners and researchers are often not properly trained in communication and t...",
+      "description": "Communication Skills' teaches candidates'Striving for effective communication is a must in today’s society, being it in the workplace to advertise services and products, being it in the academic environment. However, practitioners and researchers are often not properly trained in communication an...",
       "file": "training-modules/communication-skills.md"
     },
     {
@@ -54,7 +54,7 @@
       "slug": "cybersecurity",
       "institution": "University of Twente",
       "ects": 3,
-      "description": "The course 'Cybersecurity in Digital Finance' gives insights in different multiple aspects of cybersecurity. (1) Modelling and Analysis: The modelling and analysis of security threats and their effect on finances will be one part of the course. (2) Economics: The relations between cybersecurity and ...",
+      "description": "The course 'Cybersecurity in Digital Finance' gives insights in different multiple aspects of cybersecurity. (1) Modelling and Analysis: The modelling and analysis of security threats and their effect on finances will be one part of the course. (2) Economics: The relations between cybersecurity a...",
       "file": "training-modules/cybersecurity.md"
     },
     {
@@ -62,7 +62,7 @@
       "slug": "data-centric-ai",
       "institution": "WU Vienna University of Economics and Business",
       "ects": 3,
-      "description": "![unnamed.png](https://static.wixstatic.com/media/1cd49e_17065ba4e0cc4fb4a7aa36bfa3ae687e~mv2.png/v1/fill/w_264,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/unnamed.png)",
+      "description": "Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Horizon Europe: Marie Skłodowska-Curie Actions. Neither the European Union nor the granting authority can be held responsible for them. ...",
       "file": "training-modules/data-centric-ai.md"
     },
     {
@@ -70,7 +70,7 @@
       "slug": "deep-learning",
       "institution": "The Babes-Bolyai University",
       "ects": 3,
-      "description": "Deep Learning for Finance' delves into the cutting-edge realm of deep neural networks (DNNs) tailored specifically for financial applications. Throughout this course, doctoral candidates will learn to construct and train DNNs, exploring crucial architectural parameters such as network architecture a...",
+      "description": "Deep Learning for Finance' delves into the cutting-edge realm of deep neural networks (DNNs) tailored specifically for financial applications. Throughout this course, doctoral candidates will learn to construct and train DNNs, exploring crucial architectural parameters such as network architectur...",
       "file": "training-modules/deep-learning.md"
     },
     {
@@ -78,7 +78,7 @@
       "slug": "dependence-hf-data",
       "institution": "Bucharest University of Economic Studies",
       "ects": 3,
-      "description": "The doctoral course \"Dependence Structures in High Frequency Financial Data\" focuses on sophisticated methods for detecting dependencies in financial datasets. It emphasizes the automatic detection of relationships among multiple vectors, employing advanced statistical and mathematical techniques. K...",
+      "description": "The doctoral course \"Dependence Structures in High Frequency Financial Data\" focuses on sophisticated methods for detecting dependencies in financial datasets. It emphasizes the automatic detection of relationships among multiple vectors, employing advanced statistical and mathematical techniques...",
       "file": "training-modules/dependence-hf-data.md"
     },
     {
@@ -86,7 +86,7 @@
       "slug": "entrepreneurial-finance",
       "institution": "Bern Business School",
       "ects": 1,
-      "description": "Entrepreneurial Finance' is a course designed to equip doctoral candidates with the essential skills and strategies needed to excel in the realm of financial entrepreneurship. Through a curriculum covering key topics such as financial modeling, valuation, and capital raising, participants will gain ...",
+      "description": "Entrepreneurial Finance' is a course designed to equip doctoral candidates with the essential skills and strategies needed to excel in the realm of financial entrepreneurship. Through a curriculum covering key topics such as financial modeling, valuation, and capital raising, participants will ga...",
       "file": "training-modules/entrepreneurial-finance.md"
     },
     {
@@ -94,7 +94,7 @@
       "slug": "entrepreneurship",
       "institution": "European Institute of Technology Digital",
       "ects": 1,
-      "description": "Entrepreneurship Training' cultivates the skills, mindset, and strategies essential to increase the odds of success in financial entrepreneurship. Throughout this course, doctoral candidates will explore the fundamentals of entrepreneurship, from ideation to venture creation, growth, and maturity. C...",
+      "description": "Entrepreneurship Training' cultivates the skills, mindset, and strategies essential to increase the odds of success in financial entrepreneurship. Throughout this course, doctoral candidates will explore the fundamentals of entrepreneurship, from ideation to venture creation, growth, and maturity...",
       "file": "training-modules/entrepreneurship.md"
     },
     {
@@ -102,7 +102,7 @@
       "slug": "environmental-aspects",
       "institution": "University of Naples Federico II",
       "ects": 1,
-      "description": "![unnamed.png](https://static.wixstatic.com/media/1cd49e_17065ba4e0cc4fb4a7aa36bfa3ae687e~mv2.png/v1/fill/w_264,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/unnamed.png)",
+      "description": "Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Horizon Europe: Marie Skłodowska-Curie Actions. Neither the European Union nor the granting authority can be held responsible for them. ...",
       "file": "training-modules/environmental-aspects.md"
     },
     {
@@ -110,15 +110,15 @@
       "slug": "ethical-dimensions",
       "institution": "University of Twente",
       "ects": 1,
-      "description": "![unnamed.png](https://static.wixstatic.com/media/1cd49e_17065ba4e0cc4fb4a7aa36bfa3ae687e~mv2.png/v1/fill/w_264,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/unnamed.png)",
+      "description": "Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Horizon Europe: Marie Skłodowska-Curie Actions. Neither the European Union nor the granting authority can be held responsible for them. ...",
       "file": "training-modules/ethical-dimensions.md"
     },
     {
-      "title": "ethics-digital",
+      "title": "Ethics applicable to digital aspects",
       "slug": "ethics-digital",
       "institution": "University of Twente (UTW)",
       "ects": 4,
-      "description": "The \"Ethics Applicable to Digital Aspects\" course equips doctoral candidates with the knowledge and tools to navigate the ethical challenges in the digital age, particularly in the realms of artificial intelligence and digital finance. Candidates will explore the ethical implications of emerging tec...",
+      "description": "The \"Ethics Applicable to Digital Aspects\" course equips doctoral candidates with the knowledge and tools to navigate the ethical challenges in the digital age, particularly in the realms of artificial intelligence and digital finance. Candidates will explore the ethical implications of emerging ...",
       "file": "training-modules/ethics-digital.md"
     },
     {
@@ -126,7 +126,7 @@
       "slug": "foundation-data-science",
       "institution": "The Babes-Bolyai University",
       "ects": 4,
-      "description": "Foundation in Data Science' offers a comprehensive journey through the intricacies of data science processes, with a focus on financial applications. This course introduces doctoral candidates to a diverse array of topics and concepts essential for navigating technical pipelines, ranging from data c...",
+      "description": "Foundation in Data Science' offers a comprehensive journey through the intricacies of data science processes, with a focus on financial applications. This course introduces doctoral candidates to a diverse array of topics and concepts essential for navigating technical pipelines, ranging from dat...",
       "file": "training-modules/foundation-data-science.md"
     },
     {
@@ -134,7 +134,7 @@
       "slug": "gender-diversity",
       "institution": "European Central Bank",
       "ects": 2,
-      "description": "![unnamed.png](https://static.wixstatic.com/media/1cd49e_17065ba4e0cc4fb4a7aa36bfa3ae687e~mv2.png/v1/fill/w_264,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/unnamed.png)",
+      "description": "Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Horizon Europe: Marie Skłodowska-Curie Actions. Neither the European Union nor the granting authority can be held responsible for them. ...",
       "file": "training-modules/gender-diversity.md"
     },
     {
@@ -142,7 +142,7 @@
       "slug": "green-finance",
       "institution": "Kaunas University of Technology",
       "ects": 3,
-      "description": "Our course on \"Green Digital Finance\" offers a comprehensive exploration of how digital technologies are change understanding of finance. Participants will discover the theoretical foundations, state-of-the-art tools, and practical applications within the realm of green digital finance. We will unco...",
+      "description": "Our course on \"Green Digital Finance\" offers a comprehensive exploration of how digital technologies are change understanding of finance. Participants will discover the theoretical foundations, state-of-the-art tools, and practical applications within the realm of green digital finance. We will u...",
       "file": "training-modules/green-finance.md"
     },
     {
@@ -150,7 +150,7 @@
       "slug": "he-framework",
       "institution": "Bucharest University of Economic Studies",
       "ects": 1,
-      "description": "The \"HE Framework and Research Project Management\" course is designed to equip doctoral students with the skills necessary to effectively manage research projects within the higher education (HE) framework. It introduces students to the foundational principles of project management, including planni...",
+      "description": "The \"HE Framework and Research Project Management\" course is designed to equip doctoral students with the skills necessary to effectively manage research projects within the higher education (HE) framework. It introduces students to the foundational principles of project management, including pla...",
       "file": "training-modules/he-framework.md"
     },
     {
@@ -158,7 +158,7 @@
       "slug": "history-prospects",
       "institution": "University of Naples Federico II",
       "ects": 3,
-      "description": "The   course \"History and prospects of digital finance\" will provide   doctoral candidates with an understanding of innovation in financial markets   and how this relates to the adoption and use of digital technologies. While   analyzing key transformative moments in global financial markets such as...",
+      "description": "The   course \"History and prospects of digital finance\" will provide   doctoral candidates with an understanding of innovation in financial markets   and how this relates to the adoption and use of digital technologies. While   analyzing key transformative moments in global financial markets such...",
       "file": "training-modules/history-prospects.md"
     },
     {
@@ -166,7 +166,7 @@
       "slug": "industrial-doctoral",
       "institution": "EIT Digital",
       "ects": 4,
-      "description": "MSCA Digital will organise an open industrial doctoral school on FinTech, tailored to doctoral candidates in digital finance. During this event, fellows will be able to interact with doctoral candidates in digital finance from outside the network. The theme of the doctoral school is “Disrupting Fina...",
+      "description": "MSCA Digital will organise an open industrial doctoral school on FinTech, tailored to doctoral candidates in digital finance. During this event, fellows will be able to interact with doctoral candidates in digital finance from outside the network. The theme of the doctoral school is “Disrupting F...",
       "file": "training-modules/industrial-doctoral.md"
     },
     {
@@ -174,7 +174,7 @@
       "slug": "intro-ai-finance",
       "institution": "WU Vienna University of Economics and Business",
       "ects": 4,
-      "description": "![unnamed.png](https://static.wixstatic.com/media/1cd49e_17065ba4e0cc4fb4a7aa36bfa3ae687e~mv2.png/v1/fill/w_264,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/unnamed.png)",
+      "description": "Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Horizon Europe: Marie Skłodowska-Curie Actions. Neither the European Union nor the granting authority can be held responsible for them. ...",
       "file": "training-modules/intro-ai-finance.md"
     },
     {
@@ -182,7 +182,7 @@
       "slug": "intro-blockchain",
       "institution": "Bucharest University of Economic Studies",
       "ects": 4,
-      "description": "An Introduction to Blockchain Applications in Finance doctoral course provides an in-depth exploration of how blockchain technology can revolutionize financial industries. It covers the fundamental concepts of blockchain, including its decentralized structure, security features like cryptography, an...",
+      "description": "An Introduction to Blockchain Applications in Finance doctoral course provides an in-depth exploration of how blockchain technology can revolutionize financial industries. It covers the fundamental concepts of blockchain, including its decentralized structure, security features like cryptography,...",
       "file": "training-modules/intro-blockchain.md"
     },
     {
@@ -190,7 +190,7 @@
       "slug": "ip-patenting",
       "institution": "European Central Bank, Deloitte",
       "ects": 1,
-      "description": "Intellectual Property Rights and Patenting' facilitates a comprehensive understanding of the principles, laws, and practices surrounding intellectual property (IP) protection and patenting. Throughout this course, doctoral candidates will explore the fundamentals of IP rights, including patents, tra...",
+      "description": "Intellectual Property Rights and Patenting' facilitates a comprehensive understanding of the principles, laws, and practices surrounding intellectual property (IP) protection and patenting. Throughout this course, doctoral candidates will explore the fundamentals of IP rights, including patents, ...",
       "file": "training-modules/ip-patenting.md"
     },
     {
@@ -198,15 +198,15 @@
       "slug": "job-applications",
       "institution": "University of Twente",
       "ects": 1,
-      "description": "Job Applications' is a tailored course designed to equip participants with essential skills for pursuing careers in both industry and academia. Through interactive workshops and practical exercises, candidates will learn effective strategies for crafting compelling resumes, cover letters, and job ap...",
+      "description": "Job Applications' is a tailored course designed to equip participants with essential skills for pursuing careers in both industry and academia. Through interactive workshops and practical exercises, candidates will learn effective strategies for crafting compelling resumes, cover letters, and job...",
       "file": "training-modules/job-applications.md"
     },
     {
       "title": "Labor Market Skills",
       "slug": "labor-market",
-      "institution": "- EC: 2",
+      "institution": null,
       "ects": 2,
-      "description": "In the 'Labor Market Skills' course, doctoral candidates will explore the skills and competencies required to succeed in today's dynamic and competitive labor market. The course addresses a comprehensive range of topics aimed at enhancing employability and career prospects. Topics covered include co...",
+      "description": "In the 'Labor Market Skills' course, doctoral candidates will explore the skills and competencies required to succeed in today's dynamic and competitive labor market. The course addresses a comprehensive range of topics aimed at enhancing employability and career prospects. Topics covered include...",
       "file": "training-modules/labor-market.md"
     },
     {
@@ -214,7 +214,7 @@
       "slug": "ml-industry",
       "institution": "Cardo AI S.R.L",
       "ects": 4,
-      "description": "In the course \"Machine Learning in Industry\" doctoral candidates will explore the foundational principles of applying machine learning in real-world industrial settings in the financial domain. Throughout this course, candidates will learn about the key concepts and methodologies of machine learning...",
+      "description": "In the course \"Machine Learning in Industry\" doctoral candidates will explore the foundational principles of applying machine learning in real-world industrial settings in the financial domain. Throughout this course, candidates will learn about the key concepts and methodologies of machine learn...",
       "file": "training-modules/ml-industry.md"
     },
     {
@@ -222,7 +222,7 @@
       "slug": "multi-criteria",
       "institution": "Fraunhofer Institute",
       "ects": 3,
-      "description": "The course 'Multi-Criteria Decision Making in Sustainable Finance' explores the principles and methodologies for integrating multiple objectives in decision-making processes aligned with Environmental, Social, and Governance (ESG) principles that are increasingly prevalent in finance. Throughout thi...",
+      "description": "The course 'Multi-Criteria Decision Making in Sustainable Finance' explores the principles and methodologies for integrating multiple objectives in decision-making processes aligned with Environmental, Social, and Governance (ESG) principles that are increasingly prevalent in finance. Throughout ...",
       "file": "training-modules/multi-criteria.md"
     },
     {
@@ -230,7 +230,7 @@
       "slug": "nlp-transformers",
       "institution": "Athena Research Center",
       "ects": 4,
-      "description": "Natural Language Processing with Transformers' merges computational linguistics, role-based modeling of human language, and contemporary machine learning techniques. Throughout this course, doctoral candidates learn about the fusion of linguistic theories with statistical machine learning and deep l...",
+      "description": "Natural Language Processing with Transformers' merges computational linguistics, role-based modeling of human language, and contemporary machine learning techniques. Throughout this course, doctoral candidates learn about the fusion of linguistic theories with statistical machine learning and dee...",
       "file": "training-modules/nlp-transformers.md"
     },
     {
@@ -238,7 +238,7 @@
       "slug": "open-science",
       "institution": "University of Naples Federico II",
       "ects": 1,
-      "description": "![unnamed.png](https://static.wixstatic.com/media/1cd49e_17065ba4e0cc4fb4a7aa36bfa3ae687e~mv2.png/v1/fill/w_264,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/unnamed.png)",
+      "description": "Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Horizon Europe: Marie Skłodowska-Curie Actions. Neither the European Union nor the granting authority can be held responsible for them. ...",
       "file": "training-modules/open-science.md"
     },
     {
@@ -246,7 +246,7 @@
       "slug": "project-management",
       "institution": "Royalton Partners Holdings SA, Deloitte",
       "ects": 1,
-      "description": "Project Management' is a course that teaches the foundational principles and practices necessary for effective project leadership. Throughout this course, doctoral candidates will learn about key concepts and methodologies essential for successful project management in the financial domain, addressi...",
+      "description": "Project Management' is a course that teaches the foundational principles and practices necessary for effective project leadership. Throughout this course, doctoral candidates will learn about key concepts and methodologies essential for successful project management in the financial domain, addre...",
       "file": "training-modules/project-management.md"
     },
     {
@@ -254,14 +254,14 @@
       "slug": "regulation",
       "institution": "European Central Bank",
       "ects": 3,
-      "description": "Digital Finance Regulation' is a comprehensive course designed to provide doctoral candidates with an in-depth understanding of the regulatory landscape governing the rapidly evolving field of digital finance. Candidates will explore the regulatory frameworks that shape digital finance operations, c...",
+      "description": "Digital Finance Regulation' is a comprehensive course designed to provide doctoral candidates with an in-depth understanding of the regulatory landscape governing the rapidly evolving field of digital finance. Candidates will explore the regulatory frameworks that shape digital finance operations...",
       "file": "training-modules/regulation.md"
     },
     {
       "title": "Reinforcement Learning in Digital Finance",
       "slug": "reinforcement-learning",
       "institution": "University of Twente (UTW)",
-      "ects": null,
+      "ects": 4,
       "description": "Reinforcement Learning in Digital Finance offers a comprehensive exploration of reinforcement learning (RL), which is a powerful framework to support sequential decision-making under uncertainty.",
       "file": "training-modules/reinforcement-learning.md"
     },
@@ -270,7 +270,7 @@
       "slug": "research-ethics",
       "institution": "Bern Business School",
       "ects": 1,
-      "description": "This course offers an in-depth exploration of research ethics, focusing on the principles and standards that govern the conduct of ethical research across various disciplines. It addresses key issues such as informed consent, confidentiality, and the ethical treatment of research subjects. The cours...",
+      "description": "This course offers an in-depth exploration of research ethics, focusing on the principles and standards that govern the conduct of ethical research across various disciplines. It addresses key issues such as informed consent, confidentiality, and the ethical treatment of research subjects. The co...",
       "file": "training-modules/research-ethics.md"
     },
     {
@@ -278,7 +278,7 @@
       "slug": "scientific-communication",
       "institution": "Raiffeisen Bank International AG",
       "ects": 1,
-      "description": "In the course 'Scientific Communication', doctoral candidates will learn to effectively convey scientific findings to diverse audiences. The course explores the principles and best practices of scientific communication, presentation skills, and effective communication strategies targeted to various ...",
+      "description": "In the course 'Scientific Communication', doctoral candidates will learn to effectively convey scientific findings to diverse audiences. The course explores the principles and best practices of scientific communication, presentation skills, and effective communication strategies targeted to vario...",
       "file": "training-modules/scientific-communication.md"
     },
     {
@@ -286,7 +286,7 @@
       "slug": "scientific-writing",
       "institution": "Bern Business School",
       "ects": 1,
-      "description": "This course on Scientific Writing is designed to enhance the skills necessary for effective communication in the scientific community. It covers the fundamentals of structuring scientific papers, including how to write clear and concise abstracts, compelling introductions, methodical methods section...",
+      "description": "This course on Scientific Writing is designed to enhance the skills necessary for effective communication in the scientific community. It covers the fundamentals of structuring scientific papers, including how to write clear and concise abstracts, compelling introductions, methodical methods sect...",
       "file": "training-modules/scientific-writing.md"
     },
     {
@@ -294,7 +294,7 @@
       "slug": "startups-transfer",
       "institution": "European Institute of Technology Digital, Deloitte",
       "ects": 1,
-      "description": "The course \"Start-ups and Industry Transfer\" course allows doctoral candidates to explore the dynamic intersection between academic research, entrepreneurship, and industry collaboration. Throughout this course, candidates will be informed on the process of transforming research insights into viable...",
+      "description": "The course \"Start-ups and Industry Transfer\" course allows doctoral candidates to explore the dynamic intersection between academic research, entrepreneurship, and industry collaboration. Throughout this course, candidates will be informed on the process of transforming research insights into via...",
       "file": "training-modules/startups-transfer.md"
     },
     {
@@ -302,7 +302,7 @@
       "slug": "sustainable-finance",
       "institution": "University of Naples Federico II",
       "ects": 4,
-      "description": "The   course 'Sustainable Finance' aims at analysing the following topics developed   through seminar modules discussed and analysed by stakeholders from the   sector Brief introduction on the rapidly changing financial environment.   Capital for a sustainable future. Analysis of capital flow in the...",
+      "description": "The   course 'Sustainable Finance' aims at analysing the following topics developed   through seminar modules discussed and analysed by stakeholders from the   sector Brief introduction on the rapidly changing financial environment.   Capital for a sustainable future. Analysis of capital flow in ...",
       "file": "training-modules/sustainable-finance.md"
     },
     {
@@ -310,7 +310,7 @@
       "slug": "synthetic-data",
       "institution": "Athena Research Center",
       "ects": 4,
-      "description": "The course 'Synthetic Data Generation for Finance' explores the use of deep learning techniques, including Generative Adversarial Networks (GANs), to create synthetic financial data indistinguishable from real-world data. Throughout this course, doctoral candidates will learn the principles and meth...",
+      "description": "The course 'Synthetic Data Generation for Finance' explores the use of deep learning techniques, including Generative Adversarial Networks (GANs), to create synthetic financial data indistinguishable from real-world data. Throughout this course, doctoral candidates will learn the principles and m...",
       "file": "training-modules/synthetic-data.md"
     },
     {
@@ -318,7 +318,7 @@
       "slug": "xai-finance",
       "institution": "Bern Business School",
       "ects": 4,
-      "description": "![unnamed.png](https://static.wixstatic.com/media/1cd49e_17065ba4e0cc4fb4a7aa36bfa3ae687e~mv2.png/v1/fill/w_264,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/unnamed.png)",
+      "description": "Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Horizon Europe: Marie Skłodowska-Curie Actions. Neither the European Union nor the granting authority can be held responsible for them. ...",
       "file": "training-modules/xai-finance.md"
     },
     {
@@ -326,7 +326,7 @@
       "slug": "xai-methods",
       "institution": "Bern Business School",
       "ects": 4,
-      "description": "This course provides an introduction to Explainable Artificial Intelligence (XAI), focusing on various state-of-the-art models such as LIME, SHAP, DiCE, LRP, and counterfactual explanations, exploring their methodologies and applications. It delves into the challenges faced by classical XAI methods,...",
+      "description": "This course provides an introduction to Explainable Artificial Intelligence (XAI), focusing on various state-of-the-art models such as LIME, SHAP, DiCE, LRP, and counterfactual explanations, exploring their methodologies and applications. It delves into the challenges faced by classical XAI metho...",
       "file": "training-modules/xai-methods.md"
     }
   ]

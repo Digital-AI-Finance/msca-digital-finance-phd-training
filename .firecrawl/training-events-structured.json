@@ -2,31 +2,31 @@
   "count": 8,
   "events": [
     {
-      "title": "closing-conference",
+      "title": "Closing Conference",
       "slug": "closing-conference",
-      "description": "A selection of renowned keynote speakers from both academia and industry will speak at plenary sessions. Fellows will also have the chance to speak with principal scientists and industrial partners, reflecting on their work. The best project of the doctoral network, selected by the advisory board, w...",
+      "description": "A selection of renowned keynote speakers from both academia and industry will speak at plenary sessions. Fellows will also have the chance to speak with principal scientists and industrial partners, reflecting on their work. The best project of the doctoral network, selected by the advisory board...",
       "file": "training-events/closing-conference.md"
     },
     {
-      "title": "industrial-doctoral",
+      "title": "Industrial Doctoral",
       "slug": "industrial-doctoral",
-      "description": "MSCA Digital will organise an open industrial doctoral school on FinTech, tailored to doctoral candidates in digital finance. During this event, fellows will be able to interact with doctoral candidates in digital finance from outside the network. The theme of the doctoral school is “Disrupting Fina...",
+      "description": "MSCA Digital will organise an open industrial doctoral school on FinTech, tailored to doctoral candidates in digital finance. During this event, fellows will be able to interact with doctoral candidates in digital finance from outside the network. The theme of the doctoral school is “Disrupting F...",
       "file": "training-events/industrial-doctoral.md"
     },
     {
-      "title": "industry-event",
+      "title": "Industry Event",
       "slug": "industry-event",
-      "description": "Fellows will intensively interact with industry and orient themselves on potential digital finance careers outside academia. Industrial partners from both within and outside the network will provide training on: “Fraud detection in digital accounting”, “Responsible AI in finance” and “Sustainable di...",
+      "description": "Fellows will intensively interact with industry and orient themselves on potential digital finance careers outside academia. Industrial partners from both within and outside the network will provide training on: “Fraud detection in digital accounting”, “Responsible AI in finance” and “Sustainable...",
       "file": "training-events/industry-event.md"
     },
     {
-      "title": "kickoff",
+      "title": "Kickoff",
       "slug": "kickoff",
-      "description": "The kickoff meeting introduces doctoral candidates to the domain of digital finance. Visits to the Finance Lab of the university will be arranged, where researchers will be offered several training sessions like “Introduction to Digital Finance”, “Blockchains in Digital Finance”, and “Ethical AI in ...",
+      "description": "The kickoff meeting introduces doctoral candidates to the domain of digital finance. Visits to the Finance Lab of the university will be arranged, where researchers will be offered several training sessions like “Introduction to Digital Finance”, “Blockchains in Digital Finance”, and “Ethical AI ...",
       "file": "training-events/kickoff.md"
     },
     {
-      "title": "mid-term-review",
+      "title": "Mid Term Review",
       "slug": "mid-term-review",
       "description": "The mid-term review event is a key event for the DIGITAL network that will bring together researchers, industry, regulators and supervisors. The training component of the meeting is a short course on “Sustainability in Digital Finance”.",
       "file": "training-events/mid-term-review.md"
@@ -40,7 +40,7 @@
     {
       "title": "Regulation in Digital Finance Workshop",
       "slug": "regulation-workshop",
-      "description": "The workshop includes site visits to the ECB, providing direct immersion into the regulatory aspects of digital finance, including topics such as AI bias, data sovereignty and digital currencies. Fellows will attend a four-day training program. Two days are allotted to the topic of ‘Regulatory aspec...",
+      "description": "The workshop includes site visits to the ECB, providing direct immersion into the regulatory aspects of digital finance, including topics such as AI bias, data sovereignty and digital currencies. Fellows will attend a four-day training program. Two days are allotted to the topic of ‘Regulatory as...",
       "file": "training-events/regulation-workshop.md"
     },
     {

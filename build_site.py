@@ -120,26 +120,74 @@ stats = {"html": 0, "images": 0, "warnings": []}
 
 
 # ---------------------------------------------------------------------------
+# Sidebar helpers
+# ---------------------------------------------------------------------------
+def make_heading_id(text, seen_ids):
+    """Generate a unique heading ID, appending -2, -3, etc. for duplicates."""
+    base = re.sub(r'[^a-z0-9]+', '-', re.sub(r'<[^>]+>', '', text).lower()).strip('-')
+    if not base:
+        base = 'section'
+    slug = base
+    counter = 2
+    while slug in seen_ids:
+        slug = f"{base}-{counter}"
+        counter += 1
+    seen_ids.add(slug)
+    return slug
+
+
+def extract_headings(html_body):
+    """Extract h2/h3 headings with their id attributes from HTML."""
+    headings = []
+    for m in re.finditer(r'<h([23])\s+id="([^"]*)"[^>]*>(.*?)</h\1>', html_body):
+        level = int(m.group(1))
+        heading_id = m.group(2)
+        text = re.sub(r'<[^>]+>', '', m.group(3))
+        headings.append((level, text, heading_id))
+    return headings
+
+
+def build_sidebar(section, section_label, current_slug, section_pages, headings):
+    """Build sidebar HTML with section nav and on-this-page TOC.
+
+    section: URL segment (e.g., "training-modules")
+    section_label: display name (e.g., "Training Modules")
+    current_slug: slug of the current page for active highlighting
+    section_pages: list[(slug, title)] -- all pages in this section
+    headings: list[(level, text, id)] -- h2/h3 headings for TOC
+    """
+    parts = ['<nav class="sidebar-nav">']
+    parts.append('<div class="sidebar-section">')
+    parts.append(f'<h3><a href="{BASE}/{section}/">{html_mod.escape(section_label)}</a></h3>')
+    parts.append('<ul>')
+    for pg_slug, pg_title in section_pages:
+        active = ' class="active"' if pg_slug == current_slug else ''
+        # For homepage sidebar, section_pages entries link to index pages
+        if section == "home":
+            parts.append(f'<li{active}><a href="{BASE}/{pg_slug}/">{html_mod.escape(pg_title)}</a></li>')
+        else:
+            parts.append(f'<li{active}><a href="{BASE}/{section}/{pg_slug}.html">{html_mod.escape(pg_title)}</a></li>')
+    parts.append('</ul>')
+    parts.append('</div>')
+
+    if headings:
+        parts.append('<div class="sidebar-toc">')
+        parts.append('<h4>On this page</h4>')
+        parts.append('<ul>')
+        for level, text, hid in headings:
+            indent_cls = ' class="toc-h3"' if level == 3 else ''
+            parts.append(f'<li{indent_cls}><a href="#{hid}">{html_mod.escape(text)}</a></li>')
+        parts.append('</ul>')
+        parts.append('</div>')
+
+    parts.append('</nav>')
+    return '\n'.join(parts)
+
+
+# ---------------------------------------------------------------------------
 # HTML template
 # ---------------------------------------------------------------------------
-def nav_links(current_section: str) -> str:
-    """Generate nav link HTML with active class on the current section."""
-    links = [
-        ("training-modules", "Training Modules"),
-        ("events", "Events"),
-        ("training-events", "Network Events"),
-        ("pages", "Pages"),
-    ]
-    parts = []
-    for sid, label in links:
-        active = ' class="active"' if current_section == sid else ''
-        parts.append(f'<a href="{BASE}/{sid}/"{active}>{label}</a>')
-    parts.append(f'<a href="{BASE}/booklet.pdf">Booklet PDF</a>')
-    return '\n        '.join(parts)
-
-
-def page_template(title, breadcrumbs, content, current_section=""):
-    nav_html = nav_links(current_section)
+def page_template(title, breadcrumbs, content, current_section="", sidebar_html=""):
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,41 +196,37 @@ def page_template(title, breadcrumbs, content, current_section=""):
   <title>{html_mod.escape(title)} — MSCA DIGITAL Finance</title>
   <style>
     * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-    body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; background: #f8f9fa; line-height: 1.7; }}
+    body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; background: #f8f9fa; line-height: 1.6; }}
     .skip-link {{ position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 1000; }}
     .skip-link:focus {{ position: fixed; left: 1rem; top: 1rem; width: auto; height: auto; overflow: visible; background: #003399; color: #fff; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.9rem; z-index: 1000; text-decoration: none; }}
-    .site-header {{ background: #003399; color: #fff; padding: 1rem 0; }}
-    .site-header .container {{ max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }}
+    .site-header {{ background: #003399; color: #fff; padding: 0.75rem 1.5rem; display: flex; align-items: center; gap: 1rem; }}
     .site-header a {{ color: #fff; text-decoration: none; font-weight: 600; }}
-    .site-header nav a {{ font-weight: 400; margin-left: 1.5rem; opacity: 0.9; }}
-    .site-header nav a:hover {{ opacity: 1; text-decoration: underline; }}
-    .site-header nav a.active {{ opacity: 1; border-bottom: 2px solid #fff; padding-bottom: 2px; }}
-    .desktop-nav {{ display: flex; }}
-    .mobile-nav {{ display: none; }}
-    main {{ max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }}
-    .breadcrumbs {{ font-size: 0.85rem; color: #666; margin-bottom: 1.5rem; }}
+    .site-logo {{ white-space: nowrap; }}
+    .layout {{ display: flex; min-height: calc(100vh - 60px - 120px); }}
+    .sidebar {{ width: 240px; flex-shrink: 0; background: #f0f2f5; border-right: 1px solid #ddd; padding: 1rem 0; overflow-y: auto; position: sticky; top: 0; max-height: 100vh; }}
+    main {{ flex: 1; min-width: 0; padding: 2rem 2.5rem; }}
+    .breadcrumbs {{ font-size: 0.85rem; color: #666; margin-bottom: 1rem; }}
     .breadcrumbs a {{ color: #003399; text-decoration: none; }}
     .breadcrumbs a:hover {{ text-decoration: underline; }}
-    article h1 {{ font-size: 1.8rem; color: #003399; margin: 1.5rem 0 1rem; }}
-    article h2 {{ font-size: 1.4rem; color: #003399; margin: 1.5rem 0 0.75rem; border-bottom: 2px solid #e8e8e8; padding-bottom: 0.3rem; }}
+    article h1 {{ font-size: 1.8rem; color: #003399; margin: 1rem 0 0.75rem; }}
+    article h2 {{ font-size: 1.4rem; color: #003399; margin: 1rem 0 0.5rem; border-bottom: 2px solid #e8e8e8; padding-bottom: 0.3rem; }}
     article h3 {{ font-size: 1.15rem; color: #1a1a2e; margin: 1.25rem 0 0.5rem; }}
     article h4 {{ font-size: 1rem; color: #444; margin: 1rem 0 0.5rem; }}
-    article p {{ margin: 0.75rem 0; }}
-    article ul, article ol {{ margin: 0.75rem 0 0.75rem 1.5rem; }}
-    article li {{ margin: 0.3rem 0; }}
+    article p {{ margin: 0.5rem 0; }}
+    article ul, article ol {{ margin: 0.5rem 0 0.5rem 1.5rem; }}
+    article li {{ margin: 0.2rem 0; }}
     article img {{ max-width: 100%; height: auto; border-radius: 6px; margin: 1rem 0; }}
     article a {{ color: #003399; }}
     article a:hover {{ text-decoration: underline; }}
     article hr {{ border: none; border-top: 1px solid #ddd; margin: 1.5rem 0; }}
-    .card-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }}
-    .card {{ background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.25rem; transition: box-shadow 0.2s; }}
-    .card:hover {{ box-shadow: 0 4px 12px rgba(0,0,0,0.1); }}
-    .card h3 {{ margin-top: 0; font-size: 1.05rem; }}
-    .card h3 a {{ color: #003399; text-decoration: none; }}
-    .card h3 a:hover {{ text-decoration: underline; }}
-    .card .meta {{ font-size: 0.85rem; color: #666; margin-top: 0.5rem; }}
     .section-group {{ margin: 2rem 0; }}
     .section-group h2 {{ font-size: 1.3rem; color: #003399; border-bottom: 2px solid #003399; padding-bottom: 0.3rem; margin-bottom: 1rem; }}
+    .summary-table {{ width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }}
+    .summary-table th {{ text-align: left; background: #f0f2f5; padding: 0.5rem 0.75rem; border-bottom: 2px solid #003399; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; color: #666; }}
+    .summary-table td {{ padding: 0.4rem 0.75rem; border-bottom: 1px solid #e8e8e8; }}
+    .summary-table tr:hover {{ background: #f8f9ff; }}
+    .summary-table a {{ color: #003399; text-decoration: none; }}
+    .summary-table a:hover {{ text-decoration: underline; }}
     .site-footer {{ background: #f0f0f0; border-top: 1px solid #ddd; padding: 2rem 0; margin-top: 3rem; text-align: center; font-size: 0.85rem; color: #666; }}
     .site-footer img {{ max-width: 200px; margin-bottom: 0.75rem; }}
     .site-footer a {{ color: #003399; text-decoration: none; }}
@@ -190,7 +234,7 @@ def page_template(title, breadcrumbs, content, current_section=""):
     .footer-nav {{ margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }}
     .footer-nav a {{ color: #003399; text-decoration: none; font-size: 0.9rem; }}
     .footer-nav a:hover {{ text-decoration: underline; }}
-    .hub-hero {{ text-align: center; padding: 2rem 0 1rem; }}
+    .hub-hero {{ text-align: center; padding: 1.5rem 0 0.75rem; }}
     .hub-hero h1 {{ font-size: 2rem; }}
     .hub-hero .subtitle {{ color: #555; margin-top: 0.5rem; }}
     .hub-description {{ max-width: 700px; margin: 1rem auto 2rem; text-align: left; }}
@@ -210,16 +254,24 @@ def page_template(title, breadcrumbs, content, current_section=""):
     .person-card img {{ width: 120px; height: 120px; border-radius: 50%; object-fit: cover; }}
     .person-card p {{ font-size: 0.85rem; margin-top: 0.5rem; }}
     .person-card a {{ color: #003399; text-decoration: none; }}
-    @media (max-width: 600px) {{
-      .desktop-nav {{ display: none; }}
-      .mobile-nav {{ display: block; }}
-      .mobile-nav summary {{ font-size: 1.5rem; cursor: pointer; list-style: none; background: none; border: none; color: #fff; }}
-      .mobile-nav summary::-webkit-details-marker {{ display: none; }}
-      .mobile-nav nav {{ display: flex; flex-direction: column; gap: 0.75rem; padding: 1rem 0; border-top: 1px solid rgba(255,255,255,0.2); margin-top: 0.5rem; }}
-      .mobile-nav nav a {{ margin-left: 0; opacity: 1; font-size: 1rem; }}
-      .site-header .container {{ text-align: center; }}
+    .sidebar-nav h3 {{ font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; padding: 0 1rem; margin-bottom: 0.5rem; }}
+    .sidebar-nav h3 a {{ color: #003399; text-decoration: none; }}
+    .sidebar-nav ul {{ list-style: none; padding: 0; }}
+    .sidebar-nav li a {{ display: block; padding: 0.25rem 1rem; color: #333; text-decoration: none; font-size: 0.82rem; line-height: 1.4; border-left: 3px solid transparent; }}
+    .sidebar-nav li a:hover {{ background: #e8eaf0; color: #003399; }}
+    .sidebar-nav li.active a {{ background: #e0e4ee; color: #003399; font-weight: 600; border-left: 3px solid #003399; }}
+    .sidebar-toc {{ margin-top: 1.5rem; border-top: 1px solid #ddd; padding-top: 1rem; }}
+    .sidebar-toc h4 {{ font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #999; padding: 0 1rem; margin-bottom: 0.5rem; }}
+    .sidebar-toc li a {{ font-size: 0.78rem; padding: 0.2rem 1rem; }}
+    .sidebar-toc li.toc-h3 a {{ padding-left: 1.75rem; }}
+    .mobile-sidebar-toggle {{ display: none; }}
+    .mobile-sidebar-toggle summary {{ font-size: 1.5rem; cursor: pointer; list-style: none; background: none; border: none; color: #fff; }}
+    .mobile-sidebar-toggle summary::-webkit-details-marker {{ display: none; }}
+    @media (max-width: 768px) {{
+      .sidebar {{ display: none; }}
+      .mobile-sidebar-toggle {{ display: block; }}
+      .mobile-sidebar-overlay {{ position: fixed; top: 0; left: 0; width: 280px; height: 100vh; background: #f0f2f5; z-index: 100; overflow-y: auto; box-shadow: 2px 0 8px rgba(0,0,0,0.2); padding: 1rem 0; }}
       main {{ padding: 1rem; }}
-      .card-grid {{ grid-template-columns: 1fr; }}
       .page-nav {{ flex-direction: column; text-align: center; }}
     }}
   </style>
@@ -227,23 +279,21 @@ def page_template(title, breadcrumbs, content, current_section=""):
 <body>
   <a href="#content" class="skip-link">Skip to content</a>
   <header class="site-header">
-    <div class="container">
-      <a href="{BASE}/">MSCA DIGITAL Finance</a>
-      <details class="mobile-nav">
-        <summary aria-label="Menu">&#9776;</summary>
-        <nav>
-        {nav_html}
-        </nav>
-      </details>
-      <nav class="desktop-nav">
-        {nav_html}
-      </nav>
-    </div>
+    <details class="mobile-sidebar-toggle">
+      <summary aria-label="Menu">&#9776;</summary>
+      <div class="mobile-sidebar-overlay">
+        {sidebar_html}
+      </div>
+    </details>
+    <a href="{BASE}/" class="site-logo">MSCA DIGITAL Finance</a>
   </header>
-  <main id="content">
-    <div class="breadcrumbs">{breadcrumbs}</div>
-    <article>{content}</article>
-  </main>
+  <div class="layout">
+    <aside class="sidebar">{sidebar_html}</aside>
+    <main id="content">
+      <div class="breadcrumbs">{breadcrumbs}</div>
+      <article>{content}</article>
+    </main>
+  </div>
   <footer class="site-footer">
     <nav class="footer-nav">
       <a href="{BASE}/">Home</a>
@@ -344,7 +394,7 @@ def dedup_images(html_content: str) -> str:
 def build_person_grid(html_content: str) -> str:
     """Detect committee sections and wrap person entries in a CSS grid."""
     # Match committee heading and content until next h2 or end
-    pattern = r'(<h2>(?:Organizing|Scientific)\s+Committee</h2>)(.*?)(?=<h2>|$)'
+    pattern = r'(<h2[^>]*>(?:Organizing|Scientific)\s+Committee</h2>)(.*?)(?=<h2|$)'
     def section_replacer(m):
         heading = m.group(1)
         body = m.group(2)
@@ -379,14 +429,15 @@ def build_person_grid(html_content: str) -> str:
 # ---------------------------------------------------------------------------
 def md_to_html(md: str) -> str:
     # Strip Wix-style line breaks — join lines (don't leave blank lines)
-    md = md.replace('\\\\\n', '')  # \\ + newline → join
-    md = md.replace('\\\n', '')    # \ + newline → join
+    md = md.replace('\\\\\n', '')  # \\ + newline -> join
+    md = md.replace('\\\n', '')    # \ + newline -> join
     # Strip standalone backslash lines
     md = re.sub(r'(?m)^\\\\$', '', md)
     md = re.sub(r'(?m)^\\$', '', md)
     lines = md.split('\n')
     out_blocks = []
     i = 0
+    seen_ids = set()
 
     while i < len(lines):
         line = lines[i]
@@ -411,7 +462,8 @@ def md_to_html(md: str) -> str:
             # Strip bold markers inside headings
             text = re.sub(r'\*\*(.+?)\*\*', r'\1', text)
             text = inline_format(text)
-            out_blocks.append(f'<h{level}>{text}</h{level}>')
+            heading_id = make_heading_id(text, seen_ids)
+            out_blocks.append(f'<h{level} id="{heading_id}">{text}</h{level}>')
             i += 1
             continue
 
@@ -584,7 +636,7 @@ def create_dirs():
 # 7. Generate individual pages
 # ---------------------------------------------------------------------------
 def build_page(md_path: Path, section: str, section_label: str, section_url: str, slug: str,
-               prev_link=None, next_link=None, pre_title=None):
+               prev_link=None, next_link=None, pre_title=None, section_pages=None):
     raw = read_md(md_path)
     cleaned = strip_wix(raw)
     title = TITLE_OVERRIDES.get(slug) or pre_title or extract_title(cleaned, slug)
@@ -628,7 +680,11 @@ def build_page(md_path: Path, section: str, section_label: str, section_url: str
         f'{html_mod.escape(title)}'
     )
 
-    full_html = page_template(title, bc, html_body, current_section=section)
+    # Build sidebar
+    headings = extract_headings(html_body)
+    sidebar = build_sidebar(section, section_label, slug, section_pages or [], headings)
+
+    full_html = page_template(title, bc, html_body, current_section=section, sidebar_html=sidebar)
     out_path = DOCS_DIR / section / f"{slug}.html"
     write_html(out_path, full_html)
     return title
@@ -643,12 +699,14 @@ def build_training_modules():
         raw = read_md(md_file)
         cleaned = strip_wix(raw)
         pre_titles[slug] = TITLE_OVERRIDES.get(slug) or extract_title(cleaned, slug)
+    section_pages = [(slug, pre_titles[slug]) for slug, _ in pages]
     titles = {}
     for idx, (slug, md_file) in enumerate(pages):
         prev_link = (pages[idx-1][0], pre_titles[pages[idx-1][0]]) if idx > 0 else None
         next_link = (pages[idx+1][0], pre_titles[pages[idx+1][0]]) if idx < len(pages)-1 else None
         t = build_page(md_file, "training-modules", "Training Modules", "training-modules", slug,
-                       prev_link=prev_link, next_link=next_link, pre_title=pre_titles[slug])
+                       prev_link=prev_link, next_link=next_link, pre_title=pre_titles[slug],
+                       section_pages=section_pages)
         titles[slug] = t
     return titles
 
@@ -672,12 +730,14 @@ def build_events():
         raw = read_md(md_file)
         cleaned = strip_wix(raw)
         pre_titles[slug] = TITLE_OVERRIDES.get(slug) or extract_title(cleaned, slug)
+    section_pages = [(slug, pre_titles[slug]) for slug, _ in pages]
     titles = {}
     for idx, (slug, md_file) in enumerate(pages):
         prev_link = (pages[idx-1][0], pre_titles[pages[idx-1][0]]) if idx > 0 else None
         next_link = (pages[idx+1][0], pre_titles[pages[idx+1][0]]) if idx < len(pages)-1 else None
         t = build_page(md_file, "events", "Events", "events", slug,
-                       prev_link=prev_link, next_link=next_link, pre_title=pre_titles[slug])
+                       prev_link=prev_link, next_link=next_link, pre_title=pre_titles[slug],
+                       section_pages=section_pages)
         titles[slug] = t
     return titles
 
@@ -691,22 +751,34 @@ def build_training_events():
         raw = read_md(md_file)
         cleaned = strip_wix(raw)
         pre_titles[slug] = TITLE_OVERRIDES.get(slug) or extract_title(cleaned, slug)
+    section_pages = [(slug, pre_titles[slug]) for slug, _ in pages]
     titles = {}
     for idx, (slug, md_file) in enumerate(pages):
         prev_link = (pages[idx-1][0], pre_titles[pages[idx-1][0]]) if idx > 0 else None
         next_link = (pages[idx+1][0], pre_titles[pages[idx+1][0]]) if idx < len(pages)-1 else None
         t = build_page(md_file, "training-events", "Network Events", "training-events", slug,
-                       prev_link=prev_link, next_link=next_link, pre_title=pre_titles[slug])
+                       prev_link=prev_link, next_link=next_link, pre_title=pre_titles[slug],
+                       section_pages=section_pages)
         titles[slug] = t
     return titles
 
 
 def build_root_pages():
+    # Pre-extract titles for sidebar section_pages
+    pre_titles = {}
+    for name in ROOT_PAGES:
+        md_file = FIRECRAWL_DIR / f"{name}.md"
+        if md_file.exists():
+            raw = read_md(md_file)
+            cleaned = strip_wix(raw)
+            pre_titles[name] = TITLE_OVERRIDES.get(name) or extract_title(cleaned, name)
+    section_pages = [(slug, pre_titles.get(slug, slug_to_title(slug))) for slug in ROOT_PAGES if slug in pre_titles]
     titles = {}
     for name in ROOT_PAGES:
         md_file = FIRECRAWL_DIR / f"{name}.md"
         if md_file.exists():
-            t = build_page(md_file, "pages", "Pages", "pages", name)
+            t = build_page(md_file, "pages", "Pages", "pages", name,
+                           section_pages=section_pages, pre_title=pre_titles.get(name))
             titles[name] = t
         else:
             stats["warnings"].append(f"Root page not found: {name}.md")
@@ -717,6 +789,15 @@ def build_root_pages():
 # 8. Generate index pages
 # ---------------------------------------------------------------------------
 def build_hub_index():
+    # Build sidebar for homepage: 4 section links
+    home_section_pages = [
+        ("training-modules", "Training Modules"),
+        ("events", "Events"),
+        ("training-events", "Network Events"),
+        ("pages", "Pages"),
+    ]
+    sidebar = build_sidebar("home", "Sections", "", home_section_pages, [])
+
     content = f"""
 <div class="hub-hero">
   <h1>MSCA DIGITAL Finance PhD Training</h1>
@@ -728,31 +809,23 @@ def build_hub_index():
   15 doctoral candidates funded under Horizon Europe Grant No. 101119635.</p>
   <p><a class="download-btn" href="{BASE}/booklet.pdf">Download Programme Booklet (PDF)</a></p>
 </div>
-<div class="card-grid">
-  <div class="card">
-    <h3><a href="{BASE}/training-modules/">Training Modules</a></h3>
-    <p>41 courses — mandatory, elective, and transferable skills</p>
-  </div>
-  <div class="card">
-    <h3><a href="{BASE}/events/">Events</a></h3>
-    <p>39 events from 2024–2026</p>
-  </div>
-  <div class="card">
-    <h3><a href="{BASE}/training-events/">Network Events</a></h3>
-    <p>8 planned network training events</p>
-  </div>
-  <div class="card">
-    <h3><a href="{BASE}/pages/">Programme Pages</a></h3>
-    <p>Homepage, research, team, media</p>
-  </div>
-</div>
+<table class="summary-table">
+  <thead><tr><th>Section</th><th>Contents</th></tr></thead>
+  <tbody>
+    <tr><td><a href="{BASE}/training-modules/">Training Modules</a></td><td>41 courses across 3 categories</td></tr>
+    <tr><td><a href="{BASE}/events/">Events</a></td><td>39 events (2024-2026)</td></tr>
+    <tr><td><a href="{BASE}/training-events/">Network Events</a></td><td>8 doctoral training events</td></tr>
+    <tr><td><a href="{BASE}/pages/">Pages</a></td><td>Programme info, team, media</td></tr>
+  </tbody>
+</table>
 """
     bc = 'Home'
-    html = page_template("MSCA DIGITAL Finance PhD Training", bc, content, current_section="home")
+    html = page_template("MSCA DIGITAL Finance PhD Training", bc, content,
+                         current_section="home", sidebar_html=sidebar)
     write_html(DOCS_DIR / "index.html", html)
 
 
-def build_training_modules_index():
+def build_training_modules_index(section_pages=None):
     # Load structured data
     with open(FIRECRAWL_DIR / "training-modules-structured.json", encoding="utf-8") as f:
         data = json.load(f)
@@ -767,31 +840,34 @@ def build_training_modules_index():
 
     for cat_name, slugs in CATEGORIES.items():
         content_parts.append(f'<div class="section-group"><h2>{html_mod.escape(cat_name)}</h2>')
-        content_parts.append('<div class="card-grid">')
+        content_parts.append('<table class="summary-table">')
+        content_parts.append('<thead><tr><th>Module</th><th>Institution</th><th>ECTS</th></tr></thead>')
+        content_parts.append('<tbody>')
         for slug in slugs:
             info = modules_by_slug.get(slug, {})
             title = info.get("title", slug_to_title(slug))
             institution = info.get("institution") or ""
             ects = info.get("ects")
-            ects_str = f"{ects} ECTS" if ects else ""
-            meta_parts = [x for x in [institution, ects_str] if x]
-            meta = " — ".join(meta_parts)
+            ects_str = str(ects) if ects else ""
             content_parts.append(
-                f'<div class="card">'
-                f'<h3><a href="{BASE}/training-modules/{slug}.html">{html_mod.escape(title)}</a></h3>'
-                f'<p class="meta">{html_mod.escape(meta)}</p>'
-                f'</div>'
+                f'<tr>'
+                f'<td><a href="{BASE}/training-modules/{slug}.html">{html_mod.escape(title)}</a></td>'
+                f'<td>{html_mod.escape(institution)}</td>'
+                f'<td>{html_mod.escape(ects_str)}</td>'
+                f'</tr>'
             )
-        content_parts.append('</div></div>')
+        content_parts.append('</tbody></table></div>')
 
     bc = (
         f'<a href="{BASE}/">Home</a> &rsaquo; Training Modules'
     )
-    html = page_template("Training Modules", bc, '\n'.join(content_parts), current_section="training-modules")
+    sidebar = build_sidebar("training-modules", "Training Modules", "", section_pages or [], [])
+    html = page_template("Training Modules", bc, '\n'.join(content_parts),
+                         current_section="training-modules", sidebar_html=sidebar)
     write_html(DOCS_DIR / "training-modules" / "index.html", html)
 
 
-def build_events_index():
+def build_events_index(section_pages=None):
     with open(FIRECRAWL_DIR / "events-structured.json", encoding="utf-8") as f:
         data = json.load(f)
 
@@ -808,8 +884,10 @@ def build_events_index():
         events = data.get(key, [])
         if not events:
             continue
-        content_parts.append(f'<div class="section-group"><h2>{label}</h2>')
-        content_parts.append('<div class="card-grid">')
+        content_parts.append(f'<div class="section-group"><h2>{label} ({len(events)})</h2>')
+        content_parts.append('<table class="summary-table">')
+        content_parts.append('<thead><tr><th>Event</th><th>Date</th><th>Location</th></tr></thead>')
+        content_parts.append('<tbody>')
         for ev in events:
             title = ev.get("title", "Event")
             date = ev.get("date", "")
@@ -817,37 +895,29 @@ def build_events_index():
 
             # Determine slug for linking
             slug = _event_slug(ev)
-            meta_parts = [x for x in [date, location] if x]
-            meta = " — ".join(meta_parts)
 
             if slug:
-                content_parts.append(
-                    f'<div class="card">'
-                    f'<h3><a href="{BASE}/events/{slug}.html">{html_mod.escape(title)}</a></h3>'
-                    f'<p class="meta">{html_mod.escape(meta)}</p>'
-                    f'</div>'
-                )
+                title_cell = f'<a href="{BASE}/events/{slug}.html">{html_mod.escape(title)}</a>'
             else:
-                # No detail page -- show without link, or link to original URL
                 url = ev.get("url", "")
                 if url:
-                    content_parts.append(
-                        f'<div class="card">'
-                        f'<h3><a href="{html_mod.escape(url)}">{html_mod.escape(title)}</a></h3>'
-                        f'<p class="meta">{html_mod.escape(meta)}</p>'
-                        f'</div>'
-                    )
+                    title_cell = f'<a href="{html_mod.escape(url)}">{html_mod.escape(title)}</a>'
                 else:
-                    content_parts.append(
-                        f'<div class="card">'
-                        f'<h3>{html_mod.escape(title)}</h3>'
-                        f'<p class="meta">{html_mod.escape(meta)}</p>'
-                        f'</div>'
-                    )
-        content_parts.append('</div></div>')
+                    title_cell = html_mod.escape(title)
+
+            content_parts.append(
+                f'<tr>'
+                f'<td>{title_cell}</td>'
+                f'<td>{html_mod.escape(date)}</td>'
+                f'<td>{html_mod.escape(location)}</td>'
+                f'</tr>'
+            )
+        content_parts.append('</tbody></table></div>')
 
     bc = f'<a href="{BASE}/">Home</a> &rsaquo; Events'
-    html = page_template("Events", bc, '\n'.join(content_parts), current_section="events")
+    sidebar = build_sidebar("events", "Events", "", section_pages or [], [])
+    html = page_template("Events", bc, '\n'.join(content_parts),
+                         current_section="events", sidebar_html=sidebar)
     write_html(DOCS_DIR / "events" / "index.html", html)
 
 
@@ -877,13 +947,15 @@ def _event_slug(ev: dict) -> str:
     return ""
 
 
-def build_training_events_index():
+def build_training_events_index(section_pages=None):
     with open(FIRECRAWL_DIR / "training-events-structured.json", encoding="utf-8") as f:
         data = json.load(f)
 
     content_parts = ['<h1>Network Training Events</h1>']
     content_parts.append(f'<p>{data.get("count", 8)} planned network training events across the doctoral programme.</p>')
-    content_parts.append('<div class="card-grid">')
+    content_parts.append('<table class="summary-table">')
+    content_parts.append('<thead><tr><th>Event</th><th>Description</th></tr></thead>')
+    content_parts.append('<tbody>')
 
     for ev in data.get("events", []):
         slug = ev.get("slug", "")
@@ -895,35 +967,41 @@ def build_training_events_index():
         if len(desc) > 150:
             desc = desc[:147] + "..."
         content_parts.append(
-            f'<div class="card">'
-            f'<h3><a href="{BASE}/training-events/{slug}.html">{html_mod.escape(title)}</a></h3>'
-            f'<p class="meta">{html_mod.escape(desc)}</p>'
-            f'</div>'
+            f'<tr>'
+            f'<td><a href="{BASE}/training-events/{slug}.html">{html_mod.escape(title)}</a></td>'
+            f'<td>{html_mod.escape(desc)}</td>'
+            f'</tr>'
         )
 
-    content_parts.append('</div>')
+    content_parts.append('</tbody></table>')
 
     bc = f'<a href="{BASE}/">Home</a> &rsaquo; Network Events'
-    html = page_template("Network Training Events", bc, '\n'.join(content_parts), current_section="training-events")
+    sidebar = build_sidebar("training-events", "Network Events", "", section_pages or [], [])
+    html = page_template("Network Training Events", bc, '\n'.join(content_parts),
+                         current_section="training-events", sidebar_html=sidebar)
     write_html(DOCS_DIR / "training-events" / "index.html", html)
 
 
-def build_pages_index(page_titles: dict):
+def build_pages_index(page_titles: dict, section_pages=None):
     content_parts = ['<h1>Programme Pages</h1>']
-    content_parts.append('<div class="card-grid">')
+    content_parts.append('<table class="summary-table">')
+    content_parts.append('<thead><tr><th>Page</th></tr></thead>')
+    content_parts.append('<tbody>')
 
     for slug in ROOT_PAGES:
         title = page_titles.get(slug, slug_to_title(slug))
         content_parts.append(
-            f'<div class="card">'
-            f'<h3><a href="{BASE}/pages/{slug}.html">{html_mod.escape(title)}</a></h3>'
-            f'</div>'
+            f'<tr>'
+            f'<td><a href="{BASE}/pages/{slug}.html">{html_mod.escape(title)}</a></td>'
+            f'</tr>'
         )
 
-    content_parts.append('</div>')
+    content_parts.append('</tbody></table>')
 
     bc = f'<a href="{BASE}/">Home</a> &rsaquo; Pages'
-    html = page_template("Programme Pages", bc, '\n'.join(content_parts), current_section="pages")
+    sidebar = build_sidebar("pages", "Pages", "", section_pages or [], [])
+    html = page_template("Programme Pages", bc, '\n'.join(content_parts),
+                         current_section="pages", sidebar_html=sidebar)
     write_html(DOCS_DIR / "pages" / "index.html", html)
 
 
@@ -970,13 +1048,19 @@ def main():
     rp_titles = build_root_pages()
     print(f"       {len(rp_titles)} pages")
 
+    # Collect section_pages for index builders
+    tm_section_pages = [(slug, tm_titles[slug]) for slug in sorted(tm_titles)]
+    ev_section_pages = [(slug, ev_titles[slug]) for slug in sorted(ev_titles)]
+    te_section_pages = [(slug, te_titles[slug]) for slug in sorted(te_titles)]
+    rp_section_pages = [(slug, rp_titles.get(slug, slug_to_title(slug))) for slug in ROOT_PAGES if slug in rp_titles]
+
     # 8. Build index pages
     print("[8/9] Building index pages ...")
     build_hub_index()
-    build_training_modules_index()
-    build_events_index()
-    build_training_events_index()
-    build_pages_index(rp_titles)
+    build_training_modules_index(section_pages=tm_section_pages)
+    build_events_index(section_pages=ev_section_pages)
+    build_training_events_index(section_pages=te_section_pages)
+    build_pages_index(rp_titles, section_pages=rp_section_pages)
     print("       5 index pages")
 
     # 9. Summary

@@ -6,41 +6,37 @@
   <title>Presentations — MSCA DIGITAL Finance</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; background: #f8f9fa; line-height: 1.7; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; background: #f8f9fa; line-height: 1.6; }
     .skip-link { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 1000; }
     .skip-link:focus { position: fixed; left: 1rem; top: 1rem; width: auto; height: auto; overflow: visible; background: #003399; color: #fff; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.9rem; z-index: 1000; text-decoration: none; }
-    .site-header { background: #003399; color: #fff; padding: 1rem 0; }
-    .site-header .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+    .site-header { background: #003399; color: #fff; padding: 0.75rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
     .site-header a { color: #fff; text-decoration: none; font-weight: 600; }
-    .site-header nav a { font-weight: 400; margin-left: 1.5rem; opacity: 0.9; }
-    .site-header nav a:hover { opacity: 1; text-decoration: underline; }
-    .site-header nav a.active { opacity: 1; border-bottom: 2px solid #fff; padding-bottom: 2px; }
-    .desktop-nav { display: flex; }
-    .mobile-nav { display: none; }
-    main { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
-    .breadcrumbs { font-size: 0.85rem; color: #666; margin-bottom: 1.5rem; }
+    .site-logo { white-space: nowrap; }
+    .layout { display: flex; min-height: calc(100vh - 60px - 120px); }
+    .sidebar { width: 240px; flex-shrink: 0; background: #f0f2f5; border-right: 1px solid #ddd; padding: 1rem 0; overflow-y: auto; position: sticky; top: 0; max-height: 100vh; }
+    main { flex: 1; min-width: 0; padding: 2rem 2.5rem; }
+    .breadcrumbs { font-size: 0.85rem; color: #666; margin-bottom: 1rem; }
     .breadcrumbs a { color: #003399; text-decoration: none; }
     .breadcrumbs a:hover { text-decoration: underline; }
-    article h1 { font-size: 1.8rem; color: #003399; margin: 1.5rem 0 1rem; }
-    article h2 { font-size: 1.4rem; color: #003399; margin: 1.5rem 0 0.75rem; border-bottom: 2px solid #e8e8e8; padding-bottom: 0.3rem; }
+    article h1 { font-size: 1.8rem; color: #003399; margin: 1rem 0 0.75rem; }
+    article h2 { font-size: 1.4rem; color: #003399; margin: 1rem 0 0.5rem; border-bottom: 2px solid #e8e8e8; padding-bottom: 0.3rem; }
     article h3 { font-size: 1.15rem; color: #1a1a2e; margin: 1.25rem 0 0.5rem; }
     article h4 { font-size: 1rem; color: #444; margin: 1rem 0 0.5rem; }
-    article p { margin: 0.75rem 0; }
-    article ul, article ol { margin: 0.75rem 0 0.75rem 1.5rem; }
-    article li { margin: 0.3rem 0; }
+    article p { margin: 0.5rem 0; }
+    article ul, article ol { margin: 0.5rem 0 0.5rem 1.5rem; }
+    article li { margin: 0.2rem 0; }
     article img { max-width: 100%; height: auto; border-radius: 6px; margin: 1rem 0; }
     article a { color: #003399; }
     article a:hover { text-decoration: underline; }
     article hr { border: none; border-top: 1px solid #ddd; margin: 1.5rem 0; }
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
-    .card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.25rem; transition: box-shadow 0.2s; }
-    .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .card h3 { margin-top: 0; font-size: 1.05rem; }
-    .card h3 a { color: #003399; text-decoration: none; }
-    .card h3 a:hover { text-decoration: underline; }
-    .card .meta { font-size: 0.85rem; color: #666; margin-top: 0.5rem; }
     .section-group { margin: 2rem 0; }
     .section-group h2 { font-size: 1.3rem; color: #003399; border-bottom: 2px solid #003399; padding-bottom: 0.3rem; margin-bottom: 1rem; }
+    .summary-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+    .summary-table th { text-align: left; background: #f0f2f5; padding: 0.5rem 0.75rem; border-bottom: 2px solid #003399; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; color: #666; }
+    .summary-table td { padding: 0.4rem 0.75rem; border-bottom: 1px solid #e8e8e8; }
+    .summary-table tr:hover { background: #f8f9ff; }
+    .summary-table a { color: #003399; text-decoration: none; }
+    .summary-table a:hover { text-decoration: underline; }
     .site-footer { background: #f0f0f0; border-top: 1px solid #ddd; padding: 2rem 0; margin-top: 3rem; text-align: center; font-size: 0.85rem; color: #666; }
     .site-footer img { max-width: 200px; margin-bottom: 0.75rem; }
     .site-footer a { color: #003399; text-decoration: none; }
@@ -48,7 +44,7 @@
     .footer-nav { margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
     .footer-nav a { color: #003399; text-decoration: none; font-size: 0.9rem; }
     .footer-nav a:hover { text-decoration: underline; }
-    .hub-hero { text-align: center; padding: 2rem 0 1rem; }
+    .hub-hero { text-align: center; padding: 1.5rem 0 0.75rem; }
     .hub-hero h1 { font-size: 2rem; }
     .hub-hero .subtitle { color: #555; margin-top: 0.5rem; }
     .hub-description { max-width: 700px; margin: 1rem auto 2rem; text-align: left; }
@@ -68,16 +64,24 @@
     .person-card img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; }
     .person-card p { font-size: 0.85rem; margin-top: 0.5rem; }
     .person-card a { color: #003399; text-decoration: none; }
-    @media (max-width: 600px) {
-      .desktop-nav { display: none; }
-      .mobile-nav { display: block; }
-      .mobile-nav summary { font-size: 1.5rem; cursor: pointer; list-style: none; background: none; border: none; color: #fff; }
-      .mobile-nav summary::-webkit-details-marker { display: none; }
-      .mobile-nav nav { display: flex; flex-direction: column; gap: 0.75rem; padding: 1rem 0; border-top: 1px solid rgba(255,255,255,0.2); margin-top: 0.5rem; }
-      .mobile-nav nav a { margin-left: 0; opacity: 1; font-size: 1rem; }
-      .site-header .container { text-align: center; }
+    .sidebar-nav h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; padding: 0 1rem; margin-bottom: 0.5rem; }
+    .sidebar-nav h3 a { color: #003399; text-decoration: none; }
+    .sidebar-nav ul { list-style: none; padding: 0; }
+    .sidebar-nav li a { display: block; padding: 0.25rem 1rem; color: #333; text-decoration: none; font-size: 0.82rem; line-height: 1.4; border-left: 3px solid transparent; }
+    .sidebar-nav li a:hover { background: #e8eaf0; color: #003399; }
+    .sidebar-nav li.active a { background: #e0e4ee; color: #003399; font-weight: 600; border-left: 3px solid #003399; }
+    .sidebar-toc { margin-top: 1.5rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+    .sidebar-toc h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #999; padding: 0 1rem; margin-bottom: 0.5rem; }
+    .sidebar-toc li a { font-size: 0.78rem; padding: 0.2rem 1rem; }
+    .sidebar-toc li.toc-h3 a { padding-left: 1.75rem; }
+    .mobile-sidebar-toggle { display: none; }
+    .mobile-sidebar-toggle summary { font-size: 1.5rem; cursor: pointer; list-style: none; background: none; border: none; color: #fff; }
+    .mobile-sidebar-toggle summary::-webkit-details-marker { display: none; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .mobile-sidebar-toggle { display: block; }
+      .mobile-sidebar-overlay { position: fixed; top: 0; left: 0; width: 280px; height: 100vh; background: #f0f2f5; z-index: 100; overflow-y: auto; box-shadow: 2px 0 8px rgba(0,0,0,0.2); padding: 1rem 0; }
       main { padding: 1rem; }
-      .card-grid { grid-template-columns: 1fr; }
       .page-nav { flex-direction: column; text-align: center; }
     }
   </style>
@@ -85,62 +89,111 @@
 <body>
   <a href="#content" class="skip-link">Skip to content</a>
   <header class="site-header">
-    <div class="container">
-      <a href="/msca-digital-finance-phd-training/">MSCA DIGITAL Finance</a>
-      <details class="mobile-nav">
-        <summary aria-label="Menu">&#9776;</summary>
-        <nav>
-        <a href="/msca-digital-finance-phd-training/training-modules/">Training Modules</a>
-        <a href="/msca-digital-finance-phd-training/events/">Events</a>
-        <a href="/msca-digital-finance-phd-training/training-events/">Network Events</a>
-        <a href="/msca-digital-finance-phd-training/pages/" class="active">Pages</a>
-        <a href="/msca-digital-finance-phd-training/booklet.pdf">Booklet PDF</a>
-        </nav>
-      </details>
-      <nav class="desktop-nav">
-        <a href="/msca-digital-finance-phd-training/training-modules/">Training Modules</a>
-        <a href="/msca-digital-finance-phd-training/events/">Events</a>
-        <a href="/msca-digital-finance-phd-training/training-events/">Network Events</a>
-        <a href="/msca-digital-finance-phd-training/pages/" class="active">Pages</a>
-        <a href="/msca-digital-finance-phd-training/booklet.pdf">Booklet PDF</a>
-      </nav>
-    </div>
+    <details class="mobile-sidebar-toggle">
+      <summary aria-label="Menu">&#9776;</summary>
+      <div class="mobile-sidebar-overlay">
+        <nav class="sidebar-nav">
+<div class="sidebar-section">
+<h3><a href="/msca-digital-finance-phd-training/pages/">Pages</a></h3>
+<ul>
+<li><a href="/msca-digital-finance-phd-training/pages/homepage.html">MSCA Digital Finance — Homepage</a></li>
+<li><a href="/msca-digital-finance-phd-training/pages/research-projects.html">Research Topics &amp; Work Packages</a></li>
+<li><a href="/msca-digital-finance-phd-training/pages/irps.html">MSCA Individual Research Projects</a></li>
+<li><a href="/msca-digital-finance-phd-training/pages/media.html">Acknowledgements   (to be used for all project outputs)</a></li>
+<li class="active"><a href="/msca-digital-finance-phd-training/pages/presentations.html">Presentations</a></li>
+<li><a href="/msca-digital-finance-phd-training/pages/wp6-doctoral-training.html">Upcoming Events</a></li>
+<li><a href="/msca-digital-finance-phd-training/pages/team.html">Our People</a></li>
+</ul>
+</div>
+<div class="sidebar-toc">
+<h4>On this page</h4>
+<ul>
+<li class="toc-h3"><a href="#september-30-2022">September 30, 2022</a></li>
+<li class="toc-h3"><a href="#september-28-2022">September 28, 2022</a></li>
+<li class="toc-h3"><a href="#september-12-15-2022">September   12-15, 2022</a></li>
+<li class="toc-h3"><a href="#august-23-24-2022">August 23-24, 2022</a></li>
+<li class="toc-h3"><a href="#june-22-24-2022">June 22-24, 2022</a></li>
+<li class="toc-h3"><a href="#june-4-6-2022">June 4-6,   2022</a></li>
+<li class="toc-h3"><a href="#march-24-2022">March 24,   2022</a></li>
+<li class="toc-h3"><a href="#november-11-2021">November 11, 2021</a></li>
+<li class="toc-h3"><a href="#september-17-2021">September 17, 2021</a></li>
+<li class="toc-h3"><a href="#september-9-2021">September 9, 2021</a></li>
+<li class="toc-h3"><a href="#june-18-2021">June 18,    2021</a></li>
+<li class="toc-h3"><a href="#april-16-2020">April 16,    2020</a></li>
+</ul>
+</div>
+</nav>
+      </div>
+    </details>
+    <a href="/msca-digital-finance-phd-training/" class="site-logo">MSCA DIGITAL Finance</a>
   </header>
-  <main id="content">
-    <div class="breadcrumbs"><a href="/msca-digital-finance-phd-training/">Home</a> &rsaquo; <a href="/msca-digital-finance-phd-training/pages/">Pages</a> &rsaquo; Presentations</div>
-    <article><h1>Presentations</h1>
+  <div class="layout">
+    <aside class="sidebar"><nav class="sidebar-nav">
+<div class="sidebar-section">
+<h3><a href="/msca-digital-finance-phd-training/pages/">Pages</a></h3>
+<ul>
+<li><a href="/msca-digital-finance-phd-training/pages/homepage.html">MSCA Digital Finance — Homepage</a></li>
+<li><a href="/msca-digital-finance-phd-training/pages/research-projects.html">Research Topics &amp; Work Packages</a></li>
+<li><a href="/msca-digital-finance-phd-training/pages/irps.html">MSCA Individual Research Projects</a></li>
+<li><a href="/msca-digital-finance-phd-training/pages/media.html">Acknowledgements   (to be used for all project outputs)</a></li>
+<li class="active"><a href="/msca-digital-finance-phd-training/pages/presentations.html">Presentations</a></li>
+<li><a href="/msca-digital-finance-phd-training/pages/wp6-doctoral-training.html">Upcoming Events</a></li>
+<li><a href="/msca-digital-finance-phd-training/pages/team.html">Our People</a></li>
+</ul>
+</div>
+<div class="sidebar-toc">
+<h4>On this page</h4>
+<ul>
+<li class="toc-h3"><a href="#september-30-2022">September 30, 2022</a></li>
+<li class="toc-h3"><a href="#september-28-2022">September 28, 2022</a></li>
+<li class="toc-h3"><a href="#september-12-15-2022">September   12-15, 2022</a></li>
+<li class="toc-h3"><a href="#august-23-24-2022">August 23-24, 2022</a></li>
+<li class="toc-h3"><a href="#june-22-24-2022">June 22-24, 2022</a></li>
+<li class="toc-h3"><a href="#june-4-6-2022">June 4-6,   2022</a></li>
+<li class="toc-h3"><a href="#march-24-2022">March 24,   2022</a></li>
+<li class="toc-h3"><a href="#november-11-2021">November 11, 2021</a></li>
+<li class="toc-h3"><a href="#september-17-2021">September 17, 2021</a></li>
+<li class="toc-h3"><a href="#september-9-2021">September 9, 2021</a></li>
+<li class="toc-h3"><a href="#june-18-2021">June 18,    2021</a></li>
+<li class="toc-h3"><a href="#april-16-2020">April 16,    2020</a></li>
+</ul>
+</div>
+</nav></aside>
+    <main id="content">
+      <div class="breadcrumbs"><a href="/msca-digital-finance-phd-training/">Home</a> &rsaquo; <a href="/msca-digital-finance-phd-training/pages/">Pages</a> &rsaquo; Presentations</div>
+      <article><h1 id="presentations">Presentations</h1>
 <p>Below we list the conferences, workshops and event at which the members of the project team have presented the outputs of this project.</p>
-<h3>September 30, 2022</h3>
+<h3 id="september-30-2022">September 30, 2022</h3>
 <p>Presenter: Marc Wildi</p>
 <p>Topic: A Time Series Approach to Explainability for Neural Nets with Applications to Risk-Management and Fraud Detection</p>
 <p>Conference: 7th European COST Conference on AI in Finance</p>
 <p>Where: Bern, Switzerland</p>
 <p>Website: <a href="https://conference.fin-ai.eu/AI-Conference-in-Finance/">https://conference.fin-ai.eu/AI-Conference-in-Finance/</a></p>
-<h3>September 28, 2022</h3>
+<h3 id="september-28-2022">September 28, 2022</h3>
 <p>Presenter: Marc Wildi</p>
 <p>Topic: A Time Series Approach to Explainability for Neural Nets with Applications to Risk-Management and Fraud Detection</p>
 <p>Conference: Conference on Artificial Intelligence in Industry and Finance</p>
 <p>Where: Winterthur, Switzerland</p>
 <p>Website: <a href="https://www.zhaw.ch/en/engineering/institutes-centres/iamp/events/artificial-intelligence-in-industry-and-finance/">https://www.zhaw.ch/en/engineering/institutes-centres/iamp/events/artificial-intelligence-in-industry-and-finance/</a></p>
-<h3>September   12-15, 2022</h3>
+<h3 id="september-12-15-2022">September   12-15, 2022</h3>
 <p>Presenter: Branka Hadji Misheva</p>
 <p>Topic: A Time Series Approach to Explainability for Neural Nets with Applications to Risk-Management and Fraud Detection</p>
 <p>Conference: Royal Statistical Society 2022 International Conference</p>
 <p>Where: Aberdeen. Scotland</p>
 <p>Website: <a href="https://virtual.oxfordabstracts.com/#/event/2726/program">https://virtual.oxfordabstracts.com/#/event/2726/program</a></p>
-<h3>August 23-24, 2022</h3>
+<h3 id="august-23-24-2022">August 23-24, 2022</h3>
 <p>Presenter: Branka Hadji Misheva</p>
 <p>Topic: A Time Series Approach to Explainability for Neural Nets with Applications to Risk-Management and Fraud Detection</p>
 <p>Conference: FinanceCom 2022: Enterprise Applications, Markets and Services in the Finance Industry</p>
 <p>Where: Enschede, Netherlands</p>
 <p>Website: <a href="https://www.financecom2022.nl/speakers/">https://www.financecom2022.nl/speakers/</a></p>
-<h3>June 22-24, 2022</h3>
+<h3 id="june-22-24-2022">June 22-24, 2022</h3>
 <p>Presenter: Branka Hadji Misheva</p>
 <p>Topic: Explainable AI for Credit Risk Management</p>
 <p>Conference: 51st Scientific Meeting of the Italian Statistical Society</p>
 <p>Where: Caserta, Italy</p>
 <p>Website: <a href="https://meetings3.sis-statistica.org/index.php/SIS2022/Caserta">https://meetings3.sis-statistica.org/index.php/SIS2022/Caserta</a></p>
-<h3>June 4-6,   2022</h3>
+<h3 id="june-4-6-2022">June 4-6,   2022</h3>
 <p>Presenter: Branka Hadji Misheva</p>
 <p>Topic: Explainable AI for Credit Risk Management</p>
 <p>Conference: EcoStat2022 - 5th International Conference on Econometrics and Statistics</p>
@@ -152,25 +205,25 @@
 <p><a href="https://www.digital-finance-msca.com/_files/ugd/1cd49e_9093907a114c431ba9752c7568461c06.pdf">DOWNLOAD</a></p>
 <p><a href="https://www.digital-finance-msca.com/_files/ugd/1cd49e_319b96a2fd42439aa2b35ba287d1b909.pdf">DOWNLOAD</a></p>
 <p><a href="https://www.digital-finance-msca.com/_files/ugd/1cd49e_4cb9c038a4c34be7ae0b6d319b73f82c.pdf">DOWNLOAD</a></p>
-<h3>March 24,   2022</h3>
+<h3 id="march-24-2022">March 24,   2022</h3>
 <p>Presenter: Marc Wildi</p>
 <p>Topic: A Time Series Approach to Explainability for Neural Nets with Applications to Risk-Management and Fraud Detection</p>
 <p>Conference: COST Conference on ML approaches in Finance and Management</p>
 <p>Where: Berlin, Germany</p>
 <p>Website: <a href="https://www.wiwi.hu-berlin.de/de/forschung/irtg/events/2022/xai2022">https://www.wiwi.hu-berlin.de/de/forschung/irtg/events/2022/xai2022</a></p>
-<h3>November 11, 2021</h3>
+<h3 id="november-11-2021">November 11, 2021</h3>
 <p>Presenter: Branka Hadji Misheva</p>
 <p>Topic: Explainable AI for Credit Risk Management</p>
 <p>Conference: Workshop organized by the Swiss Risk Association: AI in Finance: Quo Vadis?</p>
 <p>Where: Zurich, Switzerland</p>
 <p>Website: <a href="https://www.swiss-risk.org/upcoming-events/ai-in-fs/">https://www.swiss-risk.org/upcoming-events/ai-in-fs/</a></p>
-<h3>September 17, 2021</h3>
+<h3 id="september-17-2021">September 17, 2021</h3>
 <p>Presenter: Branka Hadji Misheva</p>
 <p>Topic: Explainable AI for Credit Risk Management</p>
 <p>Conference: 7th Annual Bloomberg-Columbia Machine Learning in Finance Workshop</p>
 <p>Where: Columbia, USA</p>
 <p>Website: <a href="https://cfe.columbia.edu/events/7th-annual-bloomberg-columbia-machine-learning-finance-workshop-2021">https://cfe.columbia.edu/events/7th-annual-bloomberg-columbia-machine-learning-finance-workshop-2021</a></p>
-<h3>September 9, 2021</h3>
+<h3 id="september-9-2021">September 9, 2021</h3>
 <p>Presenter: Branka Hadji Misheva</p>
 <p>Topic: Explainable AI for Credit Risk Management</p>
 <p>Conference: 6th European COST Conference on Artificial Intelligence in Industry and Finance</p>
@@ -178,13 +231,13 @@
 <p>Website: <a href="https://www.zhaw.ch/en/engineering/institutes-centres/iamp/events/6th-european-cost-conference-on-artificial-intelligence-in-industry-and-finance/">https://www.zhaw.ch/en/engineering/institutes-centres/iamp/events/6th-european-cost-conference-on-artificial-intelligence-in-industry-and-finance/</a></p>
 <p><a href="https://www.digital-finance-msca.com/_files/ugd/1cd49e_48c174e919ac4561bfbb2bda500d9068.pdf">DOWNLOAD</a></p>
 <p><a href="https://www.digital-finance-msca.com/_files/ugd/1cd49e_46ab3c5648464d56911c1612c6a71060.pdf">DOWNLOAD</a></p>
-<h3>June 18,    2021</h3>
+<h3 id="june-18-2021">June 18,    2021</h3>
 <p>Presenter: Branka Hadji Misheva</p>
 <p>Topic: Explainable AI for Credit Risk Management</p>
 <p>Conference: Conference on Risk Management of Financial Technologies</p>
 <p>Where: Berlin, Germany</p>
 <p>​</p>
-<h3>April 16,    2020</h3>
+<h3 id="april-16-2020">April 16,    2020</h3>
 <p>Presenter: Branka Hadji Misheva</p>
 <p>Topic: Explainable AI for Credit Risk Management</p>
 <p>Conference: SupTech Training for the Central Bank of Hungary on AI applications for Finance</p>
@@ -192,7 +245,8 @@
 <p>​</p>
 <p><a href="https://www.digital-finance-msca.com/_files/ugd/1cd49e_a1d519e2e2254de6ae710e1cd07df931.pdf">DOWNLOAD</a></p>
 <div class="source-link"><a href="https://www.digital-finance-msca.com/presentations" target="_blank" rel="noopener">View original page on digital-finance-msca.com</a></div></article>
-  </main>
+    </main>
+  </div>
   <footer class="site-footer">
     <nav class="footer-nav">
       <a href="/msca-digital-finance-phd-training/">Home</a>

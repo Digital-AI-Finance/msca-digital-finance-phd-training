@@ -6,41 +6,37 @@
   <title>Joerg Osterrieder — MSCA DIGITAL Finance</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; background: #f8f9fa; line-height: 1.7; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; background: #f8f9fa; line-height: 1.6; }
     .skip-link { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 1000; }
     .skip-link:focus { position: fixed; left: 1rem; top: 1rem; width: auto; height: auto; overflow: visible; background: #003399; color: #fff; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.9rem; z-index: 1000; text-decoration: none; }
-    .site-header { background: #003399; color: #fff; padding: 1rem 0; }
-    .site-header .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+    .site-header { background: #003399; color: #fff; padding: 0.75rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
     .site-header a { color: #fff; text-decoration: none; font-weight: 600; }
-    .site-header nav a { font-weight: 400; margin-left: 1.5rem; opacity: 0.9; }
-    .site-header nav a:hover { opacity: 1; text-decoration: underline; }
-    .site-header nav a.active { opacity: 1; border-bottom: 2px solid #fff; padding-bottom: 2px; }
-    .desktop-nav { display: flex; }
-    .mobile-nav { display: none; }
-    main { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
-    .breadcrumbs { font-size: 0.85rem; color: #666; margin-bottom: 1.5rem; }
+    .site-logo { white-space: nowrap; }
+    .layout { display: flex; min-height: calc(100vh - 60px - 120px); }
+    .sidebar { width: 240px; flex-shrink: 0; background: #f0f2f5; border-right: 1px solid #ddd; padding: 1rem 0; overflow-y: auto; position: sticky; top: 0; max-height: 100vh; }
+    main { flex: 1; min-width: 0; padding: 2rem 2.5rem; }
+    .breadcrumbs { font-size: 0.85rem; color: #666; margin-bottom: 1rem; }
     .breadcrumbs a { color: #003399; text-decoration: none; }
     .breadcrumbs a:hover { text-decoration: underline; }
-    article h1 { font-size: 1.8rem; color: #003399; margin: 1.5rem 0 1rem; }
-    article h2 { font-size: 1.4rem; color: #003399; margin: 1.5rem 0 0.75rem; border-bottom: 2px solid #e8e8e8; padding-bottom: 0.3rem; }
+    article h1 { font-size: 1.8rem; color: #003399; margin: 1rem 0 0.75rem; }
+    article h2 { font-size: 1.4rem; color: #003399; margin: 1rem 0 0.5rem; border-bottom: 2px solid #e8e8e8; padding-bottom: 0.3rem; }
     article h3 { font-size: 1.15rem; color: #1a1a2e; margin: 1.25rem 0 0.5rem; }
     article h4 { font-size: 1rem; color: #444; margin: 1rem 0 0.5rem; }
-    article p { margin: 0.75rem 0; }
-    article ul, article ol { margin: 0.75rem 0 0.75rem 1.5rem; }
-    article li { margin: 0.3rem 0; }
+    article p { margin: 0.5rem 0; }
+    article ul, article ol { margin: 0.5rem 0 0.5rem 1.5rem; }
+    article li { margin: 0.2rem 0; }
     article img { max-width: 100%; height: auto; border-radius: 6px; margin: 1rem 0; }
     article a { color: #003399; }
     article a:hover { text-decoration: underline; }
     article hr { border: none; border-top: 1px solid #ddd; margin: 1.5rem 0; }
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
-    .card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.25rem; transition: box-shadow 0.2s; }
-    .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .card h3 { margin-top: 0; font-size: 1.05rem; }
-    .card h3 a { color: #003399; text-decoration: none; }
-    .card h3 a:hover { text-decoration: underline; }
-    .card .meta { font-size: 0.85rem; color: #666; margin-top: 0.5rem; }
     .section-group { margin: 2rem 0; }
     .section-group h2 { font-size: 1.3rem; color: #003399; border-bottom: 2px solid #003399; padding-bottom: 0.3rem; margin-bottom: 1rem; }
+    .summary-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+    .summary-table th { text-align: left; background: #f0f2f5; padding: 0.5rem 0.75rem; border-bottom: 2px solid #003399; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; color: #666; }
+    .summary-table td { padding: 0.4rem 0.75rem; border-bottom: 1px solid #e8e8e8; }
+    .summary-table tr:hover { background: #f8f9ff; }
+    .summary-table a { color: #003399; text-decoration: none; }
+    .summary-table a:hover { text-decoration: underline; }
     .site-footer { background: #f0f0f0; border-top: 1px solid #ddd; padding: 2rem 0; margin-top: 3rem; text-align: center; font-size: 0.85rem; color: #666; }
     .site-footer img { max-width: 200px; margin-bottom: 0.75rem; }
     .site-footer a { color: #003399; text-decoration: none; }
@@ -48,7 +44,7 @@
     .footer-nav { margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
     .footer-nav a { color: #003399; text-decoration: none; font-size: 0.9rem; }
     .footer-nav a:hover { text-decoration: underline; }
-    .hub-hero { text-align: center; padding: 2rem 0 1rem; }
+    .hub-hero { text-align: center; padding: 1.5rem 0 0.75rem; }
     .hub-hero h1 { font-size: 2rem; }
     .hub-hero .subtitle { color: #555; margin-top: 0.5rem; }
     .hub-description { max-width: 700px; margin: 1rem auto 2rem; text-align: left; }
@@ -68,16 +64,24 @@
     .person-card img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; }
     .person-card p { font-size: 0.85rem; margin-top: 0.5rem; }
     .person-card a { color: #003399; text-decoration: none; }
-    @media (max-width: 600px) {
-      .desktop-nav { display: none; }
-      .mobile-nav { display: block; }
-      .mobile-nav summary { font-size: 1.5rem; cursor: pointer; list-style: none; background: none; border: none; color: #fff; }
-      .mobile-nav summary::-webkit-details-marker { display: none; }
-      .mobile-nav nav { display: flex; flex-direction: column; gap: 0.75rem; padding: 1rem 0; border-top: 1px solid rgba(255,255,255,0.2); margin-top: 0.5rem; }
-      .mobile-nav nav a { margin-left: 0; opacity: 1; font-size: 1rem; }
-      .site-header .container { text-align: center; }
+    .sidebar-nav h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; padding: 0 1rem; margin-bottom: 0.5rem; }
+    .sidebar-nav h3 a { color: #003399; text-decoration: none; }
+    .sidebar-nav ul { list-style: none; padding: 0; }
+    .sidebar-nav li a { display: block; padding: 0.25rem 1rem; color: #333; text-decoration: none; font-size: 0.82rem; line-height: 1.4; border-left: 3px solid transparent; }
+    .sidebar-nav li a:hover { background: #e8eaf0; color: #003399; }
+    .sidebar-nav li.active a { background: #e0e4ee; color: #003399; font-weight: 600; border-left: 3px solid #003399; }
+    .sidebar-toc { margin-top: 1.5rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+    .sidebar-toc h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #999; padding: 0 1rem; margin-bottom: 0.5rem; }
+    .sidebar-toc li a { font-size: 0.78rem; padding: 0.2rem 1rem; }
+    .sidebar-toc li.toc-h3 a { padding-left: 1.75rem; }
+    .mobile-sidebar-toggle { display: none; }
+    .mobile-sidebar-toggle summary { font-size: 1.5rem; cursor: pointer; list-style: none; background: none; border: none; color: #fff; }
+    .mobile-sidebar-toggle summary::-webkit-details-marker { display: none; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .mobile-sidebar-toggle { display: block; }
+      .mobile-sidebar-overlay { position: fixed; top: 0; left: 0; width: 280px; height: 100vh; background: #f0f2f5; z-index: 100; overflow-y: auto; box-shadow: 2px 0 8px rgba(0,0,0,0.2); padding: 1rem 0; }
       main { padding: 1rem; }
-      .card-grid { grid-template-columns: 1fr; }
       .page-nav { flex-direction: column; text-align: center; }
     }
   </style>
@@ -85,30 +89,131 @@
 <body>
   <a href="#content" class="skip-link">Skip to content</a>
   <header class="site-header">
-    <div class="container">
-      <a href="/msca-digital-finance-phd-training/">MSCA DIGITAL Finance</a>
-      <details class="mobile-nav">
-        <summary aria-label="Menu">&#9776;</summary>
-        <nav>
-        <a href="/msca-digital-finance-phd-training/training-modules/">Training Modules</a>
-        <a href="/msca-digital-finance-phd-training/events/" class="active">Events</a>
-        <a href="/msca-digital-finance-phd-training/training-events/">Network Events</a>
-        <a href="/msca-digital-finance-phd-training/pages/">Pages</a>
-        <a href="/msca-digital-finance-phd-training/booklet.pdf">Booklet PDF</a>
-        </nav>
-      </details>
-      <nav class="desktop-nav">
-        <a href="/msca-digital-finance-phd-training/training-modules/">Training Modules</a>
-        <a href="/msca-digital-finance-phd-training/events/" class="active">Events</a>
-        <a href="/msca-digital-finance-phd-training/training-events/">Network Events</a>
-        <a href="/msca-digital-finance-phd-training/pages/">Pages</a>
-        <a href="/msca-digital-finance-phd-training/booklet.pdf">Booklet PDF</a>
-      </nav>
-    </div>
+    <details class="mobile-sidebar-toggle">
+      <summary aria-label="Menu">&#9776;</summary>
+      <div class="mobile-sidebar-overlay">
+        <nav class="sidebar-nav">
+<div class="sidebar-section">
+<h3><a href="/msca-digital-finance-phd-training/events/">Events</a></h3>
+<ul>
+<li><a href="/msca-digital-finance-phd-training/events/agentic-ai.html">Agentic AI for Finance - Training Week</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/blockchains.html">Training Week on Blockchains in Digital Finance</a></li>
+<li class="active"><a href="/msca-digital-finance-phd-training/events/brussels-2024.html">Joerg Osterrieder</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/cost-finai-2024.html">Joerg Osterrieder</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/cybersecurity.html">PhD Training School on Cybersecurity</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/deep-learning.html">Deep Learning in Finance</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/ml-industry.html">Machine Learning in Industry</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/nlp-athena.html">NLP at Athena RC</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/portfolio-optimization.html">Modern continuous-time portfolio optimization</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/practice-workshop.html">Practice of Digital Finance – Research Workshop</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/xai-bfh.html">Explainable AI - Training Week</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/ai-forum-1.html">Network Event - RB Event 2024: &quot;AI in Financial Markets Research Forum&quot;</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/ai-forum-2.html">AI in Financial Markets Research Forum \#2</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/blockchain-phd-school.html">MSCA Training Week - PhD Training School on Blockchain Applications in Finance</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/cost-finai-phd-school.html">Joerg Osterrieder</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/doctoral-training-1.html">Doctoral Training school</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/ethics-oradea.html">MSCA Training School on Ethics in AI and Digital Finance @Oradea</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/foundations-data-science.html">Foundations of Data Science - Training Week</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/green-finance.html">Green Digital Finance - Training Week</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/history-naples.html">MSCA TRAINING - History and prospects of Digital Finance</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/intro-blockchain.html">Introduction to Blockchain Applications in Finance - Training Week</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/kickoff.html">Official MSCA Kick-off Event</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/mid-term-meeting.html">Mid-Term Meeting &amp; Technical Training Week</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/naples-blended.html">MSCA Network Event - Blended Intensive Program. Methods for Fintech and Artificial Intelligence in Finance, Naples(UNA)</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/naples-statistical.html">MSCA Network Event - Advanced Statistical Modelling for Fintech, financial inclusion and inequality (UNA, Naples) MSCA</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/orientation.html">Orientation Training Digital Finance</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/rl-utw.html">MSCA TRAINING - Reinforcement Learning @UTW</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/seminar-fair-algo.html">Research Seminar: Fair Algorithmic Design (WP3)</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/seminar-rl-wp3.html">Research Seminar: Reinforcement Learning Applications in Finance (WP3)</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/seminar-uncertainty-wp5.html">Research Seminar: Uncertainty-Aware Statistical Learning for Complex Decision Processes (WP5)</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/seminar-xai-timeseries.html">Research Seminar: Explainable AI Methods for Financial Time Series (WP3)</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/seminar-xai-wp3.html">Research Seminar: Audience Dependent Explanations for AI Systems (WP3)</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/spectral-risk.html">Lecture: Spectral Risk Measures and Spectral Analysis</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/supervisory-board-3.html">MSCA DIGITAL - Supervisory Board Meeting \#3</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/training-bfh.html">MSCA Training Week - BFH</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/training-ktu.html">MSCA Training Week - KTU</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/training-m9-prague.html">MSCA DIGITAL - TRAINING M9 - PRAGUE</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/xai-training-week-1.html">Training Week on Blockchains in Digital Finance</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/yushan-conference.html">4th Yushan Conference</a></li>
+</ul>
+</div>
+<div class="sidebar-toc">
+<h4>On this page</h4>
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#date-venue">Date &amp; Venue</a></li>
+<li><a href="#schedule">Schedule</a></li>
+<li><a href="#speakers">Speakers</a></li>
+<li><a href="#organizing-committee">Organizing Committee</a></li>
+<li><a href="#how-to-attend">How to attend</a></li>
+</ul>
+</div>
+</nav>
+      </div>
+    </details>
+    <a href="/msca-digital-finance-phd-training/" class="site-logo">MSCA DIGITAL Finance</a>
   </header>
-  <main id="content">
-    <div class="breadcrumbs"><a href="/msca-digital-finance-phd-training/">Home</a> &rsaquo; <a href="/msca-digital-finance-phd-training/events/">Events</a> &rsaquo; Joerg Osterrieder</div>
-    <article><ul><li><a href="https://www.digital-finance-msca.com/brussels-meeting-2024">Summary</a></li>
+  <div class="layout">
+    <aside class="sidebar"><nav class="sidebar-nav">
+<div class="sidebar-section">
+<h3><a href="/msca-digital-finance-phd-training/events/">Events</a></h3>
+<ul>
+<li><a href="/msca-digital-finance-phd-training/events/agentic-ai.html">Agentic AI for Finance - Training Week</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/blockchains.html">Training Week on Blockchains in Digital Finance</a></li>
+<li class="active"><a href="/msca-digital-finance-phd-training/events/brussels-2024.html">Joerg Osterrieder</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/cost-finai-2024.html">Joerg Osterrieder</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/cybersecurity.html">PhD Training School on Cybersecurity</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/deep-learning.html">Deep Learning in Finance</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/ml-industry.html">Machine Learning in Industry</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/nlp-athena.html">NLP at Athena RC</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/portfolio-optimization.html">Modern continuous-time portfolio optimization</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/practice-workshop.html">Practice of Digital Finance – Research Workshop</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/xai-bfh.html">Explainable AI - Training Week</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/ai-forum-1.html">Network Event - RB Event 2024: &quot;AI in Financial Markets Research Forum&quot;</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/ai-forum-2.html">AI in Financial Markets Research Forum \#2</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/blockchain-phd-school.html">MSCA Training Week - PhD Training School on Blockchain Applications in Finance</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/cost-finai-phd-school.html">Joerg Osterrieder</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/doctoral-training-1.html">Doctoral Training school</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/ethics-oradea.html">MSCA Training School on Ethics in AI and Digital Finance @Oradea</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/foundations-data-science.html">Foundations of Data Science - Training Week</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/green-finance.html">Green Digital Finance - Training Week</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/history-naples.html">MSCA TRAINING - History and prospects of Digital Finance</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/intro-blockchain.html">Introduction to Blockchain Applications in Finance - Training Week</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/kickoff.html">Official MSCA Kick-off Event</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/mid-term-meeting.html">Mid-Term Meeting &amp; Technical Training Week</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/naples-blended.html">MSCA Network Event - Blended Intensive Program. Methods for Fintech and Artificial Intelligence in Finance, Naples(UNA)</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/naples-statistical.html">MSCA Network Event - Advanced Statistical Modelling for Fintech, financial inclusion and inequality (UNA, Naples) MSCA</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/orientation.html">Orientation Training Digital Finance</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/rl-utw.html">MSCA TRAINING - Reinforcement Learning @UTW</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/seminar-fair-algo.html">Research Seminar: Fair Algorithmic Design (WP3)</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/seminar-rl-wp3.html">Research Seminar: Reinforcement Learning Applications in Finance (WP3)</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/seminar-uncertainty-wp5.html">Research Seminar: Uncertainty-Aware Statistical Learning for Complex Decision Processes (WP5)</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/seminar-xai-timeseries.html">Research Seminar: Explainable AI Methods for Financial Time Series (WP3)</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/seminar-xai-wp3.html">Research Seminar: Audience Dependent Explanations for AI Systems (WP3)</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/spectral-risk.html">Lecture: Spectral Risk Measures and Spectral Analysis</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/supervisory-board-3.html">MSCA DIGITAL - Supervisory Board Meeting \#3</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/training-bfh.html">MSCA Training Week - BFH</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/training-ktu.html">MSCA Training Week - KTU</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/training-m9-prague.html">MSCA DIGITAL - TRAINING M9 - PRAGUE</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/xai-training-week-1.html">Training Week on Blockchains in Digital Finance</a></li>
+<li><a href="/msca-digital-finance-phd-training/events/yushan-conference.html">4th Yushan Conference</a></li>
+</ul>
+</div>
+<div class="sidebar-toc">
+<h4>On this page</h4>
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#date-venue">Date &amp; Venue</a></li>
+<li><a href="#schedule">Schedule</a></li>
+<li><a href="#speakers">Speakers</a></li>
+<li><a href="#organizing-committee">Organizing Committee</a></li>
+<li><a href="#how-to-attend">How to attend</a></li>
+</ul>
+</div>
+</nav></aside>
+    <main id="content">
+      <div class="breadcrumbs"><a href="/msca-digital-finance-phd-training/">Home</a> &rsaquo; <a href="/msca-digital-finance-phd-training/events/">Events</a> &rsaquo; Joerg Osterrieder</div>
+      <article><ul><li><a href="https://www.digital-finance-msca.com/brussels-meeting-2024">Summary</a></li>
 <li><a href="https://www.digital-finance-msca.com/brussels-meeting-2024">Date & Venue</a></li>
 <li><a href="https://www.digital-finance-msca.com/brussels-meeting-2024">Schedule</a></li>
 <li><a href="https://www.digital-finance-msca.com/brussels-meeting-2024">Speakers</a></li>
@@ -119,7 +224,7 @@
 <p>Policy Implications 2024</p>
 <p>May 14 - 15, 2024</p>
 <p>Brussels, Belgium</p>
-<h2>Summary</h2>
+<h2 id="summary">Summary</h2>
 <p>Welcome to the COST FinAI Brussels Meets!</p>
 <p>We are excited to announce our 2nd meeting of the COST Action CA19130 Meets Brussels series. This meeting is organized by the COST Action CA19130 on Fintech and AI in Finance, under the auspices of COST - European Cooperation in Science and Technology. The event will showcase the Action's findings with a focus on policy implications. Representatives from working groups will report on their activities, and EU policymakers and industrial partners will share their perspectives and engage in a dialogue with participants of the Action.</p>
 <p>Some facts about the COST Action 19130</p>
@@ -129,7 +234,7 @@
 <p>Keywords</p>
 <p>FinTech, Artificial Intelligence in Finance, Transparency in Finance, Machine Learning, Blockchain, Cryptocurrencies.</p>
 <p>This event is based upon work from COST Action 19130, supported by COST (European Cooperation in Science and Technology), <a href="http://www.cost.eu/">www.cost.eu</a>.</p>
-<h2>Date & Venue</h2>
+<h2 id="date-venue">Date & Venue</h2>
 <p>Dinner:</p>
 <p><a href="https://maps.app.goo.gl/PWihdYnrEFGhZzEx5">Restaurant Positano</a>, Rue De Pascale 20, Bruxelles 1040, BE</p>
 <p>Day 1:</p>
@@ -181,73 +286,73 @@
 <p>Click to toggle between metric and imperial units</p>
 <p><a href="https://www.google.com/intl/en_US/help/terms_maps.html">Terms</a></p>
 <p><a href="https://www.google.com/maps/@50.8457244,4.3764377,14z/data=!10m1!1e1!12b1?source=apiv3&rapsrc=apiv3 "Report errors in the road map or imagery to Google"">Report a map error</a></p>
-<h2>Schedule</h2>
+<h2 id="schedule">Schedule</h2>
 <p>| Date | Start Time | Session | Topic | Speaker | | --- | --- | --- | --- | --- | | May 13th, 2024 | 18:30 | Dinner (Self - funded) |  |  | |  |  |  |  |  | | May 14th, 2024 | 9:00 |  | UT Doctoral Training School Organizer Meeting | Lennart John Baals | |  | 9:30 | Session 1 | Sign In |  | |  | 9:45 |  | Welcome from Action Chair and Science Officer | Joerg Osterrieder and Ralph Stuebner | |  | 10:00 |  | AI Act | Kai Zenner | |  | 10:45 |  | Bio-Value-at-Risk | Peter Schwendner | |  | 11:15 |  | Coffee break |  | |  | 11:30 |  | Utilizing AI to Safeguard Against Corruption | Alona Klochko | |  | 12:00 |  | AI tools for fraud prevention in crowdfunding | Stefana Belbe | |  | 12:30 | Lunch |  |  | |  | 14:00 | Session 2 | DAO governance, Web 3.0, Relevance of Open souce AI on Asset Tokenization | Joachim Schwerin | |  | 14:45 |  | EU Data Hub | Alice Guedel | |  | 15:30 |  | Coffee break |  | |  | 15:45 |  | AML Requirements for Crowdfunding and P2Pr Lending Platforms | Karsten Wenzlaff | |  | 16:15 |  | A European funded project for shifting paradigms | Diana Mihaiu | |  |  |  |  |  | | May 15th, 2024 | 9:30 | Session 3 | Coffee break |  | |  | 10:00 |  | Working session: Deliverable 12 |  | |  | 11:00 |  | Coffee break |  | |  | 11:15 |  | Deliverable 7 |  | |  | 12:15 |  | Science Communication |  | |  | 12:30 | Lunch |  |  | |  | 14:00 | Session 4 | Core Group Discussion | Fostering Collaboration between COST and BRAINConf in Fintech AI | |  | 14:20 |  |  |  | |  | 14:40 |  | Working session on D15 | Anastas Dzurovski | |  | 15:10 |  | Coffee break |  | |  | 15:30 |  | Machine learning algorithms for building fraud detection models | Suela Maxhelaku | |  | 16:00 |  | Predictiong the underperformance of the financial institutions | Adrian Costea | |  | 16:20 |  | The COST Action CA19130 Fintech and AI in Finance - Next steps | Joerg Osterrieder | |  |  |  |  |  | |  |  |  |  |  |</p>
-<h2>Speakers</h2>
+<h2 id="speakers">Speakers</h2>
 <img src="https://static.wixstatic.com/media/1cd49e_bd5b08a9abc34fea8d4b033ea2656a60~mv2.jpg/v1/fill/w_216,h_217,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Osterrieder.jpg" alt="Osterrieder.jpg">
-<h1>Joerg Osterrieder</h1>
+<h1 id="joerg-osterrieder">Joerg Osterrieder</h1>
 <p>Associate Professor of Finance and Artificial Intelligence at University of Twente and Professor of Sustainable Finance at BFH</p>
 <img src="https://static.wixstatic.com/media/1cd49e_67e7a8b5a1fa4a79bb99c5ad0be5c681~mv2.jpg/v1/fill/w_216,h_217,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Hadji%20Misheva.jpg" alt="Hadji Misheva.jpg">
-<h1>Branka   Hadji Misheva</h1>
+<h1 id="branka-hadji-misheva">Branka   Hadji Misheva</h1>
 <p>Professor of Applied Data Science and Finance at BFH</p>
 <img src="https://static.wixstatic.com/media/1cd49e_3f39cf7b6368423093fd5256acc5ea49~mv2.webp/v1/fill/w_210,h_217,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Kai.webp" alt="Kai.webp">
-<h1>Kai Zenner</h1>
+<h1 id="kai-zenner">Kai Zenner</h1>
 <p>Head of Office and Digital Policy Adviser for MEP Axel Voss (EPP group) in the European Parliament</p>
 <img src="https://static.wixstatic.com/media/1cd49e_02a2a0e7eecf47948200b42e8504d87f~mv2.jpg/v1/fill/w_212,h_217,al_c,lg_1,q_80,enc_avif,quality_auto/Joachim%20Schwerin_edited.jpg" alt="Joachim Schwerin_edited.jpg">
-<h1>Joachim Schwerin</h1>
+<h1 id="joachim-schwerin">Joachim Schwerin</h1>
 <p>Department for Growth (DG GROW), EU Commission</p>
 <img src="https://static.wixstatic.com/media/1cd49e_c664f7cf59a94deca628dfa59032d95e~mv2.jpeg/v1/fill/w_214,h_217,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/alice_guedel.jpeg" alt="alice_guedel.jpeg">
-<h1>Alice Guedel</h1>
+<h1 id="alice-guedel">Alice Guedel</h1>
 <p>Policy Officer, European Commission</p>
 <img src="https://static.wixstatic.com/media/1cd49e_fe1064f188194f608f478dde432d1c80~mv2.png/v1/fill/w_208,h_217,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/image-38.png" alt="image-38.png">
-<h1>Ralph Stuebner</h1>
+<h1 id="ralph-stuebner">Ralph Stuebner</h1>
 <p>Science Officer at COST Association</p>
 <img src="https://static.wixstatic.com/media/bad6a9_126a8e7ddf034be6af6c6de1554f90e9~mv2.jpg/v1/fill/w_210,h_217,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Liu%20Yiting.jpg" alt="Liu Yiting.jpg">
-<h1>Yiting Liu</h1>
+<h1 id="yiting-liu">Yiting Liu</h1>
 <p>PhD student, University of Twente</p>
 <img src="https://static.wixstatic.com/media/1cd49e_ee49804c2506411aa70c8d0a90bbdb03~mv2.jpg/v1/crop/x_0,y_0,w_253,h_254/fill/w_216,h_217,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/scwp.jpg" alt="scwp.jpg">
-<h1>Peter Schwendner</h1>
+<h1 id="peter-schwendner">Peter Schwendner</h1>
 <p>Professor, ZHAW School of Management and Law</p>
 <p>Institut für Wealth & Asset Management</p>
 <img src="https://static.wixstatic.com/media/1cd49e_92216fc22e8e419783b3581ebd12ccad~mv2.jpeg/v1/fill/w_216,h_217,al_c,lg_1,q_80,enc_avif,quality_auto/1553524575104.jpeg" alt="1553524575104.jpeg">
-<h1>Stefana Belbe</h1>
+<h1 id="stefana-belbe">Stefana Belbe</h1>
 <p>Babeș-Bolyai University of Cluj-Napoca, Romania, Statistics and Cybernetics & Interdisciplinary</p>
 <img src="https://static.wixstatic.com/media/1cd49e_9fe2193a3f654b598e8615f996f1e418~mv2.gif" alt="Untitled-1.gif">
-<h1>Karsten Wenzlaff</h1>
+<h1 id="karsten-wenzlaff">Karsten Wenzlaff</h1>
 <p>University of Hamburg</p>
 <img src="https://static.wixstatic.com/media/1cd49e_d9fffee339044bc58b768b218458f693~mv2.jpg/v1/crop/x_0,y_11,w_341,h_343/fill/w_216,h_217,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/unnamed.jpg" alt="unnamed.jpg">
-<h1>Diana Mihaiu</h1>
+<h1 id="diana-mihaiu">Diana Mihaiu</h1>
 <p>Lucian Blaga University of sibiu</p>
 <img src="https://static.wixstatic.com/media/1cd49e_b6c5a9772a0044f8ba55a3be9d89daac~mv2.jpg/v1/fill/w_210,h_217,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Kabasinskas.jpg" alt="Kabasinskas.jpg">
-<h1>Audrius Kabasinskas</h1>
+<h1 id="audrius-kabasinskas">Audrius Kabasinskas</h1>
 <p>Professor, Kaunas University of Technology</p>
 <img src="https://static.wixstatic.com/media/1cd49e_3c1004f46ae84eafb1805d771cb25a62~mv2.jpg/v1/fill/w_216,h_217,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/83029750_10156988240386545_6491172142472757248_o.jpg" alt="83029750_10156988240386545_6491172142472757248_o.jpg">
-<h1>Anastas Dzurovski</h1>
+<h1 id="anastas-dzurovski">Anastas Dzurovski</h1>
 <img src="https://static.wixstatic.com/media/1cd49e_f02dc6273dbe4eecb2c7ce41d11e5072~mv2.png/v1/fill/w_64,h_64,al_c,lg_1,q_85,enc_avif,quality_auto/Person.png" alt="Person.png">
-<h1>Armela Baka</h1>
+<h1 id="armela-baka">Armela Baka</h1>
 <p>Faculty of Law, University of Tirana</p>
 <img src="https://static.wixstatic.com/media/1cd49e_16588b3d02354ab88504cc1c6862a404~mv2.jpg/v1/fill/w_210,h_217,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/suela_maxhelaku.jpg" alt="suela_maxhelaku.jpg">
-<h1>Suela Maxhelaku</h1>
+<h1 id="suela-maxhelaku">Suela Maxhelaku</h1>
 <p>Lecturer and Researcher at Computer Science Department, Faculty of Natural Sciences, Tirana University</p>
 <img src="https://static.wixstatic.com/media/1cd49e_57af256cd64748f49057b9c8e655292a~mv2.jpg/v1/fill/w_216,h_217,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Coita.jpg" alt="Coita.jpg">
-<h1>Ioana Coita</h1>
+<h1 id="ioana-coita">Ioana Coita</h1>
 <p>Lecturer, University of Oradea</p>
 <img src="/msca-digital-finance-phd-training/images/1cd49e_68aa8e8a93b3410491e2d6e96c721751~mv2.jpg" alt="Codruta Mare.jpg">
-<h1>Codruta Mare</h1>
+<h1 id="codruta-mare">Codruta Mare</h1>
 <p>Professor. Babes-Bolyai University</p>
 <img src="https://static.wixstatic.com/media/1cd49e_2fd2d2ba06774de3810c01f41bedaca0~mv2.jpg/v1/fill/w_210,h_217,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Baals.jpg" alt="Baals.jpg">
-<h1>Lennart John Baals</h1>
+<h1 id="lennart-john-baals">Lennart John Baals</h1>
 <p>Ph.D. Student, University of Twente</p>
 <img src="https://static.wixstatic.com/media/1cd49e_240caec72168484c9700774244fff778~mv2.jpg/v1/fill/w_216,h_217,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/86_Poza.jpg" alt="86_Poza.jpg">
-<h1>Liana Stanca</h1>
+<h1 id="liana-stanca">Liana Stanca</h1>
 <p>Professor, Babes-Bolyai University</p>
 <img src="https://static.wixstatic.com/media/1cd49e_e74377e1e0ea437c866266516195b28f~mv2.png/v1/fill/w_216,h_217,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Karolina%20Bolesta.png" alt="Karolina Bolesta.png">
-<h1>Karolina Bolesta</h1>
+<h1 id="karolina-bolesta">Karolina Bolesta</h1>
 <p>Lecturer in Economics, SGH Warsaw School of Economics and Procter & Gamble</p>
 <img src="https://static.wixstatic.com/media/1cd49e_24eb5e22165f4058918e77a8d592054e~mv2.jpg/v1/crop/x_0,y_56,w_1294,h_1339/fill/w_210,h_217,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ch.jpg" alt="ch.jpg">
-<h1>Christian Hafner</h1>
+<h1 id="christian-hafner">Christian Hafner</h1>
 <p>Professor, UCLouvain</p>
-<h2>Organizing Committee</h2>
+<h2 id="organizing-committee">Organizing Committee</h2>
 <ul><li>Joerg Osterrieder, Associate Professor of Finance and Artificial Intelligence at University of Twente (Netherlands) and Professor of Sustainable Finance at BFH (Switzerland)</li></ul>
 <ul><li>Ioana Coita, Lecturer, University of Oradea (Romania)</li></ul>
 <ul><li>Codruta Mare, Professor, Babeș-Bolyai University (Romania)</li></ul>
@@ -258,7 +363,7 @@
 <ul><li>Anastas Dzurovski (North Macedonia)</li></ul>
 <ul><li>Audrius Kabašinskas, Associate Professor at KTU Faculty of Mathematics and Natural Sciences (Lithuania)</li></ul>
 <ul><li>Karsten Wenzlaff, Professur für BWL, insbes. Digitale Märkte (Germany)</li></ul>
-<h2>How to attend</h2>
+<h2 id="how-to-attend">How to attend</h2>
 <p>The event is hybrid and open to everyone upon participation.</p>
 <p>​</p>
 <p>Physically</p>
@@ -278,7 +383,8 @@
 <a href="/msca-digital-finance-phd-training/events/cost-finai-2024.html" class="page-nav-next">Joerg Osterrieder →</a>
 </nav>
 <div class="source-link"><a href="https://www.digital-finance-msca.com/events" target="_blank" rel="noopener">View original page on digital-finance-msca.com</a></div></article>
-  </main>
+    </main>
+  </div>
   <footer class="site-footer">
     <nav class="footer-nav">
       <a href="/msca-digital-finance-phd-training/">Home</a>

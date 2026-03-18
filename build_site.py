@@ -158,7 +158,8 @@ def build_sidebar(section, section_label, current_slug, section_pages, headings)
     """
     parts = ['<nav class="sidebar-nav">']
     parts.append('<div class="sidebar-section">')
-    parts.append(f'<h3><a href="{BASE}/{section}/">{html_mod.escape(section_label)}</a></h3>')
+    section_href = f"{BASE}/" if section == "home" else f"{BASE}/{section}/"
+    parts.append(f'<h3><a href="{section_href}">{html_mod.escape(section_label)}</a></h3>')
     parts.append('<ul>')
     for pg_slug, pg_title in section_pages:
         active = ' class="active"' if pg_slug == current_slug else ''

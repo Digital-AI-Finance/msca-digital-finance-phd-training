@@ -84,6 +84,20 @@
       main { padding: 1rem; }
       .page-nav { flex-direction: column; text-align: center; }
     }
+    .compact-table { font-size: 0.82rem; width: 100%; border-collapse: collapse; }
+    .compact-table td { padding: 0.25rem 0.6rem; }
+    .compact-table th { padding: 0.25rem 0.6rem; text-align: left; }
+    .compact-table td:nth-child(2) { max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .view-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .view-tabs button { border: 1px solid #ccc; background: #f5f5f5; border-radius: 4px; padding: 0.4rem 1rem; cursor: pointer; font-size: 0.85rem; }
+    .view-tabs button.active { background: #003399; color: #fff; border-color: #003399; }
+    .view-panel { display: none; }
+    .view-panel.active { display: block; }
+    .stats-bar { background: #f0f2f5; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.85rem; color: #555; margin-bottom: 1rem; }
+    @media (max-width: 768px) {
+      .view-tabs { flex-wrap: wrap; }
+      .compact-table { font-size: 0.75rem; }
+    }
   </style>
 </head>
 <body>
@@ -196,9 +210,11 @@
     <main id="content">
       <div class="breadcrumbs"><a href="/msca-digital-finance-phd-training/">Home</a> &rsaquo; Training Modules</div>
       <article><h1>Training Modules</h1>
-<p>41 doctoral training courses across foundational, advanced, and transferable skills.</p>
-<div class="section-group"><h2>Foundational Training</h2>
-<table class="summary-table">
+<div class="stats-bar">41 modules | 106 ECTS total | 20 partner institutions</div>
+<div class="view-tabs"><button class="active" data-view="by-category">By Category</button><button data-view="by-institution">By Institution</button><button data-view="by-ects">By ECTS</button></div>
+<div class="view-panel active" id="by-category">
+<div class="section-group"><h2>Foundational Training (7)</h2>
+<table class="compact-table">
 <thead><tr><th>Module</th><th>Institution</th><th>ECTS</th></tr></thead>
 <tbody>
 <tr><td><a href="/msca-digital-finance-phd-training/training-modules/foundation-data-science.html">Foundation of Data Science</a></td><td>The Babes-Bolyai University</td><td>4</td></tr>
@@ -209,8 +225,8 @@
 <tr><td><a href="/msca-digital-finance-phd-training/training-modules/ethics-digital.html">Ethics applicable to digital aspects</a></td><td>University of Twente (UTW)</td><td>4</td></tr>
 <tr><td><a href="/msca-digital-finance-phd-training/training-modules/reinforcement-learning.html">Reinforcement Learning in Digital Finance</a></td><td>University of Twente (UTW)</td><td>4</td></tr>
 </tbody></table></div>
-<div class="section-group"><h2>Advanced Scientific Training</h2>
-<table class="summary-table">
+<div class="section-group"><h2>Advanced Scientific Training (17)</h2>
+<table class="compact-table">
 <thead><tr><th>Module</th><th>Institution</th><th>ECTS</th></tr></thead>
 <tbody>
 <tr><td><a href="/msca-digital-finance-phd-training/training-modules/synthetic-data.html">Synthetic Data Generation for Finance</a></td><td>Athena Research Center</td><td>4</td></tr>
@@ -231,8 +247,8 @@
 <tr><td><a href="/msca-digital-finance-phd-training/training-modules/green-finance.html">Green Digital Finance</a></td><td>Kaunas University of Technology</td><td>3</td></tr>
 <tr><td><a href="/msca-digital-finance-phd-training/training-modules/multi-criteria.html">Multi-Criteria Decision Making in Sustainable Finance</a></td><td>Fraunhofer Institute</td><td>3</td></tr>
 </tbody></table></div>
-<div class="section-group"><h2>Transferable Skills</h2>
-<table class="summary-table">
+<div class="section-group"><h2>Transferable Skills (17)</h2>
+<table class="compact-table">
 <thead><tr><th>Module</th><th>Institution</th><th>ECTS</th></tr></thead>
 <tbody>
 <tr><td><a href="/msca-digital-finance-phd-training/training-modules/scientific-writing.html">Scientific Writing</a></td><td>Bern Business School</td><td>1</td></tr>
@@ -252,7 +268,224 @@
 <tr><td><a href="/msca-digital-finance-phd-training/training-modules/ip-patenting.html">Intellectual Property Rights and Patenting</a></td><td>European Central Bank, Deloitte</td><td>1</td></tr>
 <tr><td><a href="/msca-digital-finance-phd-training/training-modules/job-applications.html">Job Applications</a></td><td>University of Twente</td><td>1</td></tr>
 <tr><td><a href="/msca-digital-finance-phd-training/training-modules/labor-market.html">Labor Market Skills</a></td><td></td><td>2</td></tr>
-</tbody></table></div></article>
+</tbody></table></div>
+</div>
+<div class="view-panel" id="by-institution">
+<div class="section-group"><h2>Athena Research Center (2 modules, 8 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/nlp-transformers.html">Natural Language Processing with Transformers</a></td><td>Advanced Scientific Training</td><td>4</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/synthetic-data.html">Synthetic Data Generation for Finance</a></td><td>Advanced Scientific Training</td><td>4</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>Bern Business School (5 modules, 11 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/entrepreneurial-finance.html">Entrepreneurial Finance</a></td><td>Transferable Skills</td><td>1</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/xai-finance.html">Explainable AI in Finance</a></td><td>Advanced Scientific Training</td><td>4</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/research-ethics.html">Research Ethics and Sustainable Research Management</a></td><td>Transferable Skills</td><td>1</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/scientific-writing.html">Scientific Writing</a></td><td>Transferable Skills</td><td>1</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/xai-methods.html">The Need for Explainable AI: Methods and Applications in Finance</a></td><td>Foundational Training</td><td>4</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>Bucharest University of Economic Studies (5 modules, 16 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/ai-design.html">AI Design in Digital Finance</a></td><td>Advanced Scientific Training</td><td>4</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/blockchains.html">Blockchains in Digital Finance</a></td><td>Advanced Scientific Training</td><td>4</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/dependence-hf-data.html">Dependence Structures in High Frequency Financial Data</a></td><td>Advanced Scientific Training</td><td>3</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/he-framework.html">HE Framework and Research Project Management</a></td><td>Transferable Skills</td><td>1</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/intro-blockchain.html">Introduction to Blockchain Applications in Finance</a></td><td>Foundational Training</td><td>4</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>Cardo AI S.R.L (1 modules, 4 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/ml-industry.html">Machine Learning in Industry</a></td><td>Advanced Scientific Training</td><td>4</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>EIT Digital (1 modules, 4 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/industrial-doctoral.html">Industrial Doctoral School on FinTech</a></td><td>Advanced Scientific Training</td><td>4</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>European Central Bank (2 modules, 5 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/regulation.html">Digital Finance Regulation</a></td><td>Advanced Scientific Training</td><td>3</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/gender-diversity.html">Gender and Diversity Dimension in Research</a></td><td>Transferable Skills</td><td>2</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>European Central Bank, Deloitte (1 modules, 1 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/ip-patenting.html">Intellectual Property Rights and Patenting</a></td><td>Transferable Skills</td><td>1</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>European Institute of Technology Digital (1 modules, 1 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/entrepreneurship.html">Entrepreneurship Training</a></td><td>Transferable Skills</td><td>1</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>European Institute of Technology Digital, Deloitte (1 modules, 1 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/startups-transfer.html">Start-ups and Industry Transfer</a></td><td>Transferable Skills</td><td>1</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>Fraunhofer Institute (1 modules, 3 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/multi-criteria.html">Multi-Criteria Decision Making in Sustainable Finance</a></td><td>Advanced Scientific Training</td><td>3</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>Kaunas University of Technology (1 modules, 3 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/green-finance.html">Green Digital Finance</a></td><td>Advanced Scientific Training</td><td>3</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>Raiffeisen Bank International AG (1 modules, 1 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/scientific-communication.html">Scientific Communication</a></td><td>Transferable Skills</td><td>1</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>Royalton Partners Holdings SA, Deloitte (1 modules, 1 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/project-management.html">Project Management</a></td><td>Transferable Skills</td><td>1</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>The Babes-Bolyai University (3 modules, 11 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/anomaly-detection.html">Anomaly Detection in Big Data</a></td><td>Advanced Scientific Training</td><td>4</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/deep-learning.html">Deep Learning for Finance</a></td><td>Advanced Scientific Training</td><td>3</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/foundation-data-science.html">Foundation of Data Science</a></td><td>Foundational Training</td><td>4</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>University of Naples Federico II (4 modules, 9 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/environmental-aspects.html">Environmental Aspects</a></td><td>Transferable Skills</td><td>1</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/history-prospects.html">History and Prospects of Digital Finance</a></td><td>Advanced Scientific Training</td><td>3</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/open-science.html">Open Science Principles</a></td><td>Transferable Skills</td><td>1</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/sustainable-finance.html">Sustainable Finance</a></td><td>Foundational Training</td><td>4</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>University of Twente (3 modules, 5 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/cybersecurity.html">Cybersecurity in Digital Finance</a></td><td>Advanced Scientific Training</td><td>3</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/ethical-dimensions.html">Ethical Dimensions</a></td><td>Transferable Skills</td><td>1</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/job-applications.html">Job Applications</a></td><td>Transferable Skills</td><td>1</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>University of Twente (UTW) (2 modules, 8 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/ethics-digital.html">Ethics applicable to digital aspects</a></td><td>Foundational Training</td><td>4</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/reinforcement-learning.html">Reinforcement Learning in Digital Finance</a></td><td>Foundational Training</td><td>4</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>University of Twente, Deloitte (1 modules, 1 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/communication-skills.html">Communication Skills</a></td><td>Transferable Skills</td><td>1</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>Unspecified (1 modules, 2 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/labor-market.html">Labor Market Skills</a></td><td>Transferable Skills</td><td>2</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>WU Vienna University of Economics and Business (4 modules, 11 ECTS)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/barriers-adoption.html">Barriers in Digital Finance Adoption</a></td><td>Advanced Scientific Training</td><td>3</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/citizen-science.html">Citizen Science</a></td><td>Transferable Skills</td><td>1</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/data-centric-ai.html">Data-Centric AI</a></td><td>Advanced Scientific Training</td><td>3</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/intro-ai-finance.html">Introduction to AI for Financial Applications</a></td><td>Foundational Training</td><td>4</td></tr>
+</tbody></table></div>
+</div>
+<div class="view-panel" id="by-ects">
+<div class="section-group"><h2>4 ECTS (15 modules)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Institution</th><th>Category</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/ai-design.html">AI Design in Digital Finance</a></td><td>Bucharest University of Economic Studies</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/anomaly-detection.html">Anomaly Detection in Big Data</a></td><td>The Babes-Bolyai University</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/blockchains.html">Blockchains in Digital Finance</a></td><td>Bucharest University of Economic Studies</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/ethics-digital.html">Ethics applicable to digital aspects</a></td><td>University of Twente (UTW)</td><td>Foundational Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/xai-finance.html">Explainable AI in Finance</a></td><td>Bern Business School</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/foundation-data-science.html">Foundation of Data Science</a></td><td>The Babes-Bolyai University</td><td>Foundational Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/industrial-doctoral.html">Industrial Doctoral School on FinTech</a></td><td>EIT Digital</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/intro-ai-finance.html">Introduction to AI for Financial Applications</a></td><td>WU Vienna University of Economics and Business</td><td>Foundational Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/intro-blockchain.html">Introduction to Blockchain Applications in Finance</a></td><td>Bucharest University of Economic Studies</td><td>Foundational Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/ml-industry.html">Machine Learning in Industry</a></td><td>Cardo AI S.R.L</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/nlp-transformers.html">Natural Language Processing with Transformers</a></td><td>Athena Research Center</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/reinforcement-learning.html">Reinforcement Learning in Digital Finance</a></td><td>University of Twente (UTW)</td><td>Foundational Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/sustainable-finance.html">Sustainable Finance</a></td><td>University of Naples Federico II</td><td>Foundational Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/synthetic-data.html">Synthetic Data Generation for Finance</a></td><td>Athena Research Center</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/xai-methods.html">The Need for Explainable AI: Methods and Applications in Finance</a></td><td>Bern Business School</td><td>Foundational Training</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>3 ECTS (9 modules)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Institution</th><th>Category</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/barriers-adoption.html">Barriers in Digital Finance Adoption</a></td><td>WU Vienna University of Economics and Business</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/cybersecurity.html">Cybersecurity in Digital Finance</a></td><td>University of Twente</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/data-centric-ai.html">Data-Centric AI</a></td><td>WU Vienna University of Economics and Business</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/deep-learning.html">Deep Learning for Finance</a></td><td>The Babes-Bolyai University</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/dependence-hf-data.html">Dependence Structures in High Frequency Financial Data</a></td><td>Bucharest University of Economic Studies</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/regulation.html">Digital Finance Regulation</a></td><td>European Central Bank</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/green-finance.html">Green Digital Finance</a></td><td>Kaunas University of Technology</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/history-prospects.html">History and Prospects of Digital Finance</a></td><td>University of Naples Federico II</td><td>Advanced Scientific Training</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/multi-criteria.html">Multi-Criteria Decision Making in Sustainable Finance</a></td><td>Fraunhofer Institute</td><td>Advanced Scientific Training</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>2 ECTS (2 modules)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Institution</th><th>Category</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/gender-diversity.html">Gender and Diversity Dimension in Research</a></td><td>European Central Bank</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/labor-market.html">Labor Market Skills</a></td><td></td><td>Transferable Skills</td></tr>
+</tbody></table></div>
+<div class="section-group"><h2>1 ECTS (15 modules)</h2>
+<table class="compact-table">
+<thead><tr><th>Module</th><th>Institution</th><th>Category</th></tr></thead>
+<tbody>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/citizen-science.html">Citizen Science</a></td><td>WU Vienna University of Economics and Business</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/communication-skills.html">Communication Skills</a></td><td>University of Twente, Deloitte</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/entrepreneurial-finance.html">Entrepreneurial Finance</a></td><td>Bern Business School</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/entrepreneurship.html">Entrepreneurship Training</a></td><td>European Institute of Technology Digital</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/environmental-aspects.html">Environmental Aspects</a></td><td>University of Naples Federico II</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/ethical-dimensions.html">Ethical Dimensions</a></td><td>University of Twente</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/he-framework.html">HE Framework and Research Project Management</a></td><td>Bucharest University of Economic Studies</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/ip-patenting.html">Intellectual Property Rights and Patenting</a></td><td>European Central Bank, Deloitte</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/job-applications.html">Job Applications</a></td><td>University of Twente</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/open-science.html">Open Science Principles</a></td><td>University of Naples Federico II</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/project-management.html">Project Management</a></td><td>Royalton Partners Holdings SA, Deloitte</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/research-ethics.html">Research Ethics and Sustainable Research Management</a></td><td>Bern Business School</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/scientific-communication.html">Scientific Communication</a></td><td>Raiffeisen Bank International AG</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/scientific-writing.html">Scientific Writing</a></td><td>Bern Business School</td><td>Transferable Skills</td></tr>
+<tr><td><a href="/msca-digital-finance-phd-training/training-modules/startups-transfer.html">Start-ups and Industry Transfer</a></td><td>European Institute of Technology Digital, Deloitte</td><td>Transferable Skills</td></tr>
+</tbody></table></div>
+</div>
+<noscript><style>.view-tabs { display: none; }</style></noscript>
+<script>
+document.querySelector('.view-tabs').addEventListener('click', function(e) {
+  if (e.target.tagName !== 'BUTTON') return;
+  this.querySelectorAll('button').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.view-panel').forEach(function(p) { p.classList.remove('active'); });
+  e.target.classList.add('active');
+  document.getElementById(e.target.dataset.view).classList.add('active');
+});
+</script></article>
     </main>
   </div>
   <footer class="site-footer">

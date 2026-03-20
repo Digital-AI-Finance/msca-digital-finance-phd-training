@@ -275,6 +275,20 @@ def page_template(title, breadcrumbs, content, current_section="", sidebar_html=
       main {{ padding: 1rem; }}
       .page-nav {{ flex-direction: column; text-align: center; }}
     }}
+    .compact-table {{ font-size: 0.82rem; width: 100%; border-collapse: collapse; }}
+    .compact-table td {{ padding: 0.25rem 0.6rem; }}
+    .compact-table th {{ padding: 0.25rem 0.6rem; text-align: left; }}
+    .compact-table td:nth-child(2) {{ max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }}
+    .view-tabs {{ display: flex; gap: 0.5rem; margin-bottom: 1rem; }}
+    .view-tabs button {{ border: 1px solid #ccc; background: #f5f5f5; border-radius: 4px; padding: 0.4rem 1rem; cursor: pointer; font-size: 0.85rem; }}
+    .view-tabs button.active {{ background: #003399; color: #fff; border-color: #003399; }}
+    .view-panel {{ display: none; }}
+    .view-panel.active {{ display: block; }}
+    .stats-bar {{ background: #f0f2f5; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.85rem; color: #555; margin-bottom: 1rem; }}
+    @media (max-width: 768px) {{
+      .view-tabs {{ flex-wrap: wrap; }}
+      .compact-table {{ font-size: 0.75rem; }}
+    }}
   </style>
 </head>
 <body>
@@ -836,12 +850,52 @@ def build_training_modules_index(section_pages=None):
     for m in data.get("modules", []):
         modules_by_slug[m["slug"]] = m
 
-    content_parts = ['<h1>Training Modules</h1>']
-    content_parts.append(f'<p>{data.get("count", 41)} doctoral training courses across foundational, advanced, and transferable skills.</p>')
+    # Reverse lookup: slug -> category name
+    slug_to_category = {}
+    for cat_name, cat_slugs in CATEGORIES.items():
+        for s in cat_slugs:
+            slug_to_category[s] = cat_name
 
+    # Group by institution
+    by_institution = {}
+    for m in data.get("modules", []):
+        inst = m.get("institution") or "Unspecified"
+        by_institution.setdefault(inst, []).append(m)
+
+    # Group by ECTS
+    by_ects = {}
+    for m in data.get("modules", []):
+        ec = m.get("ects") or 0
+        by_ects.setdefault(ec, []).append(m)
+
+    # Computed stats (NEVER hardcode these)
+    stats = {
+        "total_modules": len(modules_by_slug),
+        "total_ects": sum(m.get("ects") or 0 for m in modules_by_slug.values()),
+        "institution_count": len(by_institution),
+    }
+
+    content_parts = ['<h1>Training Modules</h1>']
+    content_parts.append(
+        f'<div class="stats-bar">{stats["total_modules"]} modules | '
+        f'{stats["total_ects"]} ECTS total | '
+        f'{stats["institution_count"]} partner institutions</div>'
+    )
+
+    # Tab bar
+    content_parts.append(
+        '<div class="view-tabs">'
+        '<button class="active" data-view="by-category">By Category</button>'
+        '<button data-view="by-institution">By Institution</button>'
+        '<button data-view="by-ects">By ECTS</button>'
+        '</div>'
+    )
+
+    # Panel 1: By Category (default, active)
+    content_parts.append('<div class="view-panel active" id="by-category">')
     for cat_name, slugs in CATEGORIES.items():
-        content_parts.append(f'<div class="section-group"><h2>{html_mod.escape(cat_name)}</h2>')
-        content_parts.append('<table class="summary-table">')
+        content_parts.append(f'<div class="section-group"><h2>{html_mod.escape(cat_name)} ({len(slugs)})</h2>')
+        content_parts.append('<table class="compact-table">')
         content_parts.append('<thead><tr><th>Module</th><th>Institution</th><th>ECTS</th></tr></thead>')
         content_parts.append('<tbody>')
         for slug in slugs:
@@ -858,6 +912,67 @@ def build_training_modules_index(section_pages=None):
                 f'</tr>'
             )
         content_parts.append('</tbody></table></div>')
+    content_parts.append('</div>')
+
+    # Panel 2: By Institution
+    content_parts.append('<div class="view-panel" id="by-institution">')
+    for inst_name in sorted(by_institution.keys()):
+        mods = by_institution[inst_name]
+        inst_ects = sum(m.get("ects") or 0 for m in mods)
+        content_parts.append(f'<div class="section-group"><h2>{html_mod.escape(inst_name)} ({len(mods)} modules, {inst_ects} ECTS)</h2>')
+        content_parts.append('<table class="compact-table">')
+        content_parts.append('<thead><tr><th>Module</th><th>Category</th><th>ECTS</th></tr></thead>')
+        content_parts.append('<tbody>')
+        for m in sorted(mods, key=lambda x: x.get("title", "")):
+            slug = m["slug"]
+            title = m.get("title", slug_to_title(slug))
+            cat = slug_to_category.get(slug, "")
+            ects = m.get("ects")
+            ects_str = str(ects) if ects else ""
+            content_parts.append(
+                f'<tr>'
+                f'<td><a href="{BASE}/training-modules/{slug}.html">{html_mod.escape(title)}</a></td>'
+                f'<td>{html_mod.escape(cat)}</td>'
+                f'<td>{html_mod.escape(ects_str)}</td>'
+                f'</tr>'
+            )
+        content_parts.append('</tbody></table></div>')
+    content_parts.append('</div>')
+
+    # Panel 3: By ECTS
+    content_parts.append('<div class="view-panel" id="by-ects">')
+    for ec in sorted(by_ects.keys(), reverse=True):
+        mods = by_ects[ec]
+        content_parts.append(f'<div class="section-group"><h2>{ec} ECTS ({len(mods)} modules)</h2>')
+        content_parts.append('<table class="compact-table">')
+        content_parts.append('<thead><tr><th>Module</th><th>Institution</th><th>Category</th></tr></thead>')
+        content_parts.append('<tbody>')
+        for m in sorted(mods, key=lambda x: x.get("title", "")):
+            slug = m["slug"]
+            title = m.get("title", slug_to_title(slug))
+            institution = m.get("institution") or ""
+            cat = slug_to_category.get(slug, "")
+            content_parts.append(
+                f'<tr>'
+                f'<td><a href="{BASE}/training-modules/{slug}.html">{html_mod.escape(title)}</a></td>'
+                f'<td>{html_mod.escape(institution)}</td>'
+                f'<td>{html_mod.escape(cat)}</td>'
+                f'</tr>'
+            )
+        content_parts.append('</tbody></table></div>')
+    content_parts.append('</div>')
+
+    # Noscript fallback + JS tab switching
+    content_parts.append('<noscript><style>.view-tabs { display: none; }</style></noscript>')
+    content_parts.append("""<script>
+document.querySelector('.view-tabs').addEventListener('click', function(e) {
+  if (e.target.tagName !== 'BUTTON') return;
+  this.querySelectorAll('button').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.view-panel').forEach(function(p) { p.classList.remove('active'); });
+  e.target.classList.add('active');
+  document.getElementById(e.target.dataset.view).classList.add('active');
+});
+</script>""")
 
     bc = (
         f'<a href="{BASE}/">Home</a> &rsaquo; Training Modules'

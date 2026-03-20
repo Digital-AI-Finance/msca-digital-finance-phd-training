@@ -84,6 +84,20 @@
       main { padding: 1rem; }
       .page-nav { flex-direction: column; text-align: center; }
     }
+    .compact-table { font-size: 0.82rem; width: 100%; border-collapse: collapse; }
+    .compact-table td { padding: 0.25rem 0.6rem; }
+    .compact-table th { padding: 0.25rem 0.6rem; text-align: left; }
+    .compact-table td:nth-child(2) { max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .view-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .view-tabs button { border: 1px solid #ccc; background: #f5f5f5; border-radius: 4px; padding: 0.4rem 1rem; cursor: pointer; font-size: 0.85rem; }
+    .view-tabs button.active { background: #003399; color: #fff; border-color: #003399; }
+    .view-panel { display: none; }
+    .view-panel.active { display: block; }
+    .stats-bar { background: #f0f2f5; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.85rem; color: #555; margin-bottom: 1rem; }
+    @media (max-width: 768px) {
+      .view-tabs { flex-wrap: wrap; }
+      .compact-table { font-size: 0.75rem; }
+    }
   </style>
 </head>
 <body>
